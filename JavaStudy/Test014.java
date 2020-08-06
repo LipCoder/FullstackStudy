@@ -28,7 +28,7 @@ public class Test014
 		System.out.print("한 문자 입력 : ");
 		testOne = (char)System.in.read();
 		
-		// -- 매개변수 (=> 갯수) 만큼 건너 뛴다. 
+		// -- 매개변수 (=> 갯수) 만큼 건너 뛴다.(버린다)
 		System.in.skip(2);
 
 		System.out.print("한 자리 정수 입력 : ");
@@ -39,3 +39,12 @@ public class Test014
 		System.out.printf(">> 입력한 정수 : %c\n", testTwo);
 	}
 }
+
+/*
+한 문자 입력 : A
+한 자리 정수 입력 : 7
+
+>> 입력한 문자 : A
+>> 입력한 정수 : 7
+계속하려면 아무 키나 누르십시오 . . .
+*/
