@@ -23,10 +23,12 @@
 
 */
 
+
 public class Test065
 {
 	public static void main(String[] args)
 	{	
+
 		int middle = 4;
 		int limit = middle * 2;
 
@@ -41,7 +43,8 @@ public class Test065
 			
 			for(int j = 0; j <= limit; ++j)
 			{
-				// 경계선 안쪽에 있다면 별을 출력하고
+				// 왼쪽 경계선 안쪽(오른쪽)에 있거나
+				// 오른쪽 경계선 안쪽(왼쪽)에 있으면 별을 출력하고
 				// 그렇지 않은 경우는 공백을 출력한다.
 				if(boundaryLeft <= j && j <= boundaryRight) 
 					System.out.print("*");
@@ -53,3 +56,22 @@ public class Test065
 		}
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
