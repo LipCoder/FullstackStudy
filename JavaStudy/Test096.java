@@ -20,11 +20,30 @@
 계속하려면 아무 키나 누르세요...
 */
 
-
 public class Test096
 {
 	public static void main(String[] args)
 	{
+		int[][] arr = new int[5][5];
+		
+		char c = 'A';
 
+		for(int i = 0; i < arr.length; ++i)
+		{
+			for(int j = 0; j < arr[i].length; ++j)
+			{
+				if(j > i) arr[i][j] = ' ';
+				else arr[i][j] = c++;
+			}
+		}
+
+		for(int i = 0; i < arr.length; ++i)
+		{
+			for(int j = 0; j < arr[i].length; ++j)
+			{
+				System.out.printf("%3c", arr[i][j]);
+			}
+			System.out.println();
+		}
 	}
 }

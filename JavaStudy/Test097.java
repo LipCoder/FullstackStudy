@@ -25,6 +25,33 @@ public class Test097
 {
 	public static void main(String[] args)
 	{
+		int[][] arr = new int[5][5];
+		
+		char c = 'A';
 
+		for(int i = 0; i < arr.length; ++i)
+		{
+			boolean isRight = (i % 2 == 0);
+			int lastIdx = arr[i].length - 1;
+
+			int j = (isRight) ? 0 : lastIdx;
+
+			for(; (0 <= j && j <= lastIdx) ;)
+			{
+				if(j > i) arr[i][j] = ' ';
+				else arr[i][j] = c++;
+
+				j = (isRight) ? j + 1 : j - 1;
+			}
+		}
+
+		for(int i = 0; i < arr.length; ++i)
+		{
+			for(int j = 0; j < arr[i].length; ++j)
+			{
+				System.out.printf("%3c", arr[i][j]);
+			}
+			System.out.println();
+		}
 	}
 }
