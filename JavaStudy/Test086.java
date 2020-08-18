@@ -39,8 +39,9 @@ public class Test086
 		
 		System.out.print("학생 수 입력 : ");
 		studentCount = sc.nextInt();
-
+		
 		int sumOfScore = 0;
+		// 학생수만큼 스코어를 담을 배열 할당
 		int[] arrScore = new int[studentCount];
 		for(int i = 0; i < arrScore.length; ++i)
 		{
@@ -48,14 +49,15 @@ public class Test086
 			arrScore[i] = sc.nextInt();
 			sumOfScore += arrScore[i];
 		}
-	
+		
 		double avgScore = sumOfScore / (double)studentCount;
 		
 		System.out.println();
 		System.out.println(">> 합 : " + sumOfScore);
-		System.out.printf(">> 평균 : %.2f\n", avgScore);
+		System.out.printf(">> 평균 : %.1f\n", avgScore);
 		System.out.println(">> 편차");
 		
+		// 평균 - 각점수를 계산하여 편차를 구한다
 		for(int i = 0; i < arrScore.length; ++i)
 		{
 			System.out.printf("%d : %.1f\n", arrScore[i], avgScore - arrScore[i]);

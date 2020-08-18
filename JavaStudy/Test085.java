@@ -25,6 +25,7 @@ public class Test085
 		System.out.print("입력할 데이터의 갯수 : ");
 		numCount = sc.nextInt();
 
+		// 입력할 데이터 갯수만큼 배열 할당
 		int[] arr = new int[numCount];
 
 		System.out.print("데이터 입력(공백 구분) : ");
@@ -32,7 +33,9 @@ public class Test085
 		{
 			arr[i] = sc.nextInt();
 		}
-
+		
+		// 최대값을 측정하기 위해 max를 선언한다.
+		// 최소값이 얼마인지 알 수 없으므로 정수에서 가장 작은 값을 넣어준다.
 		int max = Integer.MIN_VALUE;
 		for(int i = 0; i < arr.length; ++i)
 		{
