@@ -76,41 +76,6 @@
 
 import java.util.Scanner;
 
-public class Test109
-{
-	public static void main(String[] args)
-	{
-		Identifier id = new Identifier();
-		id.logic();
-		/*
-		String tmp = "study-hard";
-		System.out.println(tmp.length());
-
-		tmp = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-		System.out.println(tmp.substring(3, 5));	// 3 ~ 4번째까지
-		// --==>> DE
-		// ABCDEFGHIJKLMNOPQRSTUVWXYZ
-		// 0123456789...
-		//    DE
-
-		tmp = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-		System.out.println(tmp.substring(13, 17)); // 13 ~ 16번째까지
-
-		//int[] arr = {1, 2, 3};
-		//System.out.println(arr[5]);
-		//--==>> 에러 발생 -> ArrayIndexOUtOfBoundsException
-
-		//tmp = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-		//System.out.println(tmp.substring(13, 57)); // 13 ~ 56번째까지
-		//--==>> 에러 발생 -> StringIndexOUtOfBoundsException
-
-		tmp = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-		System.out.println(tmp.substring(15)); // 15 ~ 끝까지
-		*/
-
-	}
-}
-
 class Identifier
 {
 	private String first, last;
@@ -174,3 +139,39 @@ class Identifier
 		print(check);
 	}
 }
+
+public class Test109
+{
+	public static void main(String[] args)
+	{
+		Identifier id = new Identifier();
+		id.logic();
+		/*
+		String tmp = "study-hard";
+		System.out.println(tmp.length());
+
+		tmp = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		System.out.println(tmp.substring(3, 5));	// 3 ~ 4번째까지
+		// --==>> DE
+		// ABCDEFGHIJKLMNOPQRSTUVWXYZ
+		// 0123456789...
+		//    DE
+
+		tmp = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		System.out.println(tmp.substring(13, 17)); // 13 ~ 16번째까지
+
+		//int[] arr = {1, 2, 3};
+		//System.out.println(arr[5]);
+		//--==>> 에러 발생 -> ArrayIndexOUtOfBoundsException
+
+		//tmp = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		//System.out.println(tmp.substring(13, 57)); // 13 ~ 56번째까지
+		//--==>> 에러 발생 -> StringIndexOUtOfBoundsException
+
+		tmp = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		System.out.println(tmp.substring(15)); // 15 ~ 끝까지
+		*/
+
+	}
+}
+
