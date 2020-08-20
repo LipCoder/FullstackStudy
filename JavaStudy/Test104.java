@@ -48,6 +48,20 @@
 
 // 계속하려면 아무 키나 누르세요...
 
+public class Test104
+{
+	public static void main(String[] args)
+	{
+		Sungjuk ob = new Sungjuk();
+
+		ob.set();
+		ob.input();
+		ob.print();
+	}
+}
+
+// my code
+/*
 import java.util.Scanner;
 
 class Record
@@ -157,3 +171,4 @@ public class Test104
 		sj.print();
 	}
 }
+*/
