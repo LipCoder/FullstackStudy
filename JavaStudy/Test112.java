@@ -23,26 +23,14 @@ public class Test112
 		for(int i = 1; i < a.length; ++i)		
 		{
 			int t = a[i];
-			for(int j = i; j > 0 ; --j)
+			int j = i - 1;
+
+			while((j >= 0) && (t < a[j]))
 			{
-				// 만약 왼쪽이 오른쪽보다 크다면 덮어쓴다.
-				if(a[j - 1] > a[j]) a[j] = a[j - 1];
-				// 만약 오른쪽이 왼쪽보다 크다면 냅둔다.
-
-				if(a[j - 1] < t)
-				{
-					a[j] = t;
-					break;
-				}
-
-				if(j - 1 == 0)
-				{
-					a[j - 1] = t;
-				}
+				a[j + 1] = a[j]; 
+				--j;
 			}
-			for(int n : a)
-				System.out.print(n + " ");
-			System.out.println();
+			a[j + 1] = t;
 		}
 		
 
@@ -80,7 +68,5 @@ public class Test112
 		12 42 52 60 62			t 60
 
 		*/
-
-
 	}
 }
