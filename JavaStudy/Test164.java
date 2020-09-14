@@ -20,38 +20,6 @@
 import java.util.Vector;
 import java.util.Iterator;
 
-public class Test164
-{
-	public static void main(String[] args)
-	{
-		// MyVector 클래스 기반 인스턴스 생성
-		MyVector v = new MyVector();
-
-		// 주요 변수 선언 및 초기화
-		int digit = 5;
-		float real = 3.14f;
-		String s = new String("안녕하세요");
-		char[] letters = {'s', 't', 'u', 'd', 'y'};
-
-		// 벡터 자료구조 v에 요소 추가
-		v.addInt(digit);	//-- 벡터 자료구조에 정수 저장
-		v.addFloat(real);	//-- 벡터 자료구조에 실수 저장
-		v.addString(s);		//-- 벡터 자료구조에 문자열 저장
-		v.addCharArray(letters);	//-- 벡터 자료구조에 문자열 저장
-
-		v.write();
-		//--==>>
-		/*
-		벡터 요소 갯수 : 4
-		정수형 : 5
-		실수형 : 3.14
-		문자열 : 안녕하세요
-		문자 배열 : study
-		계속하려면 아무 키나 누르세요...
-		*/
-	}
-}
-
 // MyVector 클래스 설계 -> Vector 클래스 상속
 class MyVector extends Vector<Object>
 {
@@ -138,6 +106,38 @@ class MyVector extends Vector<Object>
 			System.out.print(' ');
 		}
 		System.out.println();
+		*/
+	}
+}
+
+public class Test164
+{
+	public static void main(String[] args)
+	{
+		// MyVector 클래스 기반 인스턴스 생성
+		MyVector v = new MyVector();
+
+		// 주요 변수 선언 및 초기화
+		int digit = 5;
+		float real = 3.14f;
+		String s = new String("안녕하세요");
+		char[] letters = {'s', 't', 'u', 'd', 'y'};
+
+		// 벡터 자료구조 v에 요소 추가
+		v.addInt(digit);	//-- 벡터 자료구조에 정수 저장
+		v.addFloat(real);	//-- 벡터 자료구조에 실수 저장
+		v.addString(s);		//-- 벡터 자료구조에 문자열 저장
+		v.addCharArray(letters);	//-- 벡터 자료구조에 문자열 저장
+
+		v.write();
+		//--==>>
+		/*
+		벡터 요소 갯수 : 4
+		정수형 : 5
+		실수형 : 3.14
+		문자열 : 안녕하세요
+		문자 배열 : study
+		계속하려면 아무 키나 누르세요...
 		*/
 	}
 }
