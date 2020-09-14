@@ -141,7 +141,7 @@ public class Test152
 		}
 		*/
 		
-		
+		/*
 		// 방법<3>
 		try
 		{
@@ -169,7 +169,7 @@ public class Test152
 			System.out.println(e2.toString());
 			System.out.println("숫자 형태의 데이터를 입력하세요~!!!");
 		}
-		
+		*/
 		
 		// 방법<4>
 		/*
@@ -198,7 +198,7 @@ public class Test152
 		*/
 
 		// etc ...
-		/*
+
 		try
 		{
 			System.out.print("첫 번째 정수 입력 : ");
@@ -219,6 +219,5 @@ public class Test152
 			
 			System.out.println("고생많으셨습니다. 감사합니다.");
 		}
-		*/
 	}
 }
