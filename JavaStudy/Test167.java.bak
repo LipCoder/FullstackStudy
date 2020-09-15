@@ -135,9 +135,7 @@ public class Test167
 				((MyData)temp).getName(), ((MyData)temp).getAge());
 		}
 		System.out.println();
-		//--==>> 이름 : 박다빈, 나이 : 13세
-		//		 이름 : 박민하, 나이 : 7세
-		//		 이름 : 박해진, 나이 : 58세
+
 	}
 }
 
