@@ -1,0 +1,75 @@
+/*=======================================================
+      ■■■ 컬렉션 프레임워크(Collection Framework) ■■■
+=========================================================*/
+
+// Set -> HashSet, TreeSet
+// - 순서 없음.
+// - 중복을 허용하지 않는 구조(기본)
+
+/*
+○ HashSet<E> 클래스
+
+  java.util.HashSet<E> 클래스는
+  Set 인터페이스를 구현하는 클래스로
+  순서의 개념이 아니라 집합의 개념으로 이해해야 하는 자료구조이다.
+  이로 인해 데이터의 중복을 허용하지 않는다.
+  또한, 동기화를 지원하지 않는다.
+*/
+
+import java.util.Set;
+import java.util.HashSet;
+
+public class Test173
+{
+	public static void main(String[] args)
+	{	
+		//Set ob = new Set();
+		//Set<String> ob = new Set<String>();
+		// 주의 : Set은 인터페이스
+
+		Set<String> dog = new HashSet<String>();
+
+		// dog 라는 Set 자료구조에 요소 추가
+		dog.add("코카스파니엘");
+		dog.add("포메라니안");
+		dog.add("골든리트리버");
+		dog.add("웰시코기");
+		dog.add("불독");
+
+		for(String s : dog)
+			System.out.print(s + " ");
+		System.out.println();
+		//--==>> 포메라니안 골든리트리버 불독 웰시코기 코카스파니엘
+		//-- 순서가 의미 없는 자료구조이기 때문에
+		//   데이터 입력 순서 -> 자료구조의 요소 격납 순서
+		//   이들이 서로 관계 없이 구성되어 있는 것을 확인.
+
+		// 데이터 요소 추가
+		dog.add("푸들");
+		dog.add("요크셔테리어");
+		dog.add("말티즈");
+		dog.add("진돗개");
+
+		dog.add("코카스파니엘");
+		dog.add("코카스파니엘");
+		dog.add("코카스파니엘");
+		dog.add("코카스파니엘");
+
+		dog.add("웰시코기");
+		dog.add("웰시코기");
+		dog.add("웰시코기");
+		dog.add("웰시코기");
+
+		dog.add("진돗개");
+
+		dog.add("골든리트리버");
+		dog.add("골든리트리버");
+		dog.add("골든리트리버");
+
+		// 추가 후 데이터 Set 출력
+		System.out.print("추가 후 데이터 Set : ");
+		for(String s : dog)
+			System.out.print(s + " ");
+		System.out.println();
+	}
+}

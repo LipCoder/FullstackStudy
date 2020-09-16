@@ -88,10 +88,19 @@ public class Test159
 
       // myStack 이라는 Stack 자료구조 안에 str1 ~ str4 까지 담아내기
       // add(), push()
-      //myStack.add(str1);
-      //myStack.add(str2);
-      //myStack.push(str3);
-      //myStack.push(str4);
+      myStack.add(str1);
+      myStack.add(str2);
+
+      int pos = myStack.search(str2);
+	  System.out.println(pos);
+	  //--==>> 1
+
+      myStack.push(str3);
+      myStack.push(str4);
+    
+	  pos = myStack.search(str2);
+	  System.out.println(pos);
+	  //--==>> 3
 	  
 	
       // peek() : 스택 맨 위의 객체 반환.  제거하지 않는다.
