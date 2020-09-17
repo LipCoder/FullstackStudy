@@ -1,0 +1,31 @@
+--■■■ 오라클 설치 및 제거 ■■■
+
+
+--○ URL 요청 및 접근
+--   https://www.oracle.com/kr/downloads/
+--   데이터베이스 > ...
+
+--○ 설치 버전
+--   Oracle 11g Express Edition   ◀
+--          --- ---------------
+--           8i Standard Edition
+--           9i Enterprise Edition
+--          10g Standard Edition One
+--          11g     :
+--          12g
+
+
+--○ 주요 버전 구분
+--    * Express Edition
+--      -> 법적으로 완전 무료 버전이다.
+--         기업체나 교육기관 등에서 무료로 사용이 가능한 버전이며,
+--         프로그램 개발(C#.NET, ASP.NET, JAVA, JSP 등)용으로는 충분하지만
+--         데이터베이스 서버용으로는 다소 부족한 기능을 가진 버전이라 할 수 있다.
+
+--    * Standard Edition, Standard Edition One, Data Ware House, Enterprise Edition
+--      -> 다운로드는 가능하지만, 기업체나 교육기관 등에서 사용하게 되면
+--         사용 중 검열 시 정식 라이센스를 제시할 수 있어야 한다.
+--         프로그램 개발용 뿐 아니라, 데이터베이스 서버용으로도
+--         충분한 기능을 가지고 있는 버전들이다.
+--         Oracle Server 용으로 충분한 기능을 가지고 있는 버전은
+--         Enterprise Edition 이다.
