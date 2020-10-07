@@ -1,0 +1,352 @@
+SELECT USER
+FROM DUAL;
+--==>> SCOTT
+
+--○ TBL_JUMUNBACKUP 테이블과 TBL_JUMUN 테이블을 대상으로
+--   제품코드와 주문량의 값이 똑같은 행의 정보를
+--   주문번호, 제품코드, 주문량, 주문일자 항목으로 조회한다.
+
+-- TEACHER'S CODE
+
+-- 방법 1.
+
+SELECT T2.JUNO "주문번호", T1.JECODE "제품코드", T1.JUSU "주문량", T2.JUDAY "주문일자"
+FROM
+(
+    SELECT JECODE, JUSU
+    FROM TBL_JUMUNBACKUP
+    INTERSECT
+    SELECT JECODE, JUSU
+    FROM TBL_JUMUN
+) T1
+JOIN
+(
+    SELECT JUNO, JECODE, JUSU, JUDAY
+    FROM TBL_JUMUNBACKUP
+    UNION ALL
+    SELECT JUNO, JECODE, JUSU, JUDAY
+    FROM TBL_JUMUN
+) T2
+ON T1.JECODE = T2.JECODE
+AND T1.JUSU = T2.JUSU;
+
+ALTER SESSION SET NLS_DATE_FORMAT = 'YYYY-MM-DD HH24:MI:SS';
+--==>> Session이(가) 변경되었습니다.
+
+-- 방법 2. 
+SELECT T.*
+FROM
+(
+    SELECT JUNO, JECODE, JUSU, JUDAY
+    FROM TBL_JUMUNBACKUP
+    UNION ALL
+    SELECT JUNO, JECODE, JUSU, JUDAY
+    FROM TBL_JUMUN
+) T
+WHERE T.JECODE IN ('바나나킥', '포카칩', '홈런볼')
+  AND T.JUSU IN (10, 20);
+  
+SELECT T.*
+FROM
+(
+    SELECT JUNO, JECODE, JUSU, JUDAY
+    FROM TBL_JUMUNBACKUP
+    UNION ALL
+    SELECT JUNO, JECODE, JUSU, JUDAY
+    FROM TBL_JUMUN
+) T
+WHERE CONCAT(T.JECODE, T.JUSU)
+IN (SELECT CONCAT(JECODE, JUSU)
+    FROM TBL_JUMUNBACKUP
+    INTERSECT
+    SELECT CONCAT(JECODE, JUSU)
+    FROM TBL_JUMUN);
+
+-- 바나나킥 10
+-- 바나나킥 20  V
+-- 포카칩   10  V
+-- 포카칩   20  V
+-- 홈런볼   10
+-- 홈런볼   20  V
+
+SELECT T.*
+FROM
+(
+    SELECT JUNO, JECODE, JUSU, JUDAY
+    FROM TBL_JUMUNBACKUP
+    UNION ALL
+    SELECT JUNO, JECODE, JUSU, JUDAY
+    FROM TBL_JUMUN
+) T
+WHERE CONCAT(T.JECODE, T.JUSU)
+IN (SELECT CONCAT(JECODE));
+
+-- MY CODE
+SELECT J_ALL.JUNO "주문번호", J_ALL.JECODE "제품코드"
+     , J_ALL.JUSU "주문량", J_ALL.JUDAY "주문일자"
+FROM
+(
+    SELECT *
+    FROM TBL_JUMUNBACKUP
+    UNION ALL
+    SELECT *
+    FROM TBL_JUMUN
+) J_ALL,
+(
+    SELECT JECODE, JUSU
+    FROM TBL_JUMUNBACKUP
+    INTERSECT
+    SELECT JECODE, JUSU
+    FROM TBL_JUMUN
+) J_INTER
+WHERE J_ALL.JECODE = J_INTER.JECODE 
+  AND J_ALL.JUSU = J_INTER.JUSU;
+
+--------------------------------------------------------------------------------
+
+SELECT D.DEPTNO, D.DNAME, E.ENAME, E.SAL
+FROM EMP E JOIN DEPT D
+ON E.DEPTNO = D.DEPTNO;
+
+
+SELECT DEPTNO, DNAME, ENAME, SAL
+FROM EMP NATURAL JOIN DEPT;
+--> NATURAL JOIN은 정말 편하게 JOIN 해주지만 
+--  오라클이 그 관계를 직접찾아줘야 하기 때문에
+--  성능이 떨어진다. 실무에서는 왠만하면 안쓴다.
+
+SELECT DEPTNO, DNAME, ENAME, SAL
+FROM EMP JOIN DEPT
+USING (DEPTNO);
+-- 이건 좀 쓰이는 편
+
+--------------------------------------------------------------------------------
+
+--○ TBL_EMP 테이블에서 급여가 가장 많은 사원의
+--   사원번호, 사원명, 직종명, 급여 항목을 조회하는 쿼리문을 구성한다.
+DESC TBL_EMP;
+
+SELECT EMPNO "사원번호", ENAME "사원명"
+     , JOB "직종명", SAL "급여"
+FROM TBL_EMP
+WHERE (SAL) = (SELECT MAX(SAL)
+               FROM TBL_EMP);
+--==>> 7839	KING	PRESIDENT	5000
+
+-- [=ANY] - 어느것 중하나를 만족
+-- [=ALL] - 모두 만족
+
+SELECT EMPNO, ENAME, JOB, SAL
+FROM TBL_EMP
+WHERE SAL >= ALL (SELECT SAL
+                  FROM TBL_EMP);
+                  
+                       
+--○ TBL_EMP 테이블에서 20번 부서에 근무하는 사원 중
+--   급여가 가장 많은 사원의
+--   사원번호, 사원명, 직종명, 급여 항목을 조회하는 쿼리문을 구성
+
+SELECT EMPNO, ENAME, JOB, SAL
+FROM TBL_EMP
+WHERE SAL = (SELECT MAX(SAL)
+             FROM TBL_EMP)
+  AND DEPTNO = 20;
+--==>> 조회결과 없음
+
+SELECT EMPNO, ENAME, JOB, SAL
+FROM TBL_EMP T
+WHERE DEPTNO = 20
+  AND SAL >= ALL (SELECT MAX(SAL)
+                  FROM TBL_EMP 
+                  WHERE DEPTNO = 20);
+--==>>
+/*
+7788	SCOTT	ANALYST	3000
+7902	FORD	ANALYST	3000
+*/
+
+SELECT EMPNO, ENAME, JOB, SAL
+FROM TBL_EMP
+WHERE DEPTNO = 20
+  AND SAL >= ALL (SELECT SAL
+                  FROM TBL_EMP 
+                  WHERE DEPTNO = 20);
+                  
+
+--○ TBL_EMP 테이블에서 수당(커미션:COMM)이 가장 많은 사원의
+--   사원번호, 사원명, 부서번호, 직종명, 커미션 항목을 조회한다.
+SELECT EMPNO, ENAME, DEPTNO, JOB, COMM
+FROM TBL_EMP
+WHERE COMM = (SELECT MAX(COMM)
+              FROM TBL_EMP
+              WHERE COMM IS NOT NULL);
+--==>> 7654	MARTIN	30	SALESMAN	1400
+
+-- 주의사항
+SELECT EMPNO, ENAME, DEPTNO, JOB, COMM
+FROM TBL_EMP
+WHERE COMM >= ALL (SELECT COMM
+              FROM TBL_EMP);
+--==>> 조회결과 없음 (NULL 이 포함되어 있기 때문에)
+
+SELECT EMPNO, ENAME, DEPTNO, JOB, COMM
+FROM TBL_EMP
+WHERE COMM >= ALL(SELECT NVL(COMM, 0)
+                  FROM TBL_EMP);
+--==>> 7654	MARTIN	30	SALESMAN	1400
+
+SELECT EMPNO, ENAME, DEPTNO, JOB, COMM
+FROM TBL_EMP
+WHERE COMM >= ALL(SELECT COMM
+                  FROM TBL_EMP
+                  WHERE COMM IS NOT NUMM);
+--==>> 7654	MARTIN	30	SALESMAN	1400
+
+
+--○ DISTINCT() 중복 행(레코드)을 제거하는 함수
+
+-- 관리자로 등록된 사원들의 사원번호, 사원명, 직종명 항목을 조회한다.
+
+SELECT EMPNO, ENAME, JOB
+FROM TBL_EMP
+WHERE EMPNO = (관리자(MGR)에 등록된 번호);
+
+SELECT EMPNO, ENAME, JOB
+FROM TBL_EMP
+WHERE EMPNO IN (SELECT MGR
+                FROM TBL_EMP);
+--==>>
+/*
+7902	FORD	ANALYST
+7698	BLAKE	MANAGER
+7839	KING	PRESIDENT
+7566	JONES	MANAGER
+7788	SCOTT	ANALYST
+7782	CLARK	MANAGER
+*/
+                
+SELECT MGR
+FROM TBL_EMP;
+--==>>
+/*
+7902
+7698
+7698
+7839
+7698
+7839
+7839
+7566
+
+7698
+7788
+7698
+7566
+7782
+7566
+7566
+7698
+7698
+7698
+*/
+
+-- 중복 제거
+SELECT DISTINCT(MGR)
+FROM TBL_EMP;
+--==>>
+--==>>
+/*
+7839
+
+7782
+7698
+7902
+7566
+7788
+*/
+
+SELECT EMPNO, ENAME, JOB
+FROM TBL_EMP
+WHERE EMPNO IN (SELECT DISTINCT(MGR) -- 중복제거로 위 쿼리문 보다 성능이 좋음
+                FROM TBL_EMP);
+--==>> 
+/*
+7902	FORD	ANALYST
+7698	BLAKE	MANAGER
+7839	KING	PRESIDENT
+7566	JONES	MANAGER
+7788	SCOTT	ANALYST
+7782	CLARK	MANAGER
+*/
+
+--------------------------------------------------------------------------------
+
+SELECT *
+FROM TBL_SAWON;
+
+--○ TBL_SAWON 테이블 백업(데이터 위주) -> 각 테이블 간의 관계나 제약조건 등은 제외한 상태
+CREATE TABLE TBL_SAWONBACKUP
+AS
+SELECT *
+FROM TBL_SAWON;
+--==>> Table TBL_SAWONBACKUP이(가) 생성되었습니다.
+-- TBL_SAWON 테이블의 데이터들만 백업을 수행
+-- 즉, 다른 이름의 테이블 형태로 저장해 둔 상황.
+
+SELECT *
+FROM TBL_SAWONBACKUP;
+
+--○ 데이터를 수정
+UPDATE TBL_SAWON
+SET SANAME='똘똘이';
+COMMIT;
+--==>>
+/*
+17개 행 이(가) 업데이트되었습니다.
+커밋 완료.
+*/
+
+ROLLBACK;
+
+SELECT *
+FROM TBL_SAWON;
+
+SELECT *
+FROM TBL_SAWONBACKUP;
+
+
+
+UPDATE TBL_SAWON
+SET SANAME = '강정우'
+WHERE SANO = 1001;
+
+UPDATE TBL_SAWON
+SET SANAME = '정의진'
+WHERE SANO = 1002;
+
+UPDATE TBL_SAWON
+SET SANAME = '박해진'
+WHERE SANO = 1003;
+
+-- 이걸 19개 있으면 10만번? 말도안됨
+
+CREATE TABLE TBL_SAWON
+AS
+SELECT *
+FROM TBL_SAWONBACKUP;
+-- 이것도 안됨(이미 테이블이 존재함)
+
+UPDATE TBL_SAWON 
+SET SANAME = (SELECT SANAME 
+              FROM TBL_SAWONBACKUP
+              WHERE TBL_SAWON.SANO = SANO)
+WHERE SANAME = '똘똘이';
+--==>> 17개 행 이(가) 업데이트되었습니다.
+
+SELECT *
+FROM TBL_SAWON;
+
+COMMIT;
+              
+SELECT *
+FROM TBL_SAWON;
