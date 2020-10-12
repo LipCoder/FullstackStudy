@@ -454,6 +454,8 @@ NOMAXVALUE                  -- 최대값
 NOCACHE;                    -- 캐시 사용 안함(없음)
 --==>> Sequence SEQ_BOARD이(가) 생성되었습니다.
 
+DELETE FROM TBL_BOARD;
+DROP SEQUENCE SEQ_BOARD;
 
 --○ 실습 테이블 생성
 CREATE TABLE TBL_BOARD                  -- TBL_BOARD 테이블 생성 구문 -> 게시판 테이블
@@ -637,6 +639,8 @@ ORDER BY 4 DESC;
 
 -- 1. SQL 1992 CODE
 
+SELECT * FROM DEPT;
+
 -- CROSS JOIN
 SELECT *
 FROM EMP, DEPT;
@@ -674,7 +678,6 @@ WHERE E.DEPTNO = D.DEPTNO;
 --  즉, 부서번호를 갖지 못한 사원들(5) 모두 누락
 
 SELECT *
-FROM TBL_DEPT;
 
 SELECT *
 FROM TBL_EMP E, TBL_DEPT D
