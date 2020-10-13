@@ -1,0 +1,3 @@
+edu_hr    hr     lion     회색
+edu_scott scott  tiger    자주색
+edu_sys   sys    java006$ 연두색
