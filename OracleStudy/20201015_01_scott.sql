@@ -1,0 +1,139 @@
+SELECT USER
+FROM DUAL;
+--==>> SCOTT
+
+
+--■■■ UPDATE ■■■--
+
+-- 1. 테이블에서 기존 데이터를 수정(변경)하는 구문
+
+-- 2. 형식 및 구조
+-- UPDATE 테이블명
+-- SET 컬럼명 = 변경할값[, 컬럼명 = 변경할값, ...]
+-- [WHERE 조건절];
+
+SELECT *
+FROM TBL_SAWON;
+
+--○ TBL_SAWON 테이블에서 사원번호 1004번 사원의
+--   주민번호를 [ 8802031234567 ] 로 수정한다.
+
+UPDATE TBL_SAWON
+SET 주민번호 = '8802031234567'
+WHERE 사원번호 1004;
+
+UPDATE TBL_SAWON
+SET JUBUN = '8802031234567'
+WHERE SANO = 1004;
+--==>> 1 행 이(가) 업데이트되었습니다.
+
+SELECT*
+FROM TBL_SAWON;
+--==>> 1004	박해일	8802031234567	1990-09-20	2000
+
+--※ 실행 후 COMMIT 또는 ROLLBACK 을 반드시 선택적으로 실행
+COMMIT;
+--==>> 커밋 완료.
+
+
+--○ TBL_SAWON 테이블에서 1005번 사원의 입사일과 급여를
+--   각각 2020-04-01, 5200 으로 변경한다.
+UPDATE TBL_SAWON
+SET HIREDATE = TO_DATE('2020-04-01', 'YYYY-MM-DD')
+  , SAL = 5200
+WHERE SANO = 1005;
+
+SELECT *
+FROM TBL_SAWON;
+
+DESC TBL_SAWON;
+
+COMMIT;
+--==>> 커밋 완료.
+
+SELECT *
+FROM TBL_INSA;
+
+
+--○ TBL_INSA 테이블의 데이터 복사
+CREATE TABLE TBL_INSABACKUP
+AS
+SELECT *
+FROM TBL_INSA;
+--==>> Table TBL_INSABACKUP이(가) 생성되었습니다.
+
+
+-- 확인
+SELECT *
+FROM TBL_INSABACKUP;
+
+
+--○ TBL_INSABACKUP 테이블에서
+--   직위가 과장과 부장만 수당 10% 인상 
+UPDATE TBL_INSABACKUP
+SET SUDANG = SUDANG * 1.1
+WHERE JIKWI IN ('과장', '부장');
+
+SELECT *
+FROM TBL_INSABACKUP;
+
+COMMIT;
+--==>> 커밋 완료.
+
+
+--○ TBL_INSABACKUP 테이블에서
+--   전화번호가 016, 017, 018, 019 로 시작하는 전화번호인 경우
+--  이를 모두 010 으로 변경한다. 
+SELECT *
+WHERE SUBSTR(TEL, 1, 3) IN ('016', '017', '018', '019');
+--==>> 24명 조회
+
+UPDATE TBL_INSABACKUP
+SET TEL = '010' || SUBSTR(TEL, 4)
+WHERE SUBSTR(TEL, 1, 3) BETWEEN '016' AND '019';
+--==>> 24개 행 이(가) 업데이트되었습니다.
+
+SELECT *
+FROM TBL_INSABACKUP;
+
+COMMIT;
+
+
+--------------------------------------------------------------------------------
+
+-- DATA DICTIONARY 뷰 종류는 총 3가지
+DBA_.... -- 
+
+USER_.... -- OWNER가 '나'인 객체들만 조회
+
+ALL_.... -- SCOTT에 생성된 모든 객체
+
+SELECT *
+FROM ALL_CONSTRAINTS;
+
+SELECT *
+FROM ALL_CONS_COLUMNS;
+
+
+-- 자식 테이블의 자식컬럼이 참조하는 부모테이블과 부모컬럼을 찾기 위한 SQL 형식
+SELECT FK.COSNTRAINT_NAME, FK.TABLE_NAME "자식테이블", FC.COLUMN_NAME "자식컬럼"
+     , PK.TABLE_NAME "부모테이블", PC.COLUMN_NAME "부모컬럼"
+FROM ALL_CONSTRAINTS FK, ALL_CONSTRAINTS PK, ALL_CONS_COLUMNS FC, ALL_CONS_COLUMNS PC
+WHERE FK.R_CONSTRAINT_NAME = PK.CONSTRAINT_NAME
+  AND FK.CONSTRAINT_NAME = FC.CONSTRAINT_NAME
+  AND PK.CONSTRAINT_NAME = PC.CONSTRAINT_NAME
+  AND FK.CONSTRAINT_TYPE = 'R'
+  AND PK.CONSTRAINT_TYPE = 'P'
+  AND FK.TABLE_NAME = '자식테이블의 테이블명';
+
+
+-- 자식테이블 EMP의 외래키 컬럼명에 대해 부모테이블과 부모 컬럼 찾기
+SELECT FK.CONSTRAINT_NAME, FK.TABLE_NAME "자식테이블", FC.COLUMN_NAME "자식컬럼"
+     , PK.TABLE_NAME "부모테이블", PC.COLUMN_NAME "부모컬럼"
+FROM ALL_CONSTRAINTS FK, ALL_CONSTRAINTS PK, ALL_CONS_COLUMNS FC, ALL_CONS_COLUMNS PC
+WHERE FK.R_CONSTRAINT_NAME = PK.CONSTRAINT_NAME
+  AND FK.CONSTRAINT_NAME = FC.CONSTRAINT_NAME
+  AND PK.CONSTRAINT_NAME = PC.CONSTRAINT_NAME
+  AND FK.CONSTRAINT_TYPE = 'R'
+  AND PK.CONSTRAINT_TYPE = 'P'
+  AND FK.TABLE_NAME = 'EMP';
