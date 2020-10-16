@@ -208,6 +208,222 @@ FROM VIEW_CONSTCHECK
 WHERE TABLE_NAME = 'TBL_EMP3';
 --==>> 
 /*
-HR	EMP3_SID_PK	        TBL_EMP3	    P	SID		
+HR	EMP3_SID_PK	            TBL_EMP3	    P	SID		
 HR	EMP3_JIKWI_ID_FK	    TBL_EMP3	    R	JIKWI_ID		NO ACTION
 */
+
+
+-- 자식 테이블
+SELECT *
+FROM TBL_EMP1;
+--==>>
+/*
+1	김승범	1
+2	이예슬	2
+3	권소윤	3
+4	김보경	4
+5	이준구	1
+6	정의진	
+7	진영은	
+*/
+
+-- 김보경 부장의 직위를 사원으로 변경
+UPDATE TBL_EMP1
+SET JIKWI_ID = 1
+WHERE SID = 4;
+--==>> 1 행 이(가) 업데이트되었습니다.
+
+-- 확인
+SELECT *
+FROM TBL_EMP1;
+--==>>
+/*
+1	김승범	1
+2	이예슬	2
+3	권소윤	3
+4	김보경	1
+5	이준구	1
+6	정의진	
+7	진영은	
+*/
+
+-- 커밋
+COMMIT;
+--==>> 커밋 완료
+
+
+-- 부모 테이블(TBL_JOBS)의 부장 데이터를 참조하고 있는
+-- 자식 테이블(TBL_EMP1)의 데이터가 존재하지 않는 상황
+
+-- 이와 같은 상황에서 부모 테이블(TBL_JOBS)의
+-- 부장 데이터 삭제
+DELETE
+FROM TBL_JOBS
+WHERE JIKWI_ID = 4;
+--==>> 1 행 이(가) 삭제되었습니다.
+
+-- 확인 
+SELECT *
+FROM TBL_JOBS;
+--==>>
+/*
+1	사원
+2	대리
+3	과장
+*/
+--> 부장 데이터가 삭제되었음을 확인
+
+COMMIT;
+--==>> 커밋 완료.
+
+
+-- 부모 테이블(TBL_JOBS)의 [사원] 데이터 삭제
+DELETE
+FROM TBL_JOBS
+WHERE JIKWI_ID = 1;
+--==>> 에러 발생
+--     (ORA-02292: integrity constraint (HR.SYS_C007002) violated - child record found)
+
+-- 부모 테이블(TBL_JOBS) 제거
+DROP TABLE TBL_JOBS;
+--==>> 에러 발생
+--     (ORA-02449: unique/primary keys in table referenced by foreign keys)
+
+
+--※ 부모 테이블의 데이터를 자유롭게(?) 삭제하기 위해서는
+--   [ ON DELETE CASCADE ] 옵션 지정이 필요하다.
+
+-- TBL_EMP1 테이블(자식 테이블)에서 FK 제약조건을 제거한 후
+-- CASCADE 옵션을 포함하여 다시 FK 제약조건을 설정한다.
+
+
+-- 제약조건 확인
+SELECT *
+FROM VIEW_CONSTCHECK
+WHERE TABLE_NAME = 'TBL_EMP1';
+--==>>
+/*
+HR	    SYS_C007001	    TBL_EMP1	P	SID		
+HR	    SYS_C007002	    TBL_EMP1	R	JIKWI_ID		NO ACTION
+*/
+
+
+-- 제약조건 제거
+ALTER TABLE TBL_EMP1
+DROP CONSTRAINT  SYS_C007002;
+--==>> Table TBL_EMP1이(가) 변경되었습니다.
+
+
+-- 제약조건 제거 이후 다시 확인
+SELECT *
+FROM VIEW_CONSTCHECK
+WHERE TABLE_NAME = 'TBL_EMP1';
+--==>> HR	SYS_C007001	    TBL_EMP1	P	SID		
+
+
+-- [ ON DELETE CASCADE ] 옵션이 포함된 내용으로 제약조건 다시 지정
+ALTER TABLE TBL_EMP1
+ADD CONSTRAINT EMP1_JIKWI_ID_FK FOREIGN KEY(JIKWI_ID)
+               REFERENCES TBL_JOBS(JIKWI_ID)
+               ON DELETE CASCADE;               -- CHECK~!!!
+--==>> Table TBL_EMP1이(가) 변경되었습니다.
+
+
+-- 제약조건 생성 이후 다시 확인
+SELECT *
+FROM VIEW_CONSTCHECK
+WHERE TABLE_NAME = 'TBL_EMP1';
+--==>>
+/*
+HR	SYS_C007001	        TBL_EMP1	P	SID		
+HR	EMP1_JIKWI_ID_FK	TBL_EMP1	R	JIKWI_ID		CASCADE
+*/
+
+
+--※ CASCADE 옵션을 지정한 후에는
+--   참조받고 있는 부모 테이블의 데이터를
+--   언제든지 자유롭게 삭제하는 것이 가능하다.
+--   단... 부모 테이블의 데이터가 삭제될 경우...
+--   해당 데이터만 삭제되는 것이 아니라
+--   이를 참조하는 자식 테이블의 데이터도 모~~~~~ 두 함께 삭제된다.
+
+-- 부모 테이블
+SELECT *
+FROM TBL_JOBS;
+--==>>
+/*
+1	사원
+2	대리
+3	과장
+*/
+
+-- 자식 테이블
+SELECT *
+FROM TBL_EMP1;
+--==>>
+/*
+1	김승범	1
+2	이예슬	2
+3	권소윤	3   <-
+4	김보경	1
+5	이준구	1
+6	정의진	
+7	진영은	
+*/
+
+-- 부모 테이블(TBL_JOBS)에서 과장 데이터 삭제
+DELETE
+FROM TBL_JOBS
+WHERE JIKWI_ID=3;
+--==>> 1 행 이(가) 삭제되었습니다.
+
+-- 자식 테이블(TBL_EMP1) 데이터 확인
+SELECT *
+FROM TBL_EMP1;
+--==>>
+/*
+1	김승범	1
+2	이예슬	2
+4	김보경	1
+5	이준구	1
+6	정의진	
+7	진영은	
+*/
+
+
+-- 부모 테이블(TBL_JOBS)에서 사원 데이터 삭제
+DELETE
+FROM TBL_JOBS
+WHERE JIKWI_ID=1;
+--==>> 1 행 이(가) 삭제되었습니다.
+
+-- 자식 테이블(TBL_EMP1) 데이터 확인
+SELECT *
+FROM TBL_EMP1;
+--==>>
+/*
+2	이예슬	2
+6	정의진	
+7	진영은	
+*/
+
+-- 부모 테이블 제거
+DROP TABLE TBL_JOBS;
+
+DROP TABLE TBL_EMP2;
+--==>> Table TBL_EMP2이(가) 삭제되었습니다.
+
+DROP TABLE TBL_EMP3;
+--==>> Table TBL_EMP3이(가) 삭제되었습니다.
+
+
+DROP TABLE TBL_JOBS;
+
+DROP TABLE TBL_EMP1;
+
+DROP TABLE TBL_JOBS;
+-- CASCADE 옵션이 적용되어 있더라도 자식 테이블이 삭제되어 있지 않으면
+-- 부모 테이블을 삭제할 수 없다.
+
+
+--------------------------------------------------------------------------------
