@@ -314,3 +314,109 @@ FROM TBL_TEST2;
 SELECT *
 FROM TBL_TEST3;
 
+
+
+SELECT *
+FROM TBL_TEST2;
+SELECT *
+FROM TBL_TEST3;
+
+SELECT T3.SID, T2.CODE,T2.NAME,T3.SU
+FROM TBL_TEST2 T2 JOIN TBL_TEST3 T3
+ON T2.CODE = T3.CODE;
+--==>
+/*
+1   1   텔레비전   30
+17   1   텔레비전   20
+13   1   텔레비전   20
+9   1   텔레비전   20
+5   1   텔레비전   10
+6   2   냉장고   20
+2   2   냉장고   20
+18   2   냉장고   30
+14   2   냉장고   30
+10   2   냉장고   30
+11   3   세탁기   20
+15   3   세탁기   20
+7   3   세탁기   30
+19   3   세탁기   20
+3   3   세탁기   30
+16   4   건조기   30
+8   4   건조기   40
+4   4   건조기   20
+20   4   건조기   30
+12   4   건조기   30
+*/
+
+DELETE
+FROM TBL_TEST2
+WHERE CODE = 1;
+--==>에러 발생
+--ORA-02292: integrity constraint (SCOTT.TEST3_CODE_FK) violated - child record found
+
+DELETE
+FROM TBL_TEST2
+WHERE CODE = 5;
+--==>1 행 이(가) 삭제되었습니다.
+
+DELETE
+FROM TBL_TEST2
+WHERE CODE = 1;
+--==> 에러발생
+-- ORA-02292: integrity constraint
+
+DELETE
+FROM TBL_TEST3
+WHERE CODE = 1;
+--==>5개 행 이(가) 삭제되었습니다.
+
+COMMIT;
+--==>커밋 완료.
+
+--------------------------------------------------------------------------------
+-- 자식 테이블 정보 제거 트리거 생성 이후 
+
+
+SELECT *
+FROM TBL_TEST2;
+
+SELECT *
+FROM TBL_TEST3;
+
+
+DELETE
+FROM TBL_TEST2
+WHERE CODE = 2;
+--==>> 1 행 이(가) 삭제되었습니다.
+
+SELECT *
+FROM TBL_TEST2;
+
+SELECT *
+FROM TBL_TEST3;
+--==>> CODE = 2에 해당하는 모든 자식 테이블 삭제
+
+--------------------------------------------------------------------------------
+
+SELECT *
+FROM TBL_상품;
+SELECT *
+FROM TBL_입고;
+
+
+INSERT INTO TBL_입고(입고번호, 상품코드, 입고일자, 입고수량, 입고단가)
+VALUES(18, 'H001', SYSDATE, 10, 400);
+
+
+--○ 패키지 활용 실습
+SELECT INSA_PACK.FN_GENDER('921204-1188035') "함수 호출 결과"
+FROM DUAL;
+--==>> 남자
+
+SELECT NAME, SSN, INSA_PACK.FN_GENDER(SSN) "성별"
+FROM TBL_INSA;
+
+
+
+
+
