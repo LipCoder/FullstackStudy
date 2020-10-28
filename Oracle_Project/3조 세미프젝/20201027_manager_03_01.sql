@@ -1,0 +1,131 @@
+SELECT USER
+FROM DUAL;
+
+-- 날짜 비교(이진주), 배점 기준(윤홍준), 비밀번호 기본값 넣기(김종호), 총점 등수(이예슬), 강의 진행 여부(안혜리) 
+
+ALTER TABLE STUDENTS ADD ST_NAME VARCHAR2(10);
+
+UPDATE STUDENTS
+SET ST_NAME = '홍길동'
+WHERE ST_ID = 'ST_0001';
+
+
+UPDATE STUDENTS
+SET ST_NAME = '고길동'
+WHERE ST_ID = 'ST_0002';
+
+
+UPDATE STUDENTS
+SET ST_NAME = '아무무'
+WHERE ST_ID = 'ST_0003';
+
+
+SELECT *
+FROM STUDENTS;
+
+ALTER TABLE PROFESSORS ADD PR_NAME VARCHAR2(10);
+
+SELECT *
+FROM PROFESSORS;
+
+
+UPDATE PROFESSORS
+SET PR_NAME = '메시'
+WHERE PRO_ID = 'PR_0001';
+
+
+UPDATE PROFESSORS
+SET PR_NAME = '손흥민'
+WHERE PRO_ID = 'PR_0002';
+
+
+UPDATE PROFESSORS
+SET PR_NAME = '최형일'
+WHERE PRO_ID = 'PR_0003';
+
+COMMIT;
+--------------------------------------------------------------------------------
+
+SELECT *
+FROM ADMIN;
+
+
+SELECT *
+FROM STUDENTS;
+
+-- 학생 등록 시퀀스 생성
+CREATE SEQUENCE SEQ_STU
+START WITH 1
+INCREMENT BY 1;
+
+
+-- 학생 INSERT
+CREATE OR REPLACE PROCEDURE PRC_STUDENTS_INSERT
+( V_JUBUN	IN	STUDENTS.JUBUN%TYPE
+, V_ST_NAME	IN	STUDENTS.ST_NAME%TYPE
+)
+IS
+BEGIN
+
+    -- INSERT
+    INSERT INTO STUDENTS(ST_ID, PW, JUBUN, ST_NAME)
+    VALUES(TO_CHAR('ST_' || V_ST_NAME || '_' || SEQ_STU.NEXTVAL)
+          , V_JUBUN, V_JUBUN, V_ST_NAME);
+
+    -- 예외처리
+    EXCEPTION
+      WHEN OTHERS
+        THEN ROLLBACK;
+        
+    -- 커밋
+    COMMIT;
+END;
+
+
+-- 학생 DELETE
+CREATE OR REPLACE PROCEDURE PRC_STUDENTS_DELETE
+( V_ST_ID    IN    STUDENTS.ST_ID%TYPE
+)
+IS
+BEGIN
+    -- DELETE
+    DELETE
+    FROM STUDENTS
+    WHERE ST_ID = V_ST_ID;
+    
+    -- 예외처리
+    EXCEPTION
+        WHEN OTHERS
+          THEN  ROLLBACK;
+END;
+
+-- 학생 UPDATE
+CREATE OR REPLACE PROCEDURE PRC_STUDENTS_UPDATE
+( V_ST_ID   IN  STUDENTS.ST_ID%TYPE
+, V_PW      IN  STUDENTS.PW%TYPE
+, V_ST_NAME IN  STUDENTS.ST_NAME%TYPE
+)
+IS
+BEGIN
+    -- UPDATE
+    UPDATE STUDENTS
+    SET ST_ID = ('ST_' || V_ST_NAME || '_' ||
+                 TO_CHAR(SEQ_STU.NEXTVAL))
+      , PW = V_PW
+      , ST_NAME = V_ST_NAME
+    WHERE ST_NAME = V_ST_NAME;
+    
+    -- 예외처리
+    EXCEPTION
+        WHEN OTHERS
+            THEN ROLLBACK;
+
+END;
+
+
+--------------------------------------------------------------------------------
+SELECT *
+FROM ADMIN;
+
+
+-- 관리자
