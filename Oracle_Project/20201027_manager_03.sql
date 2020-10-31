@@ -2,6 +2,9 @@
 DESC COURSES;
 DESC OPEN_COURSES;
 
+SELECT 'HI'||1
+FROM DUAL;
+
 -- 시퀀스 생성
 CREATE SEQUENCE SEQ_OC
 START WITH 1
@@ -339,3 +342,4 @@ BEGIN
                  ROLLBACK;
 END;
 --==>> Procedure PRC_TEST이(가) 컴파일되었습니다.
+
