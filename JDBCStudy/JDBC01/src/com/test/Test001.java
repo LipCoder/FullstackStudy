@@ -1,8 +1,7 @@
-/*=============================
-	Test001.java
-	- Database 연결 테스트
-=============================*/
-
+/*==========================
+ Test001.java
+ - Database 연결 테스트 
+ ===========================*/
 
 package com.test;
 
@@ -16,7 +15,7 @@ public class Test001
 	{
 		Connection conn = DBConn.getConnection();
 		
-		if(conn != null)
+		if (conn != null)
 		{
 			System.out.println("데이터베이스 연결 성공~!!!");
 		}
