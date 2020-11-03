@@ -1,0 +1,138 @@
+-- JDBC03_scott.sql
+
+SELECT USER
+FROM DUAL;
+--==>> SCOTT
+
+
+--○ 실습 테이블 생성(TBL_SCORE)
+CREATE TABLE TBL_SCORE
+( SID       NUMBER
+, NAME      VARCHAR2(30)
+, KOR       NUMBER(3)
+, ENG       NUMBER(3)
+, MAT       NUMBER(3)
+);
+--==>> Table TBL_SCORE이(가) 생성되었습니다.
+
+--○ 제약조건 추가(SID 컬럼에 PK 제약조건 추가)
+ALTER TABLE TBL_SCORE
+ADD CONSTRAINT SCORE_SID_PK PRIMARY KEY(SID);
+--==>> Table TBL_SCORE이(가) 변경되었습니다.
+
+
+--○ 제약조건 추가(KORE, ENG, MAT 컬럼에 CK 제약조건 추가)
+ALTER TABLE TBL_SCORE
+ADD ( CONSTRAINT SCORE_KOR_CK CHECK (KOR BETWEEN 0 AND 100)
+    , CONSTRAINT SCORE_ENG_CK CHECK (ENG BETWEEN 0 AND 100)
+    , CONSTRAINT SCORE_MAT_CK CHECK (MAT BETWEEN 0 AND 100) );
+--==>> Table TBL_SCORE이(가) 변경되었습니다.
+
+
+--○ 기존 시퀀스 제거
+DROP SEQUENCE SCORESEQ;
+--==>> Sequence SCORESEQ이(가) 삭제되었습니다.
+
+
+--○ 시퀀스 생성
+CREATE SEQUENCE SCORESEQ
+NOCACHE;
+--==>> Sequence SCORESEQ이(가) 생성되었습니다.
+
+
+--○ 테이블 내의 기존 데이터 잘라내기
+TRUNCATE TABLE TBL_SCORE;
+--==>> Table TBL_SCORE이(가) 잘렸습니다.
+
+
+--○ 데이터베이스 액션 처리에 필요한 쿼리문 준비
+
+--1. 데이터 입력 쿼리문 구성
+INSERT INTO TBL_SCORE(SID, NAME, KOR, ENG, MAT)
+VALUES(SCORESEQ.NEXTVAL, '강정우', 90, 80, 70);
+--> 한 줄 구성
+INSERT INTO TBL_SCORE(SID, NAME, KOR, ENG, MAT) VALUES(SCORESEQ.NEXTVAL, '강정우', 90, 80, 70)
+;
+--==> 1 행 이(가) 삽입되었습니다.
+
+-- 커밋
+COMMIT;
+--==>> 커밋 완료.
+
+--2. 리스트 출력 쿼리문
+SELECT SID, NAME, KOR, ENG, MAT
+     , (KOR+ENG+MAT) AS TOT
+     , (KOR+ENG+MAT)/3 AS AVG
+     , RANK() OVER(ORDER BY (KOR+ENG+MAT) DESC) AS RANK
+FROM TBL_SCORE
+ORDER BY SID ASC;
+--==>> 한 줄 구성
+SELECT SID, NAME, KOR, ENG, MAT, (KOR+ENG+MAT) AS TOT, (KOR+ENG+MAT)/3 AS AVG, RANK() OVER(ORDER BY (KOR+ENG+MAT) DESC) AS RANK FROM TBL_SCORE ORDER BY SID ASC
+;
+--==>> 1	강정우	90	80	70	240	80	1
+
+--3. 인원수 조회 쿼리문 구성
+SELECT COUNT(*) AS COUNT
+FROM TBL_SCORE;
+--> 한 줄 구성
+SELECT COUNT(*) AS COUNT FROM TBL_SCORE
+;
+--==>> 1
+
+--4. 이름 검색 쿼리문 구성
+
+-- 구성 시 주의사항 
+-- 강정우라는 이름이 정확이 일치해야 찾을 수 있도록 짜면 안됨
+-- 모든 정보를 얻어야 하므로 서브쿼리 사용하자
+SELECT SID, NAME, KOR, ENG, MAT, TOT, AVG, RANK
+FROM
+(
+    SELECT SID, NAME, KOR, ENG, MAT
+         , (KOR+ENG+MAT) AS TOT
+         , (KOR+ENG+MAT)/3 AS AVG
+         , RANK() OVER(ORDER BY (KOR+ENG+MAT) DESC) AS RANK
+    FROM TBL_SCORE
+)
+WHERE NAME LIKE '%정우%';
+--> 한 줄 구성
+SELECT SID, NAME, KOR, ENG, MAT, TOT, AVG, RANK FROM ( SELECT SID, NAME, KOR, ENG, MAT, (KOR+ENG+MAT) AS TOT, (KOR+ENG+MAT)/3 AS AVG, RANK() OVER(ORDER BY (KOR+ENG+MAT) DESC) AS RANK FROM TBL_SCORE) WHERE NAME LIKE '%정우%'
+;
+--==>> 1	강정우	90	80	70	240	80	1
+
+
+--5. 번호 검색 쿼리문 구성
+SELECT SID, NAME, KOR, ENG, MAT, TOT, AVG, RANK
+FROM
+(
+    SELECT SID, NAME, KOR, ENG, MAT
+         , (KOR+ENG+MAT) AS TOT
+         , (KOR+ENG+MAT)/3 AS AVG
+         , RANK() OVER(ORDER BY (KOR+ENG+MAT) DESC) AS RANK
+    FROM TBL_SCORE
+)
+WHERE SID = 1;
+--> 한 줄 구성
+SELECT SID, NAME, KOR, ENG, MAT, TOT, AVG, RANK FROM ( SELECT SID, NAME, KOR, ENG, MAT, (KOR+ENG+MAT) AS TOT, (KOR+ENG+MAT)/3 AS AVG, RANK() OVER(ORDER BY (KOR+ENG+MAT) DESC) AS RANK FROM TBL_SCORE) WHERE SID = 1
+;
+
+--6. 데이터 수정 쿼리문 구성
+UPDATE TBL_SCORE
+SET NAME='김종호', KOR=100, ENG=100, MAT=100
+WHERE SID = 1;
+--> 한 줄 구성
+UPDATE TBL_SCORE SET NAME='김종호', KOR=100, ENG=100, MAT=100 WHERE SID = 1
+;
+--==>> 1 행 이(가) 업데이트되었습니다.
+
+-- 커밋
+COMMIT;
+--==>> 커밋 완료.
+
+--7. 데이터 삭제 쿼리문 구성
+DELETE 
+FROM TBL_SCORE
+WHERE SID = 1;
+--> 한 줄 구성
+DELETE FROM TBL_SCORE WHERE SID = 1
+;
+
