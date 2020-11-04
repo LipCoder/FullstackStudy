@@ -98,47 +98,48 @@ public class ScoreDAO
 		
 		return result;
 	}
-	
+
 	// - 이름 검색 담당 메소드
 	public ArrayList<ScoreDTO> lists(String name) throws SQLException
 	{
 		ArrayList<ScoreDTO> result = new ArrayList<ScoreDTO>();
-		
+
+		// 작업 객체 구성
 		Statement stmt = conn.createStatement();
-		
+
+		// 쿼리문 준비
 		String sql = String.format("SELECT SID, NAME, KOR, ENG, MAT, TOT, AVG, RANK"
-				   + " FROM"
-				   + " ( SELECT SID, NAME, KOR, ENG, MAT"
-				   + ", (KOR+ENG+MAT) AS TOT"
-				   + ", (KOR+ENG+MAT)/3 AS AVG"
-				   + ", RANK() OVER(ORDER BY (KOR+ENG+MAT) DESC) AS RANK"
-				   + " FROM TBL_SCORE"
-				   + ") WHERE NAME LIKE %%%S%%", name);
-		
+				+ " FROM(SELECT SID, NAME, KOR, ENG, MAT" 
+				+ ", (KOR+ENG+MAT) AS TOT" 
+				+ ", (KOR+ENG+MAT)/3 AS AVG"
+				+ ", RANK() OVER(ORDER BY (KOR+ENG+MAT) DESC) AS RANK" 
+				+ " FROM TBL_SCORE)"
+				+ " WHERE NAME LIKE '%%%s%%'", name);
+
+		// 쿼리문 실행
 		ResultSet rs = stmt.executeQuery(sql);
-		
-		while(rs.next())
+
+		// ResultSet 처리
+		while (rs.next())
 		{
 			ScoreDTO dto = new ScoreDTO();
-			
+
 			dto.setSid(rs.getString("SID"));
-			dto.setName(rs.getString("NAME")); 
-			dto.setKor(rs.getInt("KOR")); 
+			dto.setName(rs.getString("NAME"));
+			dto.setKor(rs.getInt("KOR"));
 			dto.setEng(rs.getInt("ENG"));
 			dto.setMat(rs.getInt("MAT"));
 			dto.setTot(rs.getInt("TOT"));
 			dto.setAvg(rs.getDouble("AVG"));
 			dto.setRank(rs.getInt("RANK"));
-			
+
 			result.add(dto);
 		}
-		
 		rs.close();
 		stmt.close();
-		
+
 		return result;
 	}
-	
 	
 	// - 번호 검색 담당 메소드
 	public ArrayList<ScoreDTO> lists(int sid) throws SQLException
@@ -189,7 +190,7 @@ public class ScoreDAO
 		
 		String sql = String.format("UPDATE TBL_SCORE SET"
 				+ " NAME='%s', KOR=%d, ENG=%d, MAT=%d"
-				+ " WHERE SID = %d"
+				+ " WHERE SID = %s"
 				, dto.getName(), dto.getKor(), dto.getEng(), dto.getMat()
 				, dto.getSid());
 		

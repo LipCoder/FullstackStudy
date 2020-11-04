@@ -69,6 +69,7 @@ public class ScoreMain
 		
 		do
 		{
+			System.out.println();
 			System.out.println("====[성적처리]====");
 			System.out.println("1. 성적 입력");
 			System.out.println("2. 성적 전체 출력");
@@ -90,6 +91,33 @@ public class ScoreMain
 					System.out.println(">> 프로그램이 종료되었습니다.");
 					return;
 				}
+				
+				switch (menu)
+				{
+				case 1:
+					// 성적 입력 기능 수행
+					obj.sungjukInsert();
+					break;
+				case 2:
+					// 성적 전체 출력 기능 수행
+					obj.sungjukSelectAll();
+					break;
+				case 3:
+					// 이름 검색 출력 기능 수행
+					obj.sungjukSearchName();
+					break;
+				case 4:
+					// 성적 수정 기능 수행
+					obj.sungjukUpdate();
+					break;
+				case 5:
+					// 성적 삭제 기능 수행
+					obj.sungjukDelete();
+					break;
+
+				}
+				
+				
 			} catch (Exception e)
 			{
 				System.out.println(e.toString());
