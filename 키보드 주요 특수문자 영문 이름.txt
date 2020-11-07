@@ -1,0 +1,39 @@
+■■■ 키보드 주요 특수문자 영문 이름 ■■■
+
+『`』  : GRAVE(그레이브)
+『~』  : TILDE(틸드)
+『!』  : EXCLAMATION POINT(국내에서는 굳이 이렇게 부를필요 없음)
+『@』  : AT SIGN(엣사인), COMMERCIAL AI(커머셜 엣)
+『#』  : CROSSHATCH(크로스해치) / SHARP(샵)
+『$』  : DOLLAR SIGN
+『%』  : PERCENT SIGN
+『^』  : CIRCUMFLEX(서컴플렉스)
+『&』  : AMPERSAND(엔퍼샌드)
+『*』  : ASTERISK
+『(』  : LEFT PARENTHESIS(이렇게 부를 필요 X)
+『)』  : RIGHT PARENTHESIS(이렇게 부를 필요 X)
+『()』 : PARENTHESIS(이렇게 부를 필요 X)
+『-』  : HYPHEN
+『_』  : UNDERSCORE / UNDERLINE / UNDERBAR
+『=』  : EQUAL SIGN
+『+』  : PLUS SIGN
+『|』  : VERTICAL BAR
+『[』  : LEFT BRACKET(브라켓)
+『]』  : RIGHT BRACKET(브라켓)
+『[]』 : BRACKETS(브라켓)
+『{』  : LEFT BRACE
+『}』  : RIGHT BRACE
+『{}』 : BRACES
+『;』  : SEMICOLON
+『:』  : COLON
+『"』  : QUOTATION MARK (Double Quatation)
+『'』  : APOSTROPHE (Single Quatation)
+『,』  : COMMA 
+『.』  : PERIOD / DOT  
+『<』  : LESS THAN 
+『>』  : GREATER THAN 
+『<>』 : ANGLE BRACKETS
+『/』  : SLASH 
+『\』  : BACK SLASH(역슬러시)
+『?』  : QUESTION MARK 
+『 』  : SPACE(공백) 
