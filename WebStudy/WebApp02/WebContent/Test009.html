@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test009.html</title>
+
+<link rel="stylesheet" type="text/css" href="css/externalLink.css">
+<!--
+
+	p
+	{
+		font-size: 20pt;
+		font-weight: bold;
+		color: red;
+	}
+
+-->
+
+<!-- 가장 가까운 곳에 선언된 형식이 우선적으로 적용된다.(거리순) -->
+<style type="text/css">
+	p {font-size: 100px; color: black;}
+</style>
+
+</head>
+<body>
+
+<div>
+	<h1>스타일의 우선순위 관찰</h1>
+	<hr>
+</div>
+
+<!-- 가장 가까운 곳에 선언된 형식이 우선적으로 적용된다.(거리순) -->
+<p style="color: orange;">이와 같은 상황이라면... 나는 어떻게 표현되어야 할까...</p>
+
+</body>
+</html>

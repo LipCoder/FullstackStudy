@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test013.html</title>
+</head>
+<body>
+
+<div>
+	<h1>테이블 병합 실습</h1>
+	<hr>
+</div>
+
+<div>
+	<table border="1" bgcolor="white" width="400">
+	<!-- 
+	(0, 0) (0, 1) 병합
+	(3, 0) (3, 1) 병합
+	(0, 3) (0, 4) 병합
+	(2, 3) (2, 4) (2, 5) 병합
+	(3, 2) (3, 3) (3, 4) 병합
+	(4, 1) (4, 2) 병합
+	(4, 3) (4, 4) (4, 5) 병합
+	 -->
+	 
+	 <!-- 0행 -->
+	 <tr>
+	 	<th rowspan="2">A</th>
+	 	<th>B</th>
+	 	<th>C</th>
+	 	<th rowspan="2">D</th>
+	 	<th>E</th>
+	 </tr>
+	 
+	 <!-- 1행 -->
+	  <tr>
+	 	<!-- <th>0</th> -->
+	 	<th>F</th>
+	 	<th>G</th>
+	 	<!-- <th>3</th> -->
+	 	<th rowspan= 2">H</th>
+	 </tr>
+
+	<!-- 2행 -->
+	  <tr>
+	 	<th>I</th>
+	 	<th>J</th>
+	 	<th>K</th>
+	 	<th rowspan="3">L</th>
+	 	<!-- <th>4</th> -->
+	 </tr>
+	 
+	 <!-- 3행 -->
+	  <tr>
+	 	<th rowspan="2">M</th>
+	 	<th>N</th>
+	 	<th rowspan="3">O</th>
+	 	<!-- <th>3</th> -->
+	 	<th rowspan="3">P</th>
+	 </tr>
+	 
+	 <!-- 4행 -->
+	  <tr>
+	 	<!-- <th>0</th> -->
+	 	<th>Q</th>
+	 	<!-- <th>2</th> -->
+	 	<!-- <th>3</th> -->
+	 	<!-- <th>4</th> -->
+	 </tr>	 
+	 
+	 <!-- 5행 -->
+	  <tr>
+	 	<th>R</th>
+	 	<th>S</th>
+	 	<!-- <th>2</th> -->
+	 	<th>T</th>
+	 	<!-- <th>4</th> -->
+	 </tr>	 
+	 
+	</table>
+</div>
+
+</body>
+</html>

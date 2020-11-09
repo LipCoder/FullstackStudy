@@ -1,0 +1,1 @@
+C:\WebStudy\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\WebApp01

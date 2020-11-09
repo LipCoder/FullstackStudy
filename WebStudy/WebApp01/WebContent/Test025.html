@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test025.html</title>
+</head>
+<body>
+
+<div>
+	<h1>난 Test025 페이지야야~!!!</h1>
+	<hr>
+</div>
+
+<div>
+	<form action="Test026.html">
+		*이름 <input type="text" name="name" size="15" maxlength="8"><br>
+		*이메일 <input type="text" name="email" size="15" maxlength="20"><br>
+		*하고싶은 말<br>
+		<textarea rows="10" cols="50" name="field"></textarea>
+		<br><br>
+		
+		<!-- submit 액션 → 데이터 전송 / 페이지 요청 -->
+		<input type="submit" value="전송하기" name="submitBtn">
+		<input type="reset" value="다시쓰기">
+		
+		<br>
+		
+		<input type="button" value="전송하기">
+		
+		<br>
+		
+		<!-- button 요소는 기본적으로 submitBtn -->
+		<button>전송하기</button><!-- submit -->
+		<button type="submit">전송하기</button><!-- 이렇게 명시해서 쓰는게 바람직하다. -->
+		
+		<br>
+		
+		<button type="button"><span style="color:red;">전송하기</span></button>
+		<!-- <button type="button">전송하기</button> 
+		     =<input type="button" value="전송하기"> 
+		     차이점은 아래 방법은 다른 태그를 넣을 수 있음 -->
+		
+	</form>
+</div>
+
+</body>
+</html>
