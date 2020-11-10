@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test012.html</title>
+
+<script type="text/javascript">
+/* 주석처리 해도 잘 돌아간다...
+   이렇게 사용하는 이유는 javaScript가 지원되지 않는 브라우저 에서도
+   사용이 가능하도록? client side에서...
+   어떻게 보면 스킬이기 때문에 알아두면 좋다*/
+<!--
+ 	// msg 변수 → 함수 밖에 선언 → 모든 함수에서 접근 가능한 전역 변수
+	var msg = "2020년 11월 10일"
+	//-- 『var』 키워드 사용 여부와 관계없이 전역 변수의 형태로 기능을 수행하는 상황
+
+	function button_onclick1()
+	{
+		// 테스트 
+		//alert("첫 번째 버튼 클릭");
+		
+		// name 변수 → 함수 내부에 선언 → 이 함수 내부에서 사용하는 지역 변수
+		//var name = "박혜인";
+		//-- 『var』 키워드 사용 → 상황에 따른 지역/전역 변수
+		
+		// var를 생략하면 전역 변수로 선언이 된다.
+		// 더이상 지역변수가 아니게 된다.
+		name = "강정우";
+		
+		document.write("이름 : " + name);
+		alert(msg);
+	}
+	
+	function button_onclick2()
+	{
+		// 테스트
+		//alert("두 번째 버튼 클릭");
+		
+		document.write("이름 : " + name);
+		alert(msg);
+	}
+//-->
+</script>
+
+<noscript>
+	자바스크립트가 사용되지 못할 경우 표현되는 영역
+	브라우저에서 스크립트 사용이 비활성화 되어 있거나,
+	스크립트를 지원하지 않는 브라우저일 경우 표현되는 영역으로 활용된다.
+	noscript 엘리먼트는 body 영역이나 head 영역에서 모두 사용될 수 있지만
+	head 영역 내에서 사용할 경우
+	link / meta / style 요소만 콘텐츠로 포함할 수 있다.
+</noscript>
+
+
+</head>
+<body>
+
+<input type="button" id="button1" value="Button" onclick="button_onclick1()"><br>
+<input type="button" id="button1" value="Button" onclick="button_onclick2()"><br>
+
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+	input.box:focus {background-color: yellow;}
+	.btn:hover {color: orange;}
+	input.boxSu {width: 50px;}
+</style>
+
+<script type="text/javascript">
+
+	function btnA_click()
+	{
+		// 테스트
+		//alert("A버튼 클릭~!!!");
+		
+		/* value를 받아오지 않으면 [object HTMLInputElement]가 나온다. */
+		//alert(document.getElementById("txtLeft")); 
+		//alert(document.getElementById("txtLeft").value);
+		
+		/* 
+		var txt01 = document.getElementById("txtLeft").value;
+		var txt02 = document.getElementById("txtRight").value; 
+		*/
+		
+		/* 		
+		var txt01 = document.getElementById("txtLeft");
+		var txt02 = document.getElementById("txtRight");
+		txt01.value;
+	 	*/
+	 	
+		/* 	 	
+	 	var txt01 = document.getElementById("txtLeft");
+	 	var txt02 = document.getElementById("txtRight");
+	 	
+	 	// alert(txt01.value);
+	 	
+	 	var leftStr = txt01.value;
+	 	txt02.value = leftStr;
+	 	*/
+	 	
+	 	document.getElementById("txtRight").value = document.getElementById("txtLeft").value;
+	
+	}
+	
+	function btnB_click()
+	{
+		// 테스트
+		//alert("B버튼 클릭~!!!");
+		
+		document.getElementById("txtLeft").value = document.getElementById("txtRight").value;
+	}
+
+</script>
+
+</head>
+<body>
+
+<div>
+	<h1>자바스크립트 이벤트 처리</h1>
+	<hr>
+</div>
+
+<div>
+	<hr>
+	<input type="text" class="box" id="txtLeft">
+	<input type="button" value="A버튼" class="btn" id="btnA" onclick="btnA_click()">
+	<input type="button" value="B버튼" class="btn" id="btnB" onclick="btnB_click()">
+	<input type="text" class="box" id="txtRight">
+	<hr>
+	
+	<br><br>
+	
+	<input type="text" class="boxSu" id="txtSu1">
+	+
+	<input type="text" class="boxSu" id="txtSu2">
+	<input type="button" value=" = " class="btn" id="btnResult">
+	<input type="text" class="boxSu" id="txtResult">
+	
+</div>
+
+</body>
+</html>
