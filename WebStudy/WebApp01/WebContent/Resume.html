@@ -5,24 +5,45 @@
 <title>Resume.html</title>
 
 <style type="text/css">
-th {background-color: #d5d5d5;}
+th 
+{
+	background-color: #d5d5d5;
+	white-space: pre;
+}
+
 td {text-align: center}
+
+p
+{
+	font-size: 25pt;
+	font-weight: bold;
+	text-align: center;
+	white-space: pre;
+}
 </style>
 
 </head>
 <body>
 
 
-<!-- 이력서 양식 적용 -->
+<!-- 테이블 0 -->
+<table border="2" width="800" height="50">
+	<tr>
+		<th style="background-color: orange; font-size:25pt; font-weight: bold; text-align: center">이 력 서</th>
+	</tr>
+</table>
 
 <!-- 테이블 1 -->
-<table border="1" width="800" height="180">
+<table border="2" width="800" height="180" cellspacing="0">
 	<tr>
-		<td rowspan="3" width="140"> 사진 </td>
-		<th rowspan="2" width="70"> 성명 </th>
-		<td width="300" height="40"> 김승범 </td>
-		<th width="70"> 생년월일 </th>
-		<td width="200"> 1992.12.4 </td>	
+		<td rowspan="3" width="140">
+			<img alt="" src="images/me.png" width="140" border="0"
+			 align="bottom">
+		</td>
+		<th rowspan="2" width="70">성명</th>
+		<td width="300" height="40">김승범</td>
+		<th width="70">생년월일</th>
+		<td width="200">1992.12.04</td>	
 	</tr>
 	
 	<tr>
@@ -41,201 +62,213 @@ td {text-align: center}
 <br>
 
 <!-- 테이블 2 -->
-<table border="1" width="800" height="1000">
+<table border="2" width="800" height="1000" cellspacing="0">
+	
 	<tr>
-		<th rowspan="5" width="50"> 학력사항 </th>
-		<th height ="35"> 졸업일 </th>
-		<th colspan="2"> 학교명 </th>
-		<th> 전 공 </th>
-		<th> 졸업여부 </th>
-		<th> 소재지 </th>
-		<th> 성적 </th>
+		<th rowspan="5" width="40">학<br>력<br>사<br>항</th>
+		<th colspan="3" width="30" height="35">졸 업 일</th>
+		<th colspan="3">학교명</th>
+		<th colspan="3">전  공</th>
+		<th colspan="2">졸업여부</th>
+		<th colspan="2">소재지</th>
+		<th colspan="2">성   적</th>
 	</tr>
 	
 	<tr>
-		<td>  </td>
-		<td colspan="2"> 정발고등학교 </td>
-		<td>  </td>
-		<td>  </td>
-		<td>  </td>
-		<td>  </td>
+		<td colspan="3" height="35">2011년 02월</td>
+		<td colspan="3">정발고등학교</td>
+		<td colspan="3">인문계열</td>
+		<td colspan="2">졸업</td>
+		<td colspan="2">경기도</td>
+		<td colspan="2"></td>
 	</tr>
 	
 	<tr>
-		<td>  </td>
-		<td colspan="2">  </td>
-		<td>  </td>
-		<td>  </td>
-		<td>  </td>
-		<td>  </td>
+		<td colspan="3" height="35">-</td>
+		<td colspan="3">동국대학교(경주)</td>
+		<td colspan="3">안전공학과</td>
+		<td colspan="2">중퇴</td>
+		<td colspan="2">경상북도</td>
+		<td colspan="2">3.9/4.5</td>
 	</tr>
 	
 	<tr>
-		<td>  </td>
-		<td colspan="2"> 한국산업기술대학교 </td>
-		<td>  </td>
-		<td>  </td>
-		<td>  </td>
-		<td>  </td>
+		<td colspan="3" height="35">2020년 02월</td>
+		<td colspan="3">한국산업기술대학교</td>
+		<td colspan="3">게임공학과</td>
+		<td colspan="2">졸업</td>
+		<td colspan="2">경기도</td>
+		<td colspan="2">3.4/4.5</td>
 	</tr>
 	
 	<tr>
-		<td>  </td>
-		<td colspan="2">  </td>
-		<td>  </td>
-		<td>  </td>
-		<td>  </td>
-		<td>  </td>
+		<td colspan="3" height="35"></td>
+		<td colspan="3"></td>
+		<td colspan="3"></td>
+		<td colspan="2"></td>
+		<td colspan="2"></td>
+		<td colspan="2"></td>
 	</tr>
 	
 	<tr>
-		<th rowspan="4" width="50"> 경력사항 </th>
-		<th colspan="2" width="40" height = "35"> 근 무 기 간 </th>
-		<th colspan="2"> 회 사 명 </th>
-		<th> 직위 </th>
-		<th> 담 당 업 무 </th>
-		<th> 퇴사사유 </th>
+		<th rowspan="4">경<br>력<br>사<br>항</th>
+		<th colspan="4" height="35">근  무  기  간</th>
+		<th colspan="3">회 사 명</th>
+		<th colspan="2">직 위</th>
+		<th colspan="3">담 당 업 무</th>
+		<th colspan="3" width="160">퇴사사유</th>
 	</tr>
 	
 	<tr>
-		<td colspan="2">  </td>
-		<td colspan="2">  </td>
-		<td>  </td>
-		<td>  </td>
-		<td>  </td>
+		<td colspan="4" height="35">2019.06 ~ 2019.09</td>
+		<td colspan="3">비빔블</td>
+		<td colspan="2">인턴</td>
+		<td colspan="3" width="105%">VR,AR 컨텐츠 개발</td>
+		<td colspan="3">계약기간 만료</td>	
+	</tr>
+
+	
+	<tr>
+		<td colspan="4" height="30"></td>
+		<td colspan="3"></td>
+		<td colspan="2"></td>
+		<td colspan="3"></td>
+		<td colspan="3"></td>	
 	</tr>
 	
 	<tr>
-		<td colspan="2">  </td>
-		<td colspan="2">  </td>
-		<td>  </td>
-		<td>  </td>
-		<td>  </td>
+		<td colspan="4" height="30"></td>
+		<td colspan="3"></td>
+		<td colspan="2"></td>
+		<td colspan="3"></td>
+		<td colspan="3"></td>	
 	</tr>
 	
 	<tr>
-		<td colspan="2">  </td>
-		<td colspan="2">  </td>
-		<td>  </td>
-		<td>  </td>
-		<td>  </td>
+		<th rowspan="2">병<br>역<br>사<br>항</th>
+		<th colspan="3" height="50">군 필 여 부</th>
+		<td colspan="6" width="350">군필( ○ ), 미필( ), 면제( ), 기타( )</td>
+		<th colspan="3">군   별</th>
+		<td colspan="3">육 군</td>
 	</tr>
 	
 	<tr>
-		<th rowspan="2" width="50"> 병역사항 </th>
-		<th height = "35"> 군 필 여 부 </th>
-		<td colspan="3"> 군필(  ), 미필(  ), 면제(  ), 기타(  ) </td>
-		<th colspan="2"> 군  별 </th>
-		<td>  </td>
+		<th colspan="3" height="50">복 무 기 간</th>
+		<td colspan="6">2014.06 - 2016.06 (02년 00개월) </td>
+		<th colspan="3">계   급</th>
+		<td colspan="3">병 장</td>
 	</tr>
 	
 	<tr>
-		<th height = "35"> 복 무 기 간 </th>
-		<td colspan="3"> -(년 개월) </td>
-		<th colspan="2"> 계  급 </th>
-		<td>  </td>
+		<th rowspan="5">가<br>족<br>사<br>항</th>
+		<th colspan="2"  height="35">관계</th>
+		<th colspan="2">성 명</th>
+		<th colspan="3">생년월일</th>
+		<th colspan="2">학   력</th>
+		<th colspan="2">직 업</th>
+		<th colspan="2">직장명</th>
+		<th colspan="2">직위</th>
 	</tr>
 	
 	<tr>
-		<th rowspan="5" width="50"> 가족사항 </th>
-		<th height = "35"> 관계 </th>
-		<th> 성 명 </th>
-		<th> 생년월일 </th>
-		<th> 학   력 </th>
-		<th> 직  업 </th>
-		<th> 직장명 </th>
-		<th> 직위 </th>
+		<td colspan="2" height="35">부</td>
+		<td colspan="2">김무현</td>
+		<td colspan="3">1966.05.23</td>
+		<td colspan="2">석 사</td>
+		<td colspan="2">사무직</td>
+		<td colspan="2">(주)해오름</td>
+		<td colspan="2">대표이사</td>
 	</tr>
 	
 	<tr>
-		<td>  </td>
-		<td>  </td>
-		<td>  </td>
-		<td>  </td>
-		<td>  </td>
-		<td>  </td>
-		<td>  </td>
+		<td colspan="2" height="35">모</td>
+		<td colspan="2">김미자</td>
+		<td colspan="3">1965.03.25</td>
+		<td colspan="2">학 사</td>
+		<td colspan="2">교사</td>
+		<td colspan="2">신촌초등학교</td>
+		<td colspan="2">-</td>
 	</tr>
 	
 	<tr>
-		<td>  </td>
-		<td>  </td>
-		<td>  </td>
-		<td>  </td>
-		<td>  </td>
-		<td>  </td>
-		<td>  </td>
+		<td colspan="2" height="35">여동생</td>
+		<td colspan="2">김미민</td>
+		<td colspan="3">1994.05.19</td>
+		<td colspan="2">학 사</td>
+		<td colspan="2">크리에이터</td>
+		<td colspan="2">-</td>
+		<td colspan="2">-</td>
 	</tr>
 	
 	<tr>
-		<td>  </td>
-		<td>  </td>
-		<td>  </td>
-		<td>  </td>
-		<td>  </td>
-		<td>  </td>
-		<td>  </td>
+		<td colspan="2" height="35"></td>
+		<td colspan="2"></td>
+		<td colspan="3"></td>
+		<td colspan="2"></td>
+		<td colspan="2"></td>
+		<td colspan="2"></td>
+		<td colspan="2"></td>
 	</tr>
 	
 	<tr>
-		<td>  </td>
-		<td>  </td>
-		<td>  </td>
-		<td>  </td>
-		<td>  </td>
-		<td>  </td>
-		<td>  </td>
+		<th rowspan="6">기<br>타<br>사<br>항</th>
+		<th colspan="2" height="30">신  장</th>
+		<td colspan="3">181 cm</td>
+		<th colspan="2">체  중</th>
+		<td colspan="3">83 kg</td>
+		<th colspan="2">시  력</th>
+		<td colspan="3">0.2 / 2.0</td>
 	</tr>
 	
 	<tr>
-		<th rowspan="6" width="50"> 기타사항 </th>
-		<th colspan="2" height = "35"> 신  장 </th>
-		<td>  </td>
-		<th> 체  중 </th>
-		<td>  </td>
-		<th> 시  력 </th>
-		<td>  </td>
+		<th colspan="2" height="30">취  미</th>
+		<td colspan="3">자전거 타기</td>
+		<th colspan="2">특  기</th>
+		<td colspan="3">게임 개발</td>
+		<th colspan="2">종  교</th>
+		<td colspan="3">무교</td>
 	</tr>
 	
 	<tr>
-		<th colspan="2" height = "35"> 취  미 </th>
-		<td>  </td>
-		<th> 특  기 </th>
-		<td>  </td>
-		<th> 종  교 </th>
-		<td>  </td>
+		<th rowspan="4" colspan="2" width="110">전산능력</th>
+		<th colspan="3" height="35">프로그램명</th>
+		<th colspan="2">활용도</th>
+		<th colspan="8">자격증 보유 현황</th>
 	</tr>
 	
 	<tr>
-		<th rowspan="4" colspan="2"> 전산능력 </th>
-		<th height = "35"> 프로그램명 </th>
-		<th> 활용도 </th>
-		<th colspan="3"> 자격증 보유 현황 </th>
+		<td colspan="3" height="35">Windows API</td>
+		<td colspan="2">상</td>
+		<td colspan="8">-</td>
 	</tr>
 	
 	<tr>
-		<td>  </td>
-		<td>  </td>
-		<td colspan="3">  </td>
+		<td colspan="3" height="35">MFC</td>
+     	<td colspan="2">중</td>
+		<td colspan="8">-</td>
 	</tr>
 	
 	<tr>
-		<td>  </td>
-		<td>  </td>
-		<td colspan="3">  </td>
+		<td colspan="3" height="35">DirectX(9~12)</td>
+		<td colspan="2">상</td>
+		<td colspan="8">-</td>
 	</tr>
 	
 	<tr>
-		<td>  </td>
-		<td>  </td>
-		<td colspan="3">  </td>	
+		<td style="text-align: left; font-weight: bold; font-size: 12pt" rowspan="4" colspan="16">
+			<pre>
+			<br>
+			   상기 내용은 사실과 다름없음을 확인합니다.
+			<br>
+				     2020년  11월  12일
+			<br>
+								작 성 자 :    김 승범(인)
+			</pre>
+		</td>
 	</tr>
 	
 	<tr>
-		<td rowspan="4" colspan="8" width="50"> empty </td>
-	</tr>
-	
-	<tr>
+		
 	</tr>
 	
 	<tr>
