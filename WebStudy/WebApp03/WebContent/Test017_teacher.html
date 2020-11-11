@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+
+	* {color : #223322;}
+	input {font-family: 나눔고딕코딩; font-weight: bold;}
+	input:focus {background-color: #eeeedd;}
+	input.btn {width: 90px; font-weight: bold; font-family: 맑은 고딕;}
+	input.btn:hover {color: orange;}
+	input.btn:result{color: red;}
+	td {text-align: center;}
+	.txt {text-align: right;}	
+	textarea {font-family: 나눔고딕코딩; font-weight: bold;}
+
+</style>
+
+<script type="text/javascript">
+
+	function myCalc()
+	{
+		document.getElementById("result").value = "";
+		
+		// alert("함수 호출 확인");
+		
+		var nNum = Number(document.getElementById("num").value);
+		var nSum = 0;
+		
+		if(nNum < 100)
+		{
+			alert("입력값은 100 이상만 가능합니다.");
+			return;
+		}
+		
+		for (var n = 1; n <= nNum; n++)
+		{
+			nSum += n;
+			
+			if(n%10==0)
+			{
+				document.getElementById("result").value += "1 ~ " + n + " : " + nSum + "\n";	
+			}
+		}
+		
+		document.getElementById("result").value += "1 ~ " + nNum + " : " + nSum + "\n";
+	}
+
+</script>
+
+</head>
+<body>
+
+<div>
+	<form>
+		<div>
+			정수 입력 (100 이상)
+			<input type="text" id="num" class="txt">
+		</div>
+		<br>
+		<div>
+			<input type="button" value="결과" class="btn" style="width: 150px" 
+			onclick="myCalc()">
+			<input type="reset" value="취소" class="btn" style="width: 150px">
+		</div>
+		<br>
+		<div>
+			<textarea id="result" rows="10" cols="43" readonly=true ></textarea>
+		</div>
+	
+	</form>
+</div>
+
+</body>
+</html>

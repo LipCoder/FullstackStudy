@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+
+	* {color : #223322;}
+	input {font-family: 나눔고딕코딩; font-weight: bold;}
+	input:focus {background-color: #eeeedd;}
+	input.btn {width: 90px; font-weight: bold; font-family: 맑은 고딕;}
+	input.btn:hover {color: orange;}
+	input.btn:result{color: red;}
+	td {text-align: center;}
+	.txt {text-align: right;}	
+</style>
+
+
+<script type="text/javascript">
+
+	var arr = [4, 7, 9, 1, 3, 2, 5, 6, 8];
+	
+	function init()
+	{
+		document.getElementById("array1").value = arr;	
+	}
+	
+	function myArray()
+	{
+		var str = "";
+		
+		for (var i = 0; i < arr.length; i++)
+		{
+			if(arr[i]%2==0)	// 배열 요소의 값이 짝수일 때...
+				str += arr[i] + " ";		
+			// 4 2 6 8	
+		}
+		
+		document.getElementById("array2").value = str;	
+	}
+	
+
+</script>
+
+
+</head>
+<body onload="init()">
+
+<div>
+	<form>
+		초기 배열 상태
+		<input type="text" id="array1" class="txt"><br><br>
+		
+		<input type="button" value="결 과" class="btn" style="width: 270px;"
+		onclick="myArray()"><br><br>
+		
+		짝수만 출력
+		<input type="text" id="array2" class="txt" disabled="disabled" style="width: 150px;"><br><br>
+	</form>
+</div>
+
+</body>
+</html>

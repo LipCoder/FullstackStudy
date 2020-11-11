@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test019.html</title>
+
+<style type="text/css">
+
+	* {color : #223322;}
+	input {font-family: 나눔고딕코딩; font-weight: bold;}
+	input:focus {background-color: #eeeedd;}
+	input.btn {width: 90px; font-weight: bold; font-family: 맑은 고딕;}
+	input.btn:hover {color: orange;}
+	input.btn:result{color: red;}
+	td {text-align: center;}
+	.txt {text-align: right;}
+	.txt2 {text-align: center;}	
+	
+</style>
+
+
+<script type="text/javascript">
+
+	function calc()
+	{
+		var vInput = document.getElementById("input").value;
+		var arr = vInput.split(" ");
+		
+		var result = "";
+		var max = parseInt(arr[0]);
+		for (var i = 1; i < arr.length; i++)
+		{
+			if(max < parseInt(arr[i]))
+				max = parseInt(arr[i]);
+			
+			result += arr[i] + " ";
+		}
+		
+		document.getElementById("output").value = result;
+		document.getElementById("max").value = max;
+	}
+	
+</script>
+
+
+
+</head>
+<body>
+
+<div>
+	<h1>자바스크립트 활용</h1>
+	<hr>
+</div>
+
+<!-- 
+	사용자로부터 임의의 정수를 임의의 갯수만큼 입력받고
+	그 내용으로 배열을 구성한 다음
+	그 정수들 중 가장 큰 수를 출력해 줄 수 있는 페이지를 구성한다.
+	
+	HTML, CSS, Javascript 활용.
+	
+	페이지 레이아웃
+	------------------------------------------------
+	데이터 입력(공백 구분) [ 2 8 126 43 71 ]
+	
+	< 결과 확인 >
+	
+	- 전체 출력		[ 2 8 126 43 71 ]
+	- 가장 큰 수    [ 126 ]
+	------------------------------------------------
+ -->
+
+<div>
+	<form>
+		데이터 입력(공백 구분) <input type="text" class="txt" id="input" style="width: 150px;">
+		<br><br>
+		
+		<input type="button" class="btn" value="결과 확인" style="width: 95px;" onClick="calc()">
+		<br><br>
+		
+		- 전체 출력 <input type="text" class="txt2" id="output" style="width: 150px;" disabled="disabled">
+		<br>
+		- 가장 큰 수 <input type="text" class="txt2" id="max" style="width: 50px;" disabled="disabled">
+	</form>
+</div>
+
+</body>
+</html>

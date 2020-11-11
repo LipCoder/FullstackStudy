@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test015.html</title>
+
+<style type="text/css">
+	p {white-space:pre}
+
+</style>
+
+<script type="text/javascript">
+
+	function calc()
+	{
+		var cost = parseInt(document.getElementById("cost").value);
+		
+		var errorMsg = "";
+		
+		if(cost < 0) 
+			errorMsg = "음수 값";
+		else if(cost % 10 != 0) 
+			errorMsg = "일원 단위 입력";
+		else if(cost > 990 || cost < 10) 
+			errorMsg = "금액 범위를 벗어남";
+		
+		if(errorMsg != "")
+		{
+			alert("총 금액을 잘못 입력하였습니다."
+			    + "\n오류 내용 : " + errorMsg);
+			cancel();
+			return;
+		}
+		
+		cancel();
+		
+		document.getElementById("cost").value = cost;
+		document.getElementById("resultCost").value = cost;
+		
+		var ohBaek = parseInt(cost / 500);
+		cost -= (500 * ohBaek);
+		var baek = parseInt(cost / 100);
+		cost -= (100 * baek);
+		var ohSip = parseInt(cost / 50);
+		cost -= (50 * ohSip);
+		var sip = parseInt(cost / 10);
+		cost -= (10 * sip);
+		
+		document.getElementById("ohBaek").value = ohBaek;
+		document.getElementById("baek").value = baek;
+		document.getElementById("ohSip").value = ohSip;
+		document.getElementById("sip").value = sip;
+	}
+	
+	function cancel()
+	{
+		document.getElementById("cost").value = cost;
+		document.getElementById("resultCost").value = "";
+		document.getElementById("ohBaek").value = "";
+		document.getElementById("baek").value = "";
+		document.getElementById("ohSip").value = "";
+		document.getElementById("sip").value = "";
+	}
+
+</script>
+
+</head>
+<body>
+
+<div>
+	<h1>자바스크립트 활용</h1>
+	<hr>
+</div>
+
+<div>
+	<p>
+		특정 금액(10원 ~ 990원)을 사용자로부터 입력받아(10원 단위 이상)<br>
+		화폐 단위로 구분하여 출력하는 페이지를 구성한다. <br>
+		화폐 단위는 편의상 오백원, 백원, 오십원, 십원으로 구분한다. <br>
+	</p>
+	
+	<p>HTML, CSS, JavaScript 를 활용한다.</p>
+	
+	<!-- 
+		페이지 기본 레이아웃 구성
+		---------------------------------------------------------------
+		
+		금액 [          ] 원
+		
+		<결과><취소>
+		
+		총액 [          ] 원
+		오백원	  [     ] 개
+		  백원	  [     ] 개
+		오십원	  [     ] 개
+		  십원	  [     ] 개
+	 -->
+</div>
+<br><br>
+
+<div>
+	페이지 기본 레이아웃 구성<hr>
+	<br>
+</div>
+
+<div>
+	금액 <input type="text" style="width: 100px;" id="cost"> 원
+	<br><br>
+</div>
+
+<div>	
+	<input type="button" class="btn" value="결과" onClick="calc()"> 
+	<input type="button" class="btn" value="취소" onClick="cancel()">
+</div>
+
+<p>
+총액   <input type="text" style="width: 100px;" id="resultCost"> 원
+오백원       <input type="text" style="width: 60px;" id="ohBaek"> 개
+  백원        <input type="text" style="width: 60px;" id="baek"> 개
+오십원       <input type="text" style="width: 60px;" id="ohSip"> 개
+  십원        <input type="text" style="width: 60px;" id="sip"> 개
+</p>
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

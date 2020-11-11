@@ -53,6 +53,23 @@
 		
 		document.getElementById("txtLeft").value = document.getElementById("txtRight").value;
 	}
+	
+	function btnResult_click()
+	{
+		// 테스트
+		//alert("결과 버튼 클릭~!!!");
+	
+		var num1 = document.getElementById("txtSu1").value;
+		var num2 = document.getElementById("txtSu2").value;
+		
+		//var result = num1 + num2;
+		//var result = parseInt(num1) + parseInt(num2);
+		var result = Number(num1) + Number(num2);
+		
+		document.getElementById("txtResult").value = result;
+	
+	}
+	
 
 </script>
 
@@ -77,7 +94,7 @@
 	<input type="text" class="boxSu" id="txtSu1">
 	+
 	<input type="text" class="boxSu" id="txtSu2">
-	<input type="button" value=" = " class="btn" id="btnResult">
+	<input type="button" value=" = " class="btn" id="btnResult" onclick="btnResult_click()">
 	<input type="text" class="boxSu" id="txtResult">
 	
 </div>

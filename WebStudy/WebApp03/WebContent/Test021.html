@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test021.html</title>
+
+<style type="text/css">
+
+	* {color : #223322;}
+	input {font-family: 나눔고딕코딩; font-weight: bold;}
+	input:focus {background-color: #eeeedd;}
+	input.btn {width: 90px; font-weight: bold; font-family: 맑은 고딕;}
+	input.btn:hover {color: orange;}
+	input.btn:result{color: red;}
+	td {text-align: center;}
+	.txt {text-align: right;}	
+	textarea {font-family: 나눔고딕코딩; font-size: 100%; font-weight: bold;}
+
+</style>
+
+<script type="text/javascript">
+	
+	num = 1;
+	
+	function input()
+	{
+		var name = new Array();
+		var phone = new Array();
+		
+		var strInput = "first";
+		
+		while(true)
+		{
+			strInput = prompt("이름 전화번호(" + num + ")");
+			
+			if(strInput == "" || strInput == " " || strInput == ".")
+				break;
+			
+			var arr = strInput.split(" ");
+			
+			name.push(arr[0]);
+			phone.push(arr[1]);
+			
+			++num;
+		}
+		
+		var count = num - 1;
+		document.getElementById("idCount").value =  count;
+		
+		var vTxtArea = document.getElementById("userInfo");
+		for (var i = 0; i < count; i++)
+		{
+			vTxtArea.value += name[i] + "  " + phone[i] + "\n";
+ 		}
+	}
+	
+</script>
+
+
+
+</head>
+<body>
+
+<div>
+	<h1>자바스크립트 활용</h1>
+	<hr>
+</div>
+
+<!-- 
+	여러 명의 이름과 전화번호를 입력받고
+	그 내용을 전체 출력하는 페이지를 구성한다.
+	
+	HTML, CSS, Javascript를 활용한다.
+	
+	※ prompt() 를 활용한다.
+	
+	페이지 레이아웃
+	---------------------------------------------
+	< 회원 정보 입력 >				    → 대화 상자 → 이름 전화번호(1) : 박다빈 010-1111-1111
+													 → 이름 전화번호(2) : 정의진 010-2222-2222
+													 → 이름 전화번호(3) : 김종호 010-3333-3333
+													 → 이름 전화번호(4) : → 입력값이 없거나
+													                          입력값이 공백이거나
+													                          입력값이 .
+    전체 회원 수 : [  3  ]명
+	------------------------------
+	|    이름	    전화번호     |
+	------------------------------
+	|   박다빈    010-1111-1111  |
+	|   정의진    010-2222-2222  |
+	|   김종호    010-3333-3333  |
+	------------------------------
+		
+	---------------------------------------------
+ -->
+
+<div>
+	<form>
+		<input type="button" class="btn" value="회원 정보 입력" style="width: 140px" 
+		 onclick="input()">
+		<br><br><br><br>
+		
+		전체 회원 수 : <input type="text" class="txt" id="idCount" readonly="readonly" style="width: 60px">
+		
+		<pre>    이름       전화번호</pre>
+		
+		<textarea id="userInfo" readonly="readonly" 
+		 style="width: 190px; height: 400px; text-align: center"></textarea>
+
+	</form>
+</div>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

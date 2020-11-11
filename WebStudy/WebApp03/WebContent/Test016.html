@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+	* {color : #223322;}
+	input {font-family: 나눔고딕코딩; font-weight: bold;}
+	input:focus{background-color: aqua;}
+	input.btn{width: 100px; font-weight: bold; font-family: 맑은 고딕;}
+	input.btn:hover{color: blue;}
+	input.btn:result{color: red;}
+	td{text-align: center}
+	.txt{text-align: right}
+</style>
+
+
+<script type="text/javascript">
+
+	function calc()
+	{	
+		var vKor = parseInt(document.getElementById("kor").value);
+		var vEng = parseInt(document.getElementById("eng").value);
+		var vMat = parseInt(document.getElementById("mat").value);
+		
+		var vResult = "합격"
+		
+		// 각 과목 40점 미만 
+		var vPassCount = 3;
+		if(vKor < 40) --vPassCount;
+		if(vEng < 40) --vPassCount;
+		if(vMat < 40) --vPassCount;
+		
+		if(vPassCount < 3)
+			vResult = "불합격";
+		
+		// 평균 60점 미만
+		var vAvg = Math.floor((vKor + vEng + vMat) / 3);
+		
+		if(vAvg < 60)
+			vResult = "불합격";
+		
+		document.getElementById("avg").value = vAvg;
+		document.getElementById("result").value = vResult;
+	}
+
+</script>
+
+
+</head>
+<body>
+
+<div>
+	<h1>자바스크립트 활용</h1>
+	<hr>
+</div>
+
+<!-- 
+	사용자로부터 이름, 국어점수, 영어점수, 수학점수를 입력받아
+	평균점수와 판정결과를 출력하는 페이지를 구성한다.
+	판정결과는 합격, 과락, 불합격 중 하나로 처리한다.
+	
+	합격은 모든 과목 점수가 40점 이상이면서 평균 60점 이상인 경우
+	과락인 평균이 60점 이상이지만 한 과목이라도 과목 점수가
+	40점 미만의 과목이 존재하는 경우
+	불합격은 평균이 60점 미만인 경우로 처리한다.
+	(정보처리기사 / 정보처리산업기사 합격 기준과 동일)
+	
+	HTML, CSS, JavaScript 활용
+	
+	페이지 레이아웃
+	----------------------------------------------------------------------------
+	이름	 [		 ]
+	국어점수 [		 ]
+	영어점수 [		 ]
+	수학점수 [		 ]
+	
+	 < 처리결과 확인 >
+	
+	평균점수 판정결과
+	[      ]  [      ]
+	
+	----------------------------------------------------------------------------
+	
+ -->
+
+<div>
+	<p>페이지 레이아웃</p>
+	<hr>
+</div>
+
+<div>
+	<p> 
+		이름&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <input type="text" style="width: 70px" id="name"> <br>
+		국어점수 <input type="text" style="width: 70px" id="kor"> <br>
+		영어점수 <input type="text" style="width: 70px" id="eng"> <br>
+		수학점수 <input type="text" style="width: 70px" id="mat"> <br>
+	</p>
+</div>
+
+<div>
+	<p>
+		<input type="button" Class="btn" value="처리결과 확인" onClick="calc()">
+	</p>
+</div>
+
+<table>
+	<tr>
+		<th>평균</th>
+		<th>판정결과</th>
+	</tr>
+	<tr>
+		<th> <input type="text" style="width: 70px" id="avg"> </th>
+		<th> <input type="text" style="width: 70px" id="result"> </th>
+	</tr>
+
+	<!-- 
+	<p>
+		평균점수 
+		판정결과  <br>
+		<input type="text" style="width: 70px" id="avg"> 
+		<input type="text" style="width: 70px" id="result">
+	</p> 
+	-->
+</table>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
