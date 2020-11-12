@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test022.html</title>
+
+<style type="text/css">
+
+	* {color : #223322;}
+	input {font-family: 나눔고딕코딩; font-weight: bold;}
+	input:focus {background-color: #eeeedd;}
+	input.btn {width: 150px; font-weight: bold; font-family: 맑은 고딕;}
+	input.btn:hover {color: orange;}
+	input.btn:result{color: red;}
+	td {text-align: center;}
+	.txt {text-align: right;}	
+	textarea {font-family: 나눔고딕코딩; font-size: 100%; font-weight: bold;}
+
+</style>
+
+
+<script type="text/javascript">
+	
+	
+	function proc()
+	{
+		var strInput = "first";
+		var count = 0;
+		
+		var arrInfo = new Array(new Array());
+		
+		var KOR = 1, ENG = 2, MAT = 3, TOT = 4;
+		
+		// 값 입력
+		while (true)
+		{
+			strInput = prompt("이름 국어 영어 수학(" + (count + 1) + ")");
+			
+			// 종료 조건
+			if(strInput == "" || strInput == " " || strInput == ".")
+				break;
+			
+			// 쪼갠후
+			var arr = strInput.split(" ");
+			// 총점만 따로 구해 문자열로 삽입
+			var totNum = Number(arr[KOR]) +  Number(arr[ENG]) +  Number(arr[MAT]);
+			arr.push(String(totNum));
+			
+			// 정보가 들어있는 배열을 2차원 배열에 삽입
+			arrInfo[count] = arr;
+			++count;
+		}
+		
+		// 총점기준 내림차순 버블 정렬
+	    for(var i = 0; i < arrInfo.length - 1; ++i)
+		{
+		    for(var j = 0; j < arrInfo.length - 1; ++j)
+		    {
+		    	if(Number(arrInfo[j][TOT]) >= Number(arrInfo[j+1][TOT]))
+		    		break;
+		    	
+		    	if(Number(arrInfo[j][TOT]) < Number(arrInfo[j+1][TOT]))
+		    	{
+		    		var arrTemp = arrInfo[j];
+		    		arrInfo[j] = arrInfo[j+1];
+		    		arrInfo[j+1] = arrTemp;
+		    	}
+		    }
+		} 
+		
+		var vResults = document.getElementById("results");
+		var rank = 1;
+		for (var i = 0; i < arrInfo.length; i++)
+		{
+			for (var j = 0; j < 5; j++)
+			{ 
+				vResults.value += arrInfo[i][j] + " ";
+			}
+			vResults.value += rank + "등" + "\n";
+			++rank;
+		}
+	}
+	
+</script>
+
+
+</head>
+<body>
+
+<div>
+	<h1>자바스크립트 활용</h1>
+	<hr>
+</div>
+
+<!-- 
+	prompt() 를 활용하여 여러 명의 성적 데이터를 입력받고
+	등수를 부여하여 리스트를 출력하는 페이지를 구성한다.
+	
+	HTML, CSS, Javascript 활용.
+	
+	※ 2차원 배열을 활용한다.
+	
+	페이지 레이아웃
+	-------------------------------------------------
+	<성적 데이터 입력>							  → 이름 국어 영어 수학(1) : 
+	
+	전체 인원 수 : [    ] 명
+	-----------------------------------------
+	이름     국어   영어   수학   총점   등수
+	이예슬    90     80     70     240    1등
+	김보경    90     80     60     230    2등
+	안혜리    90     80     50     220    3등
+	-----------------------------------------
+ -->
+ 
+ <!-- 
+ 	2차원 배열 선언
+ 	[학생수][정보]
+ 	
+ 	정렬 후 출력(간단한 버블정렬 사용)
+  -->
+
+<div>
+	<form>
+		<input type="button" class="btn" value="성적 데이터 입력" onclick="proc()">
+		<br><br><br><br>
+		
+		전체 인원 수 : <input type="text" class="txt" readonly="readonly" id="personCount">
+		<br>
+		
+		<pre>   이름   국어 영어 수학 총점 등수</pre>
+		<textarea id="results" readonly="readonly" 
+		 style="width: 240px; height: 400px; text-align: center"></textarea>
+	</form>
+</div>
+
+</body>
+</html>

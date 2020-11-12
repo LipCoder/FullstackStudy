@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+
+	* {color : #223322;}
+	input {font-family: 나눔고딕코딩; font-weight: bold;}
+	input:focus {background-color: #eeeedd;}
+	input.btn {width: 150px; font-weight: bold; font-family: 맑은 고딕;}
+	input.btn:hover {color: orange;}
+	input.btn:result{color: red;}
+	td {text-align: center;}
+	.txt {text-align: right;}	
+	textarea {font-family: 나눔고딕코딩; font-size: 100%; font-weight: bold;}
+
+</style>
+
+<script type="text/javascript">
+	
+	function actionScore()
+	{
+		var str = "";
+		var arr = new Array(new Array(), new Array(), new Array(), new Array(), new Array(), new Array());
+		//                  1번째 학생   2번째 학생   3번째 학생....      ( X )
+		//                    이름들      국어점수들   영어점수들   수학점수들    총점들      석차들 ( ○ )
+		var n = 0;
+		
+		do
+		{
+			str = prompt("이름 국어 영어 수학(" + (n+1) + ") : "); 	// 이예슬 90 80 70
+																	// 김보경 90 80 60
+																	
+			if(str=="" || str=="." || str==" ")
+				break;
+			
+			var member = str.split(" ");	// var member = ["이예슬", "90", "80", "70"];
+			
+			arr[0][n] = member[0];			// "이예슬" → n번째 학생의 이름
+			arr[1][n] = member[1];			// "90"		→ n번째 학생의 국어점수
+			arr[2][n] = member[2];			// "80"		→ n번째 학생의 영어점수
+			arr[3][n] = member[3];			// "70"		→ n번째 학생의 수학점수
+			arr[4][n] = (Number(member[1]) + Number(member[2]) + Number(member[3]));
+			arr[5][n] = 1;
+			
+			// 확인
+			/* alert(arr[4][n]);
+			alert(arr[5][n]); */ 
+			
+			n++;
+																	
+		} while (true);
+		
+		
+		// 석차 계산
+		for (var i = 0; i < arr[4].length; i++)
+		{
+			for(var j = 0; j < arr[4].length; j++)
+			{
+				if(i==j)
+					continue;
+				
+				// i번째 학생의 총점이 j번째 학생의 총점보다 작다면...
+				if(Number(arr[4][i]) < Number(arr[4][j]))
+				{
+					// i 번째 학생의 등수를 1만큼 증가
+					// → arr[5][i] 를 1만큼 증가
+					arr[5][i] = (Number(arr[5][i]) + 1).toString();
+				}
+			}
+		}
+		
+		// 결과 출력 → textarea → memberList
+		var result = "";
+		
+		for (var j = 0; j < arr[0].length; j++)		// 학생의 수 만큼... 회전
+		{
+			for (var k = 0; k < arr.length; k++)	// 학생이 가진 속성만큼... 회전
+			{
+				result += arr[k][j] + "    ";		// 속성 사이의 공백
+			}
+			result += "\n";							// 개행 → 학생 사이의 개행
+		}
+		
+		document.getElementById("txtCount").value = arr[0].length;
+		
+		document.getElementById("memberList").value = "이름   국어  영어  수학  총점  등수\n";
+		document.getElementById("memberList").value += result;
+	}
+	
+</script>
+
+
+</head>
+<body>
+
+<div>
+	<form>
+		<input type="button" class="btn" value="성적 데이터 입력" style="width: 350px;"
+		onclick="actionScore()">
+		<br><br>
+		
+		전체 인원수
+		<input type="text" class="txt" id="txtCount" style="width: 20px;" readonly="readonly">
+		명
+		<br><br>
+		
+		<textarea rows="10" cols="50" id="memberList" readonly="readonly"></textarea>
+	</form>
+</div>
+
+</body>
+</html>

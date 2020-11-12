@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+
+	* {color : #223322;}
+	input {font-family: 나눔고딕코딩; font-weight: bold;}
+	input:focus {background-color: #eeeedd;}
+	.btn {width: 150px; font-weight: bold; font-family: 맑은 고딕;}
+	.btn:hover {color: orange;}
+	th {width: 30px;}				/* check */
+	td {text-align: right;}			/* check */
+	.txt {text-align: center;}	
+	textarea {font-family: 나눔고딕코딩; font-size: 100%; font-weight: bold;}
+</style>
+
+<script type="text/javascript">
+
+	NONE = 0;
+
+	function leapYearCount(year)
+	{
+		var count = 0;
+		for (var i = 1; i <= year; i++)
+		{
+			if(i%4==0 && i%100!=0 || i%400==0)
+			{
+				++count;
+			}
+		}
+		
+		return count;
+	}
+
+	function createCalendar()
+	{
+		var vYear = document.getElementById("txtYear").value;
+		var year = Number(vYear); 
+		
+		var vMonth = document.getElementById("txtMonth").value;
+		var month = Number(vMonth);
+		// 1년 1월 1일 -> 월요일
+		
+		// 해당 년전까지 일수 구하기
+		var leapYears = leapYearCount(year - 1);
+		var yearDays = (year - 1) * 365 + leapYears;
+		
+		// 해당 월까지 일수 구하기
+		var monthDays = 0;
+		var arrMonth = [NONE, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+		
+		for (var i = 1; i < month; i++)
+		{
+			if(i == 2)
+			{
+				if(year%4==0 && year%100!=0 || year%400==0)
+				{
+					monthDays += arrMonth[i] + 1;
+					continue;
+				}
+			}
+			
+			monthDays += arrMonth[i];
+		}
+		
+		// 해당 년월까지의 총 요일 수 구하기
+		var totalDays = yearDays + monthDays;
+		
+		// 시작 요일 구하기
+		// 0:일 1:월 2:화 3:수 4:목 5:금 6:토
+		var startDate = (totalDays + 1) % 7;	
+		
+		var nowMonthDays = startDate + arrMonth[month];
+		var numStart = 1;
+		
+		// 배열 선언 및 초기화
+		// 필요한 배열 크기 만큼만 할당
+		var arrResult = new Array( Math.ceil(nowMonthDays/7) );
+
+		for (var i = 0; i < arrResult.length; i++)
+		{
+			arrResult[i] = new Array(7);
+			
+			for (var j = 0; j < arrResult[i].length; j++)
+			{
+				arrResult[i][j] = " ";
+			}
+		}
+		
+		// 배열에 값 넣기
+		for(var i = startDate; i < nowMonthDays; ++i)
+		{
+			var row = Math.floor(i / 7);
+			var col = i % 7; 
+			arrResult[row][col] = String(numStart);
+			++numStart;
+		}
+		
+		// 배열 테이블화 해서 삽입
+		var tableNode = document.getElementById("calendarTbl");
+		for(var i = 0; i < arrResult.length; ++i)
+		{
+			tableNode.appendChild(createTrNode(arrResult[i]));
+		}
+	}
+
+	function createTrNode(arr)
+	{
+		var trNode = document.createElement("tr");
+		
+		for(var i = 0; i < arr.length; ++i)
+		{
+			trNode.appendChild(createTdNode(arr[i]));	
+		}
+		
+		return trNode;
+	}
+	
+	function createTdNode(val)
+	{
+		var textNode = document.createTextNode(val);
+		var tdNode = document.createElement("td");
+		tdNode.appendChild(textNode);
+		
+		return tdNode;
+	}
+	
+
+</script>
+
+</head>
+<body>
+
+<div>
+	<h1>테이블 동적 생성으로 만년달력 그리기</h1>
+	<hr>
+</div>
+
+<!--  
+	만년달력 페이지를 구성한다.
+	HTML, CSS, JavaScript 를 활용한다.
+	테이블 태그 동적 생성 구문을 활용한다.
+	
+	1단계. 1년 1월 1일 부터... 입력년도 기준 전년도 12월 31일 까지의
+	       총 날짜 수 구하기
+	2단계. 해당 년도 1월 1일 부터... 해당 년도 해당 월 1일 까지의
+	       총 날짜 수 구하기
+	3단계. 해당 년도 해당 월의 첫 날(1일)의 요일 구하기
+	4단계. 해당 년도 해당 월의 마지막 날짜 구하기.
+		   (28일, 29일, 30일, 31일)
+	5단계. 해당 년도 해당 월 기준 달력 구성(출력, 그리기)
+-->
+
+<div>
+	<form>
+		<input type="text" id="txtYear" class="txt" style="width: 100px;"> 년
+		<input type="text" id="txtMonth" class="txt" style="width: 100px;"> 월
+		<br><br>
+		
+		<button type="button" class="btn" style="width: 200px;"
+		onclick="createCalendar()">만년달력 그리기</button>
+		<br><br>
+		
+		<table border="1" id="calendarTbl">
+			<tr>
+				<th>일</th>
+				<th>월</th>
+				<th>화</th>
+				<th>수</th>
+				<th>목</th>
+				<th>금</th>
+				<th>토</th>
+			</tr>
+		</table>
+	</form>
+</div>
+
+
+</body>
+</html>
