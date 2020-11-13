@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test026.html</title>
+
+
+<style type="text/css">
+
+	* {color : #223322;}
+	input {font-family: 나눔고딕코딩; font-weight: bold;}
+	input:focus {background-color: #eeeedd;}
+	.btn {width: 150px; font-weight: bold; font-family: 맑은 고딕;}
+	.btn:hover {color: orange;}
+	th {width: 30px;}				/* check */
+	td {text-align: right;}			/* check */
+	.txt {text-align: center;}	
+	textarea {font-family: 나눔고딕코딩; font-size: 100%; font-weight: bold;}
+	
+</style>
+
+
+<!-- teacher's code -->
+<script type="text/javascript">
+	
+	function createLotto()
+	{
+		// 확인
+		//alert("호출 완료");
+		
+		var count = parseInt(document.getElementById("txtCount").value);
+		
+		document.getElementById("resultArea").value = "";
+		
+		for (var i = 0; i < count; i++)
+		{
+			//document.getElementById("resultArea").value += 로또게임수행 + "\n";
+			document.getElementById("resultArea").value += runLottoSingle() + "\n";	
+		}
+	}
+	
+	// 로또 단일 게임 수행
+	function runLottoSingle()
+	{
+		//return "수행한 로또 게임";
+		
+		// 방 6개로 구성된 배열 생성
+		var lottoArray = new Array(6);
+		
+		// 방 45개로 구성된 배열 생성 → 공으로 활용
+		var arr = new Array(45);
+		
+		// 45개 방으로 구성된 배열의 각 방에
+		// 1 ~ 45 까지의 로또 번호 채우기 → 공 만들기
+		for (var i = 0; i <= arr.length; i++)
+			arr[i-1] = i;
+		
+		// 확인
+		//alert(arr[9]);
+		//--==>> 10
+		
+		// 공 뒤섞기
+		for(var i = 0; i < arr.length; i++)
+		{
+			var j = parseInt(Math.random() * 45); // 0 ~ 44 까지의 난수 발생 → 무작위 방번호 추출
+			
+			// 순차적으로 지정된 방 번호와 임의로 발생한 방 번호의 값을 자리바꿈
+			var temp = arr[i];
+			arr[i] = arr[j];
+			arr[j] = temp;
+		}
+		
+		// 테스트 → 더미 확인
+		//return arr;
+		
+		// 배열의 요소 옮겨담기
+		for (var i = 0; i < lottoArray.length; i++)
+			lottoArray[i] = arr[i];
+		
+		
+		// 정렬 기능 포함 (anonymous function)
+		lottoArray.sort(function(left, right)
+		{
+			return Number(left) - Number(right);
+		});
+		
+		
+		// 구성된 배열 반환
+		return lottoArray;
+	}
+	
+</script>
+
+<!-- my code -->
+<script type="text/javascript">
+	
+	
+	arrCheck = new Array(45 + 1);
+	
+	// 랜덤 숫자 추출
+	function getRandomNum()
+	{
+		var num = 0;
+
+		// 중복된 숫자가 아닐때까지 추출
+		while(true)
+		{
+			num = Math.floor(Math.random() * 45) + 1; 
+			
+			if(arrCheck[num])
+				continue;
+				
+			arrCheck[num] = true;
+			break;
+		}
+		
+		return num;
+	}
+	
+	// 로또 숫자 생성 및 출력 함수
+	function printGameResult()
+	{
+		var arr = new Array();
+		var eResult = document.getElementById("result");
+		
+		for (var i = 0; i <= 45; i++)
+		{
+			arrCheck[i] = false;
+		}
+		
+		// 숫자 추출
+		for(var i = 0; i < 6; i++)
+		{
+			arr.push(getRandomNum());
+		}
+		
+		// 숫자 정렬
+		arr.sort(function(a, b) {return a - b});
+		
+		// 숫자 출력
+		for(var i = 0; i < 6; i++)
+		{
+			eResult.value += arr[i] + " ";
+		}
+		eResult.value += "\n";
+	}
+	
+	// 로직
+	function proc()
+	{
+		var vCount = document.getElementById("inputNum").value;
+		var nCount = parseInt(vCount);
+		
+		for (var i = 0; i < nCount; i++)
+		{
+			printGameResult();
+		}
+	}
+
+</script>
+
+
+</head>
+<body>
+
+<!-- 
+	로또 번호(1~45)를 중복되지 않은 정수 6개를 생성하여
+	출력해주는 페이지를 구현한다.
+	HTML, CSS, Javascript 를 활용한다.
+	난수 발생 함수를 활용한다.
+	번호순(오름차순)으로 정렬하여 출력할 수 있도록 한다.
+	주문한 장 수 만큼 출력할 수 있도록 한다.
+	
+	페이지 레이아웃
+	--------------------------------------------------
+	로또   [  3  ] 장   < 주문하기 >
+	
+	결과
+	-----------------------------
+	1 5 9 11 22 31
+	3 13 22 24 26 36
+	2 3 22 34 41 42
+	-----------------------------
+	--------------------------------------------------
+ -->
+
+<div>
+	<form>
+		로또 <input type="text" id="txtCount" style="width: 50px"> 장  
+		<input type="button" class="btn" value="주문하기" style="width: 70px" onclick="createLotto()">
+		<br><br>
+		
+		결과<br>
+		<textarea id="resultArea" style="width: 200px; height: 300px;" rows="" cols=""></textarea>
+	</form>
+</div>
+
+</body>
+</html>

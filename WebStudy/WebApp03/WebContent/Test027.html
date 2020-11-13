@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test027.html</title>
+
+<style type="text/css">
+
+	* {color : #223322;}
+	input {font-family: 나눔고딕코딩; font-weight: bold;}
+	input:focus {background-color: #eeeedd;}
+	.btn {width: 150px; font-weight: bold; font-family: 맑은 고딕;}
+	.btn:hover {color: orange;}
+	th {width: 30px;}				/* check */
+	td {text-align: right;}			/* check */
+	.txt {text-align: center;}	
+	textarea {font-family: 나눔고딕코딩; font-size: 100%; font-weight: bold;}
+	
+</style>
+
+
+<script type="text/javascript">
+
+	function actionChoice()
+	{
+		//alert("호출 확인");
+		
+		// check~!!!
+		//document.getElementById()     -- Ⅹ
+		//document.getElementsByName()	-- ○
+		
+		var radioObj = document.getElementsByName("radioGroup");
+		
+		// 확인
+		//alert(radioObj);
+		//--==>> [object NodeList]   → 자바스크립트 배열
+		
+		// 확인
+		//alert(radioObj.length);
+		//--==>> 6
+		
+		var msg = "선택된 항목이 없습니다."
+		
+		for(var i = 0; i < radioObj.length; i++)
+		{
+			// 확인
+			//alert(radioObj[i]);
+			
+			// 확인
+			//alert(radioObj[i].checked);
+			
+			// 확인
+			//alert(radioObj[i].value);
+			
+			if(radioObj[i].checked)		// true	/ false
+			{
+				//alert(radioObj[i].value);	
+				msg = "당신이 선택한 사이즈는 아이스크림 종류를 "
+				    + radioObj[i].value + "개 고를 수 있습니다.";
+				break;
+			}
+
+		}
+		
+		alert(msg);
+	}
+
+</script>
+
+
+</head>
+<body>
+
+<div>
+	<h1>자바스크립트 활용</h1>
+	<hr>
+</div>
+
+<div>
+	<h2>라디오버튼, 체크박스 다루기</h2>
+	
+	<form>
+		---- 사이즈 선택 ---- <br><br>
+		<input type="radio" name="radioGroup" id="a" value="1"><label for="a">싱글</label><br>
+		<label><input type="radio" name="radioGroup" id="b" value="2">더블(2)</label><br>
+		<label><input type="radio" name="radioGroup" id="c" value="3">파인트(3)</label><br>
+		<label><input type="radio" name="radioGroup" id="d" value="4">쿼터(4)</label><br>
+		<label><input type="radio" name="radioGroup" id="e" value="6">패밀리(6)</label><br>
+		<label><input type="radio" name="radioGroup" id="f" value="8">하프갤런(8)</label><br>
+		<br>
+		
+		<button type="button" class="btn" onclick="actionChoice()">확인</button>
+	</form>
+</div>
+
+</body>
+</html>

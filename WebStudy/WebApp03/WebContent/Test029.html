@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test029.html</title>
+
+<style type="text/css">
+
+	* {color : #223322; font-family: 맑은 고딕;}
+	.btn
+	{
+		width: 200px;
+		height: 40px;
+		font-weight: bold;
+		font-size: 20px;
+		border-radius: 10px;
+	}
+	.btn:hover 
+	{
+		color: white;
+		background-color: #556655;
+	}
+	label:hover
+	{
+		color: orange;
+	}
+</style>
+
+
+<script type="text/javascript">
+	
+	var sizeCount = 0;		//-- 선택 가능한 아이스크림의 갯수
+	var typeCount = 0;		//-- 선택 가능한 아이스크림의 종류수
+	
+	// 주문
+	// 사이즈 만큼 종류 선택 했는지 확인
+	function order()
+	{
+		if(sizeCount == 0)
+		{
+			alert("사이즈를 선택하지 않았습니다. 사이즈를 선택해주세요.");
+			return;
+		}
+			
+		if(typeCount == 0)
+		{
+			alert("종류를 선택하지 않았습니다. 종류를 먼저 선택해주세요.");
+			return;
+		}
+			
+		if(sizeCount > typeCount)
+		{
+			alert("종류를 더 선택하세요.");
+			return;
+		}
+		
+		var msg = "주문 : ";
+	
+		var checkBoxes = document.getElementsByName("checkGroup");
+		for (var i = 0; i < checkBoxes.length; i++)
+		{
+			if(checkBoxes[i].checked)
+			{
+				msg += checkBoxes[i].value + " ";
+			}
+		}
+		msg += "\n";
+		alert(msg);
+	}
+	
+	function radioProc(obj)
+	{
+		// 사이즈 확인
+		sizeCount = parseInt(obj.value);
+	}
+	
+	function checkProc(obj)
+	{	
+		if(sizeCount == 0)
+		{
+			alert("사이즈를 먼저 선택하세요.");
+			obj.checked = false;
+			return;
+		}
+		
+		//-- 클릭 액션에 의해 check 되었을 때 true / check 해제 되었을 때 false
+		(obj.checked) ? ++typeCount : --typeCount;
+		
+		if(typeCount > sizeCount)
+		{
+			alert("사이즈를 초과하였습니다.");
+			obj.checked = false;
+			--typeCount;
+			return;
+		}
+	}
+	
+	
+</script>
+
+
+<script type="text/javascript">
+
+</script>
+
+</head>
+<body>
+
+<div>
+	<h1>자바스크립트 활용</h1>
+	<hr>
+</div>
+
+<div>
+	<h2>아이스크림 주문</h2>
+	
+	<form>
+		---- 사이즈 선택 ---- <br>
+		<label>
+			<input type="radio" name="radioGroup" id="a1" value="1" onclick="radioProc(this)">싱글(1)
+		</label>
+		<br>
+		
+		<label>
+			<input type="radio" name="radioGroup" id="b1" value="2" onclick="radioProc(this)">더블(2)
+		</label>
+		<br>
+		
+		<label>
+			<input type="radio" name="radioGroup" id="c1" value="3" onclick="radioProc(this)">파인트(3)
+		</label>
+		<br>
+		
+		<label>
+			<input type="radio" name="radioGroup" id="d1" value="4" onclick="radioProc(this)">쿼터(4)
+		</label>
+		<br>
+		
+		<label>
+			<input type="radio" name="radioGroup" id="e1" value="6" onclick="radioProc(this)">패밀리(6)
+		</label>
+		<br>
+		
+		<label>
+			<input type="radio" name="radioGroup" id="f1" value="8" onclick="radioProc(this)">하프갤런(8)
+		</label>
+		<br><br>	
+		
+		
+		---- 종류 선택 ---- <br>
+		<label>
+			<input type="checkbox" name="checkGroup" id="a2" value="레인" onclick="checkProc(this)">
+			레인보우 샤베트
+		</label>
+		
+		<label>
+			<input type="checkbox" name="checkGroup" id="b2" value="민쵸" onclick="checkProc(this)">
+			민트 초코
+		</label>
+		
+		<label>
+			<input type="checkbox" name="checkGroup" id="c2" value="이나솜" onclick="checkProc(this)">
+			이상한 나라의 솜사탕
+		</label>
+		<br>
+		
+		<label>
+			<input type="checkbox" name="checkGroup" id="d2" value="초숲" onclick="checkProc(this)">
+			초코나무 숲
+		</label>
+		
+		<label>
+			<input type="checkbox" name="checkGroup" id="e2" value="엄마" onclick="checkProc(this)">
+			엄마는 외계인
+		</label>
+		
+		<label>
+			<input type="checkbox" name="checkGroup" id="f2" value="바닐라" onclick="checkProc(this)">
+			바닐라
+		</label>
+		
+		<label>
+			<input type="checkbox" name="checkGroup" id="g2" value="사딸" onclick="checkProc(this)">
+			사랑에 빠진 딸기
+		</label>
+		<br>
+		
+		<label>
+			<input type="checkbox" name="checkGroup" id="h2" value="체리" onclick="checkProc(this)">
+			체리쥬빌레
+		</label>
+		
+		<label>
+			<input type="checkbox" name="checkGroup" id="i2" value="애플" onclick="checkProc(this)">
+			애플 민트
+		</label>
+		
+		<label>
+			<input type="checkbox" name="checkGroup" id="j2" value="슈팅" onclick="checkProc(this)">
+			슈팅슈타
+		</label>
+		
+		<label>
+			<input type="checkbox" name="checkGroup" id="k2" value="뉴치"  onclick="checkProc(this)">
+			뉴욕 치즈 케이크
+		</label>
+		
+		<br><br>
+		
+		<button type="button" class="btn" onclick="order()">주문</button>
+		
+	</form>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test032.html</title>
+
+<style type="text/css">
+	*{font-size: small;}
+</style>
+
+
+<script type="text/javascript">
+	
+	function myAddr(addr)
+	{
+		window.opener.document.getElementById("addr1").value = addr;
+		
+		// IE용
+		//window.opener.document.getElementById("txt1").innerText = addr;
+		
+		// CR, FF용
+		window.opener.document.getElementById("txt1").innerHTML = addr;
+		
+		window.close();
+	}
+	
+</script>
+
+
+</head>
+<body>
+
+<div>
+	<form>
+		주소 검색 <input> <input type="button" value="검색"><br><br>
+		<!-- 
+		자바스크립트에서 myAddr 메서드를 호출하겠다. 
+		자바스크립트에서는 ''도 문자열, ""도 문자열이다. 
+		
+		"나는 오늘 점심에 '만둣국'을 먹었습니다."
+		'나는 오늘 점심에 "만둣국"을 먹었습니다." 
+		==> 이런식으로 사용이 불가능하므로.. 앞에 \를 붙여서 사용해줘야 한다.
+		    ( \", \' )
+		
+		-->
+		<a href="javascript:myAddr('서울 마포구 월드컵북로 1가')">
+		서울 마포구 월드컵북로 1 (1~110번지)</a><br>
+		<a href="javascript:myAddr('서울 마포구 월드컵북로 11가')">
+		서울 마포구 월드컵북로 11 (111~128번지)</a><br>
+		<a href="javascript:myAddr('서울 마포구 월드컵북로 13가')">
+		서울 마포구 월드컵북로 13 (129~140번지)</a><br>
+		<a href="javascript:myAddr('서울 마포구 월드컵북로 21가')">
+		서울 마포구 월드컵북로 21 (141~148번지)</a><br>
+		<a href="javascript:myAddr('서울 마포구 월드컵북로 32가')">
+		서울 마포구 월드컵북로 32 (149~150번지)</a><br>
+	</form>
+</div>
+
+</body>
+</html>

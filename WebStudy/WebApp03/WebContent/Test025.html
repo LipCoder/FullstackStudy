@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test025.html</title>
+
+<style type="text/css">
+
+	* {color : #223322;}
+	input {font-family: 나눔고딕코딩; font-weight: bold;}
+	input:focus {background-color: #eeeedd;}
+	.btn {width: 150px; font-weight: bold; font-family: 맑은 고딕;}
+	.btn:hover {color: orange;}
+	th {width: 30px;}				/* check */
+	td {text-align: right;}			/* check */
+	.txt {text-align: center;}	
+	textarea {font-family: 나눔고딕코딩; font-size: 100%; font-weight: bold;}
+</style>
+
+
+<script type="text/javascript">
+
+	function getGBB(num)
+	{
+		if(num == 1) 
+			return "가위";
+		if(num == 2)
+			return "바위";
+		if(num == 3)
+			return "보";
+		
+		return "잘못된 값";
+	}
+	
+	function calcGBB(user, com)
+	{
+		var r = user - com;
+		
+		if(r == 0)
+			return "draw"
+		
+		if(r == 1 || r == -2)
+			return "user"
+		
+		return "com"
+	}
+	
+	function proc()
+	{
+		// 유저 정보
+		var vUser = document.getElementById("input").value;
+		var nUser = parseInt(vUser);
+		
+		if(getGBB(nUser) == "잘못된 값")
+		{
+			alert("잘못된 값을 입력하였습니다. 다시 입력해주세요.");
+			return;
+		}
+		
+		// 랜덤 생성
+		var nCom = Math.floor(Math.random() * 3) + 1;
+		
+		// 결과
+		var result = calcGBB(nUser, nCom);
+		
+		
+		// 출력
+		var eResult = document.getElementById("result");
+		eResult.value += "사용자: " + getGBB(nUser) + "  "
+		               + "컴퓨터: " + getGBB(nCom) + "  →  ";
+		
+		if(result == "draw")
+			eResult.value += "비겼습니다.";
+		else
+			eResult.value += (result == "user" ? "사용자" : "컴퓨터") + "가 이겼습니다.";	
+	}
+	
+</script>
+
+
+</head>
+<body>
+
+<!-- 
+	가위 바위 보 게임을 구성한다.
+	HTML, CSS, Javascript를 활용한다.
+	자바스크립트 난수 발생 함수를 찾아 활용한다.
+	
+	페이지 레이아웃
+	------------------------------------------------------------
+	입력(1.가위, 2.바위, 3.보) : [    ]  <게임결과확인>
+	
+	[ 사용자: 바위  컴퓨터: 보  →  컴퓨터가 이겼습니다.]
+	------------------------------------------------------------
+	
+ -->
+ 
+ <div>
+ 	<form>
+ 		입력(1.가위, 2.바위, 3.보) : 
+ 		<input type="text" class="txt" id="input" style="width: 50px;"> 
+ 		<input type="button" class="btn" value="게임결과확인"
+ 		       onclick="proc()">
+ 		<br><br>
+ 		
+ 		<input type="text" class="txt" id="result" 
+ 		       style="width: 400px;" readonly="readonly">	 
+ 	
+ 	</form>
+ </div>
+
+
+</body>
+</html>
