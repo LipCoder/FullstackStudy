@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test033.html</title>
+
+<style type="text/css">
+	/*  */
+	#menuTable {display: none;}
+</style>
+
+<script type="text/javascript" src="js/myMenu.js"></script>
+
+</head>
+<body>
+
+<div>
+	<h1>자바 스크립트 활용</h1>
+	<hr>
+</div>
+
+<div>
+	<h2>메뉴 보이기 / 감추기</h2>
+	
+	<div>
+		<form>
+			<!-- 클릭 시 메뉴 테이블 보이기 -->
+			<input type="button" value="메뉴 보이기" onclick="myMenu(1)">
+			<!-- 클릭 시 메뉴 테이블 감추기 -->
+			<input type="button" value="메뉴 감추기" onclick="myMenu(2)">
+			
+			<input type="button" value="메뉴 보이기 / 감추기"
+			onmouseover ="myMenu(1)" onmouseout="myMenu(2)">
+			
+		</form>
+	</div>
+	
+	<br><br>
+	
+	<div id="menuTable">
+		<table>
+			<tr>
+				<td>Java 기초</td>
+			</tr>
+			
+			<tr>
+				<td>오라클 중급</td>
+			</tr>
+			
+			<tr>
+				<td>JSP 고급</td>
+			</tr>
+			
+			<tr>
+				<td>Servlet 응용</td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+
+</body>
+</html>
