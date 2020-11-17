@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Send02.html</title>
+<link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+
+<!-- 
+	○ 데이터 송수신 실습 02
+	
+	   - 이름과 국어점수, 영어점수, 수학점수를 입력받아 서버로 전송하여
+	     (Send02.html)
+	     
+	   - 총점, 평균에 대한 결과를 받을 수 있는 JSP 페이지를 작성한다.
+	     (Receive02.jsp)
+	     
+	     이름      [       ]
+	     국어점수  [       ]
+	     영어점수  [       ]
+	     수학점수  [       ]
+	     
+	     <성적 처리>
+	     
+	   - 성적 처리 버튼 클릭 시 
+	     『홍길동님, 성적 처리가 완료되었습니다.
+	       회원님의 점수는 국어:xx점, 영어:xx점, 수학:xx점 입니다.
+	       총점은 xxx점, 평균은 xx.x점 입니다.』
+	     라는 내용을 출력하는 JSP 페이지를 작성한다.
+	     (Receive02.jsp)
+	     
+	   - 사용자의 최초 요청 페이지의 주소는
+	     『http://localhost:8090/WebApp06/Send02.html』로 한다.	
+ -->
+ 
+ <div>
+ 	<form action="Receive02.jsp" method="get">
+ 		<table class="table">
+ 			<tr>
+ 				<th>이름</th>
+ 				<td>
+ 					 <input type="text" name="txtName" class="txt">
+ 				</td>
+ 			</tr>
+ 			<tr>
+ 				<th>국어점수</th>
+ 				<td>
+ 					 <input type="text" name="txtKor" class="txt"> 
+ 				</td>
+ 			</tr>
+ 			<tr>
+ 				<th>영어점수</th>
+ 				<td>
+ 					 <input type="text" name="txtEng" class="txt"> 
+ 				</td>
+ 			</tr>
+ 			<tr>
+ 				<th>수학점수</th>
+ 				<td>
+ 					 <input type="text" name="txtMat" class="txt"> 
+ 				</td>
+ 			</tr>
+
+	 		<tr>
+	 			<td>
+ 					 <input type="submit" class="btn" value="성적 처리" >
+ 				</td>	
+	 		</tr>
+ 		</table>
+ 	</form>
+ </div>
+
+</body>
+</html>
