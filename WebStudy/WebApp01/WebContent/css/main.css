@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+th 
+{
+	font-family: 맑은고딕;
+	background-color: #d5d5d5;
+	white-space: pre;
+}
+
+th.top
+{
+	background-color: white;
+	font-size:25pt;
+	font-weight: bold; 
+	text-align: center;
+}
+
+td 
+{
+	font-family: 맑은고딕;
+	font-size: 11pt;
+	text-align: center;
+}
+
+td.bottom
+{
+	text-align: left; 
+	font-weight: bold; 
+	font-size: 12pt; 
+}
+
+p
+{
+	font-size: 25pt;
+	font-weight: bold;
+	text-align: center;
+	white-space: pre;
+}
+
