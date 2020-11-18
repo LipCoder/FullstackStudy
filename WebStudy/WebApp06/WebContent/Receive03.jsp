@@ -1,22 +1,27 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%
+	// 스크립릿 영역
+	
+	//request.setCharacterEncoding("UTF-8");
+	//-- 수신 내용에 한글 데이터가 없으므로 설정하지 않아도 됨.
+
 	int n1 = Integer.parseInt(request.getParameter("txtNum1"));
 	int n2 = Integer.parseInt(request.getParameter("txtNum2"));
 	
 	String operSel = request.getParameter("operator");
 	
-	int result = 0;
+	String result = "";
 	
 	/* if(operSel.equals("plu"))
 		result = n1 + n2; */
 	
 	switch(operSel)
 	{
-	case "plu": result = n1 + n2; break;
-	case "min":  result = n1 - n2; break;
-	case "mul":  result = n1 * n2; break;
-	case "div":  result = n1 / n2; break;
-	default: result = -1;
+	case "plu": result = String.valueOf(n1 + n2); break;
+	case "min":  result = String.valueOf(n1 - n2); break;
+	case "mul":  result = String.valueOf(n1 * n2); break;
+	case "div":  result = String.format("%.1f", (double)n1 / n2); break;
+	default: result = "none";
 	} 
 %>
 

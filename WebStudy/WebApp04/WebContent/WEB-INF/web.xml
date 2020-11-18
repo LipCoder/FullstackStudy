@@ -12,4 +12,28 @@
 		<welcome-file>default.htm</welcome-file>
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
+	
+	
+	<!-- 서블릿을 위해 추가한 태그 -->
+	<servlet>
+		<servlet-name>test004</servlet-name>
+		<servlet-class>com.test.Test004</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>test004</servlet-name>
+		<url-pattern>/test004</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>test005</servlet-name>
+		<servlet-class>com.test.Test005</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>test005</servlet-name>
+		<url-pattern>/test005</url-pattern>
+	</servlet-mapping>
+	
 </web-app>

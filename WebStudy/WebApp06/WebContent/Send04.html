@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Send04.html</title>
+
+<link rel="styleSheet" type="text/css" href="css/main.css">
+
+<style type="text/css">
+
+th
+{
+	text-align: left;
+}
+
+input.txt
+{
+	width: 150px;
+}
+
+span
+{
+	white-space: pre; 
+	color: red; 
+	font-weight: bold;
+	visibility: hidden;
+}
+
+</style>
+
+<script type="text/javascript">
+	
+	function check()
+	{
+		//alert("호출 확인");
+
+		// 유효성 검사 수행 → 적합			→ return true;
+		// 유효성 검사 수행 → 부적합		→ return false;
+	}
+	
+	
+	function check()
+	{
+		var arrContent = ["Id", "Pwd", "Name", "Tel"];
+		
+		// 양식 통과 검증용
+		var passCheck = true;
+		
+		// 필수 입력 사항 체크
+		for (var i = 0; i < arrContent.length; i++)
+		{
+			var content = document.getElementById("txt" + arrContent[i]);
+			var msgNode = document.getElementById("span" + arrContent[i]);
+			
+			if(content.value == "")
+			{
+				content.focus();
+				msgNode.style.visibility = "visible";
+				passCheck = false;
+			}
+			else
+			{
+				msgNode.style.visibility = "hidden";
+			}
+		}
+		
+		
+		if(passCheck)
+			document.getElementById("form").submit();
+	}
+	
+</script>
+
+</head>
+<body>
+
+<!-- 
+	○ 데이터 송수신 실습 04
+	
+	   - 회원 가입 요청 및 처리에 대한 과정을 JSP 페이지로 구성한다.
+	   
+	   - 전송 전에 (클라이언트 측에서 작성한 내용을 서버 측에 제출하기 전에)
+	     입력 데이터에 대한 기본적인 검사 과정을 추가한다.
+	     즉, 자바스크립트로 필수 입력 항목에 대한 입력 누락 여부 확인
+	     (Send04.html)
+	     
+	     (*)은 필수 입력 사항
+	     
+	     아이디(*)		[			]
+	     패스워드(*)	[			]		패스워드를 입력해야 합니다.
+	     이름(*)		[			]
+	     전화번호(*)	[			]		전화번호를 입력해야 합니다.
+	     
+	     성별			● 여자 ○ 남자
+	     지역			[서울 ▼]
+	     수강과목		□ 자바기초  □ 오라클중급  □ JDBC  □ JSP심화
+	     
+	     <회원 가입>
+	     
+	   - 회원 가입 버튼 클릭 시
+	   	 『
+	   	 아이디 : superman
+	   	 패스워드 : java006$
+	   	 이름 : 이준구
+	   	 전화번호 : 010-1111-1111
+	   	 
+	   	 성별 : 여성
+	   	 지역 : 서울
+	   	 수강과목 : 오라클중급 JDBC
+	   	 』  
+	   	 과 같이 처리될 수 있도록 한다.
+	   	 (Receive04.jsp)
+	   	 
+	   - 사용자의 최초 요청 페이지의 주소는
+	     『http://localhost:8090/WebApp06/Send04.html』로 한다.
+	     
+
+-->
+
+<div>
+	<form id="form" action="Receive04.jsp" method="post">
+		<table class="table" style= "width: 600px;">
+			<tr>
+				<th style="width: 150px">아이디(*)</th>
+				<td>
+					<input type="text" name="txtNameId" id="txtId" class="txt"> 
+					<span id="spanId" class="msg">   아이디를 입력해야 합니다.</span>
+				</td>
+				
+			</tr>
+				
+			<tr>
+				<th>패스워드(*)</th>
+				<td>
+					<input type="password" name="txtNamePwd" id="txtPwd" class="txt"> 
+					<span id="spanPwd" class="msg">   패스워드를 입력해야 합니다.</span>
+				</td>
+			</tr>
+			
+			<tr>
+				<th>이름(*)</th>
+				<td>
+					<input type="text" name="txtNameName" id="txtName" class="txt"> 
+					<span id="spanName" class="msg">   이름을 입력해야 합니다.</span>
+				</td>
+			</tr>
+			
+			<tr>
+				<th>전화번호(*)</th>
+				<td>
+					<input type="text" name="txtNameTel" id="txtTel" class="txt"> 
+					<span id="spanTel" class="msg">   전화번호를 입력해야 합니다.</span>
+				</td>
+			</tr>
+			
+		</table>
+		<br>
+			
+		<table class="table" style= "width: 600px;">
+			<tr>
+				<th style="width: 150px">성별</th>
+				<td>
+					<label><input type="radio" name="groupRadio" value="남자" checked="checked"> 남자 </label>
+					<label><input type="radio" name="groupRadio" value="여자"> 여자 </label>
+				</td>
+			</tr>
+				
+			<tr>
+				<th>지역</th>
+				<td>
+					<select name="selRegion">
+						<option value="none">==선택==</option>
+						<option value="서울">서울</option>
+						<option value="경기도">경기</option>
+						<option value="강원도">강원</option>
+						<option value="충청남도">충남</option>
+						<option value="충청북도">충북</option>
+						<option value="전라남도">전남</option>
+						<option value="전라북도">전북</option>
+						<option value="경상남도">경남</option>
+						<option value="경상북도">경북</option>
+						<option value="제주도">제주</option>
+					</select>
+				</td>
+			</tr>
+			
+			<tr>
+				<th>수강과목</th>
+				<td>
+					<label><input type="checkbox" name="groupCheck" id="chkID" value="자바기초"> 자바기초</label>
+					<label><input type="checkbox" name="groupCheck" id="chkID" value="오라클중급"> 오라클중급</label>
+					<label><input type="checkbox" name="groupCheck" id="chkID" value="JDBC"> JDBC</label>
+					<label><input type="checkbox" name="groupCheck" id="chkID" value="JSP심화"> JSP심화</label>
+				</td>
+				
+				
+			</tr>
+		</table>
+		<br>
+		
+		<table class="table" style= "width: 600px; align-content: center;">
+			<tr>
+				<td colspan="3">
+					<input type="button" value="회원 가입" class="btn" style="width: 200px;" onclick="check()">
+					<input type="reset" value="다시 작성" class="btn" style="width: 200px;">
+				</td>
+			<tr>
+		</table>
+		
+	</form>
+</div>
+
+
+</body>
+</html>

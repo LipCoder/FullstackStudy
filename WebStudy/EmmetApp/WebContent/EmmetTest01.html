@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>EmmetTest01.html</title>
+</head>
+<body>
+
+<div>
+	<h1>※ 기능 적용 키 → Ctrl + E</h1>
+</div>
+
+0. html 기본
+
+!
+<!-- 
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>	
+ -->
+ 
+ 
+1. 태그 선택자
+div
+<!-- <div></div> -->
+ div{메롱}
+ <div>메롱</div>
+
+ a
+ <a href=""></a>
+ <a href="www.naver.com">네이버</a>
+
+ img
+ <img src="images/test.png" alt="" />
+
+
+2. 아이디 선택자
+div#box
+<div id="box"></div> 
+
+#box
+<div id="box"></div>
+
+#box{aaa}
+<div id="box">aaa</div>
+
+table#tbl
+<table id="tb"></table>l
+
+
+3. 클래스 선택자
+div.items
+<div class="items"></div>
+
+div.items{aaa}
+<div class="items">aaa</div>
+
+.items
+<div class="items">bbb</div>
+
+
+
+4. 조합
+div#item1.items
+<div id="item1" class="items"></div>
+
+div#item1.items.box.control
+<div id="item1" class="items box control"></div>
+
+div#item1.items.box{aaa}
+<div id="item1" class="items box">aaa</div>
+
+#item1.items.box{aaa}
+<div id="item1" class="items box">aaa</div>
+
+
+5. 속성 선택자
+div[title]
+<div title=""></div>
+
+div[title='test']
+<div title="test"></div>
+
+div[title='head']
+<div title="head">이 위치</div>
+
+a[href='www.naver.com' title='네이버']
+<a href="www.naver.com" title="네이버"></a>
+
+a[href='www.naver.com' title='네이버']{네이버 바로가기}
+<a href="www.naver.com" title="네이버">네이버 바로가기</a>
+
+
+6. PCDATA
+div{박스}
+<div>박스</div>
+
+a[홈페이지로 이동]
+<a href="" 홈페이지로="" 이동=""></a>
+ 
+p{문단 내용 기술}
+<p>문단 내용 기술</p>
+
+
+7. 반복 생성
+div*5
+<div>첫 번째 내용 작성</div>
+<div>탭으로 이동</div>
+<div>다시 탭으로 이동</div>
+<div>또 다시 탭</div>
+<div>다시...</div>
+
+img[src='images/dog.png']*5
+<img src="images/dog.png" alt="" />				
+<img src="images/dog.png" alt="" />
+<img src="images/dog.png" alt="" />
+<img src="images/dog.png" alt="" />
+<img src="images/dog.png" alt="" />
+ 
+.box{box}*5
+<div class="box">box</div>
+<div class="box">box</div>
+<div class="box">box</div>
+<div class="box">box</div>
+<div class="box">box</div>
+ 
+#box$*5
+<div id="box1"></div>
+<div id="box2"></div>
+<div id="box3"></div>
+<div id="box4"></div>
+<div id="box5"></div> 
+
+.box#box${box$}*5
+<div class="box" id="box1">box1</div>
+<div class="box" id="box2">box2</div>
+<div class="box" id="box3">box3</div>
+<div class="box" id="box4">box4</div>
+<div class="box" id="box5">box5</div>
+
+img[src=images/dog$.png]*5
+<img src="images/dog1.png" alt="" />
+<img src="images/dog2.png" alt="" />
+<img src="images/dog3.png" alt="" />
+<img src="images/dog4.png" alt="" />
+<img src="images/dog5.png" alt="" />
+
+h$*6
+<h1></h1>
+<h2></h2>
+<h3></h3>
+<h4></h4>
+<h5></h5>
+<h6></h6>
+
+h${제목$}*6
+<h1>제목1</h1>
+<h2>제목2</h2>
+<h3>제목3</h3>
+<h4>제목4</h4>
+<h5>제목5</h5>
+<h6>제목6</h6>
+
+
+
+8. 연속 생성
+div+p
+<div></div>
+<p></p>
+
+h1{제목}+p{내용}*5
+<h1>제목</h1>
+<p>내용</p>
+<p>내용</p>
+<p>내용</p>
+<p>내용</p>
+<p>내용</p>
+
+(h1{제목$}+p{내용 어쩌구 저쩌구} * 2) * 5
+<h1>제목1</h1>
+<p>내용 어쩌구 저쩌구</p>
+<p>내용 어쩌구 저쩌구</p>
+<h1>제목2</h1>
+<p>내용 어쩌구 저쩌구</p>
+<p>내용 어쩌구 저쩌구</p>
+<h1>제목3</h1>
+<p>내용 어쩌구 저쩌구</p>
+<p>내용 어쩌구 저쩌구</p>
+<h1>제목4</h1>
+<p>내용 어쩌구 저쩌구</p>
+<p>내용 어쩌구 저쩌구</p>
+<h1>제목5</h1>
+<p>내용 어쩌구 저쩌구</p>
+<p>내용 어쩌구 저쩌구</p>
+
+div+a+div+p+div+img
+<div></div>
+<a href=""></a>
+<div></div>
+<p></p>
+<div></div>
+<img src="" alt="" />
+
+
+
+9. 하위 생성
+
+table+
+<table>
+	<tr>
+		<td></td>
+	</tr>
+</table>
+
+ul+
+<ul>
+	<li></li>
+</ul>
+
+ol+
+<ol>
+	<li></li>
+</ol>
+
+
+
+10. 자식 생성
+
+div>p
+<div>
+	<p></p>
+</div>
+
+div>p*5
+<div>
+	<p></p>
+	<p></p>
+	<p></p>
+	<p></p>
+	<p></p>
+</div>
+
+(div>p*2)*5
+<div>
+	<p></p>
+	<p></p>
+</div>
+<div>
+	<p></p>
+	<p></p>
+</div>
+<div>
+	<p></p>
+	<p></p>
+</div>
+<div>
+	<p></p>
+	<p></p>
+</div>
+<div>
+	<p></p>
+	<p></p>
+</div>
+
+
+table#tbl>tr*5>td*3
+<table id="tbl">
+	<tr>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+</table>
+
+table#tbl>tr*5>td.label+td.content
+<table id="tbl">
+	<tr>
+		<td class="label"></td>
+		<td class="content"></td>
+	</tr>
+	<tr>
+		<td class="label"></td>
+		<td class="content"></td>
+	</tr>
+	<tr>
+		<td class="label"></td>
+		<td class="content"></td>
+	</tr>
+	<tr>
+		<td class="label"></td>
+		<td class="content"></td>
+	</tr>
+	<tr>
+		<td class="label"></td>
+		<td class="content"></td>
+	</tr>
+</table>
+
+table#tbl>tr*5>td#label$+td.content
+<table id="tbl">
+	<tr>
+		<td id="label1"></td>
+		<td class="content"></td>
+	</tr>
+	<tr>
+		<td id="label2"></td>
+		<td class="content"></td>
+	</tr>
+	<tr>
+		<td id="label3"></td>
+		<td class="content"></td>
+	</tr>
+	<tr>
+		<td id="label4"></td>
+		<td class="content"></td>
+	</tr>
+	<tr>
+		<td id="label5"></td>
+		<td class="content"></td>
+	</tr>
+</table>
+
+
+lorem
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+Asperiores architecto minus soluta eius quod molestias vero nostrum eveniet at atque nihil neque quis. 
+Nesciunt aliquid cumque velit facilis minima. Cum!
+
+
+<td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+Sint blanditiis esse at soluta unde a tempora beatae sequi voluptates. 
+Possimus enim laborum eos corporis corrupti iusto perspiciatis sequi animi error!</td>
+
+lorem(td)
+<td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem fugiat sed ut molestias nesciunt aut minima culpa iusto reiciendis nobis amet dignissimos voluptas earum aperiam dolore nostrum obcaecati facere provident!</td>
+ 
+</body>
+</html>
+
+</body>
+</html>
