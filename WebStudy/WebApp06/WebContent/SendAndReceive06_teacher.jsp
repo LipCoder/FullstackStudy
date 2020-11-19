@@ -100,14 +100,119 @@
 	*/
 	
 	String mOptions = "";
-	for(int i = 1; i <= 12; i++)
+	for(int month = 1; month <= 12; month++)
 	{
 		// 상황1. 페이지 최초 요청 → sMonth 는 null, 현재 월 옵션이 같을 때 → selected
 		// 상황2. 페이지 최초 요청이 아닐 때 → 월 선택 → 선택한 월이 현재 월 옵션과 같을 때
 		// 상황3. 나머지
+		if(sMonth==null && month==nowMonth)
+		{
+			mOptions += "<option value='" + month + "' selected='selected'>" + month + "</option>";
+		}
+		else if(sMonth!=null && month==Integer.parseInt(sMonth))
+		{
+			mOptions += "<option value='" + month + "' selected='selected'>" + month + "</option>";
+		}
+		else
+		{
+			mOptions += "<option value='" + month + "'>" + month + "</option>";
+		}
 	}
 	
 	// ----------------------------------------------------------- - 월 select option 구성
+	
+	// 그려야 할 달력의 1일이 무슨 요일인지 확인하기 위한 연산 ---------------------------
+	// (만년달력)
+	int[] months = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+	
+	if(selectYear%4==0 && selectYear%100!=0 || selectYear%400==0)
+	{
+		months[1] = 29;
+	}
+	
+	// 총 날 수 누적 변수
+	int nalsu;
+	
+	// 요일 항목 배열 구성
+	String[] weekName = {"일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"};
+	
+	// 현재 년도 → 입력받은 년도 이전 년도까지의 날 수 계산
+	nalsu = (selectYear-1)*365 + (selectYear-1)/4 - (selectYear-1)/100 + (selectYear-1)/400;
+	
+	// 현재 월 → 입력받은 월의 이전 월까지의 날 수 계산
+	for(int i=0; i<selectMonth-1; i++)
+	{
+		nalsu += months[i];
+	}
+	// +1
+	nalsu++;
+	
+	// --------------------------- 그려야 할 달력의 1일이 무슨 요일인지 확인하기 위한 연산
+	
+	int week = nalsu%7;								//-- 요일 변수
+	int lastDay = months[selectMonth-1];			//-- 마지막 날짜 변수
+
+	
+	// 달력 그리기-------------------------------------------------------------------------
+	String calStr = "";
+	calStr += "<table border='1'>";
+	
+	calStr += "<tr>";
+	for(int i=0; i<weekName.length; i++)
+	{	
+		if(i==0)		// 일요일
+			calStr += "<th style='color:red;'>" + weekName[i] + "</th>";
+		else if(i==6)	// 토요일
+			calStr += "<th style='color:blue;'>" + weekName[i] + "</th>";
+		else
+			calStr += "<th>" + weekName[i] + "</th>";
+	}
+	calStr += "</tr>";
+	
+	calStr += "<tr>";
+	
+	// 빈칸 공백 td 발생
+	for(int i=0; i<week; i++)
+		calStr += "<td></td>";
+		
+	// 날짜 td 발생
+	for(int i=1; i<=lastDay; i++)
+	{
+		week++;
+		
+		if(selectYear==nowYear && selectMonth==nowMonth && i==nowDay && week%7==0)
+			calStr += "<td class='nowSat'>" + i + "</td>";
+		else if(selectYear==nowYear && selectMonth==nowMonth && i==nowDay && week%7==1)
+			calStr += "<td class='nowSun'>" + i + "</td>";
+		else if(selectYear==nowYear && selectMonth==nowMonth && i==nowDay)
+			calStr += "<td class='now'>" + i + "</td>";
+		else if(week%7==0)
+			calStr += "<td class='sat'>" + i + "</td>";
+		else if(week%7==1)
+			calStr += "<td class='sun'>" + i + "</td>";
+		else
+			calStr += "<td>" + i + "</td>";
+		
+		
+		if(week%7==0)
+			calStr += "</tr><tr>";
+	}
+	
+	// 달력 숫자 구성 이후 빈 칸 공백 발생
+	for(;; week++)
+	{
+		if(week%7==0)
+			break;
+		
+		calStr += "<td></td>";
+	}
+	
+	if(calStr.endsWith("<tr>"))
+		calStr = calStr.substring(0, calStr.length()-4);
+	
+	calStr += "</table>";
+	
+	// -------------------------------------------------------------------------달력 그리기
 	
 
 %>
@@ -190,16 +295,18 @@
 		</select>년
 		
 		<select name="month" id="month" onchange="formCalendar(this.form)">
-			<option value="10">10</option>
+			<!-- <option value="10">10</option>
 			<option value="11" selected="selected">11</option>
-			<option value="12">12</option>
+			<option value="12">12</option> -->
+			<%=mOptions %>
 		</select>월
 	</form>
 </div>
-
+<br>
 
 <div>
 	<!-- 달력을 그리게 될 지점 -->
+	<%=calStr %>
 </div>
 
 </body>

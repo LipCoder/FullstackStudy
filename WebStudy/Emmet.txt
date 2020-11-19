@@ -22,3 +22,10 @@
 	2. Add http://download.emmet.io/eclipse/updates/ in update sites
 	3. Check Emmet for Eclipse group in available plugins list, click Next 	   	   button and follow the installation instructions
 	4. Restart Eclipse
+
+
+
+○ 키 설정
+    - 겹치는 키가 있기 때문에 따로 설정이 필요함
+    1. 메뉴 Window -> Preference -> Keys로 들어가기
+    2. Clear Line(Ctrl+D), Quick Switch Editor(Ctrl+E) unbind commend 하기
