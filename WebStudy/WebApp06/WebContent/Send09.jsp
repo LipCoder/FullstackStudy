@@ -24,5 +24,18 @@
 	<p>포워딩 및 리다이렉트</p>
 </div>
 
+<div>
+	<form action="" method="post">
+		이름 : <input type="text" name="userName" class="txt">
+		<br><br>
+		
+		<button type="submit" class="btn" style="width: 150px;"
+		       onclick="this.form.action='Send09_re.jsp'">리다이렉트</button>
+		<button type="submit" class="btn" style="width: 150px;"
+		       onclick="this.form.action='Send09_for.jsp'">포워드</button>
+		
+	</form>
+</div>
+
 </body>
 </html>

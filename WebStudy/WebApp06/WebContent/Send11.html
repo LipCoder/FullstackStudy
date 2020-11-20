@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Send11.html</title>
+<link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+
+<!-- ○ 포워딩 / 리다이렉트와 관련한 중요한 실습 -->
+
+<!--    - 사칙연산 수행을 위한 정수 입력 페이지를 구성한다. (Send11.html) -->
+<!--    - 연산자를 함께 입력받을 수 있는 페이지로 구성한다. -->
+
+<!--    - 사용자의 최초 요청 페이지 -->
+<!--      『http://localhost:8090/WebApp06/Send11.html』 -->
+
+<!--    - 연산 전용 페이지 -->
+<!--      『http://localhost:8090/WebApp06/Redirect11.jsp』 → java → Servlet (스크립릿만 존재할뿐..) -->
+<!--      ※ 스크립릿 코드만 존재 → java 코드 -->
+<!--         + response.sendRedirect() -->
+
+<!--    - 최종 결과 출력 페이지 -->
+<!--      『http://localhost:8090/WebApp06/Receive11.jsp』 -->
+
+<div>
+	<h1>데이터 송수신 실습 10</h1>
+	<hr>
+</div>
+
+<div>
+	<!-- <form action="" method="post"> -->
+	<form action="Forward11.jsp" method="post">
+		<table>
+			<tr>
+				<th>정수 1</th>
+				<th>연산자</th>
+				<th>정수 2</th>
+			</tr>
+			<tr>
+				<th style="text-align: center">
+					<input type="text" class="txt" name="num1" value="0">
+				</th>
+				<th>
+					<select name="selOper">
+						<option value="plus">+</option>
+						<option value="minus">-</option>
+						<option value="multi">*</option>
+						<option value="divide">/</option>
+					</select>
+				</th>
+				<th style="text-align: center">
+					<input type="text" class="txt" name="num2" value="0">
+				</th>
+			</tr>
+			<tr></tr>
+			<tr>
+				<th colspan="3"><br>
+					<button type="submit" class="btn" style="width: 250px; height: 40px;"
+		       			   onclick="this.form.action='Redirect11.jsp'">연 산</button>
+		        </th>
+			</tr>
+		</table>
+	</form>
+</div>
+
+</body>
+</html>
