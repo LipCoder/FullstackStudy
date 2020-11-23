@@ -48,9 +48,9 @@
    요청하게끔 만들어야 하는 경우는 리다이렉트를 사용해야 한다. 
 
 
-   list.jsp   →   db   →   select   →   view   →   client
+   list/jsp   →   db   →   select   →   view   →   client
 
-   list.jsp   →   db   →   insert
+   list/jsp   →   db   →   insert
 
    이름		[ 이준구 ]
    전화번호	[ 010-4444-4444 ]
