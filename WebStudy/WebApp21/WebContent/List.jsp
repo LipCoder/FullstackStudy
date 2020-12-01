@@ -96,7 +96,8 @@
 	
 		<div id="rightHeader">
 			<!-- event -->
-			<input type="button" value="글올리기" class="btn2" onclick="">
+			<input type="button" value="글올리기" class="btn2" 
+			onclick="javascript:location.href='<%=cp%>/Create.jsp'">
 		</div><!-- #rightHeader --> 
 	
 	</div><!-- #bbsList_header -->
