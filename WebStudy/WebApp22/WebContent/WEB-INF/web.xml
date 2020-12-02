@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
+	<display-name>WebApp22</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+
+    <!-- Test1 → Servlet 구성 -->
+    <!-- 
+    <servlet>
+       <servlet-name>test1Servlet</servlet-name>
+       <servlet-class>com.test.Test1</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+       <servlet-name>test1Servlet</servlet-name>
+       <url-pattern>/test1</url-pattern>
+    </servlet-mapping> 
+    -->
+    <!--url 패턴은 대문자 쓰지 말기-->
+
+    <!-- Test1 → Servlet 구성 ② -->
+	<servlet>
+		<servlet-name>test1Servlet</servlet-name>
+		<servlet-class>com.test.Test1</servlet-class>
+		<init-param>
+			<param-name>name</param-name>
+			<param-value>김보경</param-value>
+		</init-param>
+		<init-param>
+			<param-name>age</param-name>
+			<param-value>11</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>test1Servlet</servlet-name>
+		<url-pattern>/test1</url-pattern>
+	</servlet-mapping>
+
+	<!-- Test1 → Servlet 구성 추가 ③ -->
+	<!-- context -->
+	<context-param>
+		<param-name>type</param-name>
+		<param-value>유머러스</param-value>
+	</context-param>
+
+	<!-- xml 수정되면 서버는 항상 Restart 되어야 함 -->
+	
+	
+	
+	<!-- Test2 → Servlet 구성 -->
+	<servlet>
+		<servlet-name>test2Servlet</servlet-name>
+		<servlet-class>com.test.Test2</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>test2Servlet</servlet-name>
+		<url-pattern>/test2</url-pattern>
+	</servlet-mapping>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</web-app>

@@ -80,7 +80,44 @@ public class BoardDAO
 	
 	
 	// DB 레코드의 갯수(게시물 수)를 가져오는 메소드 정의
-	// → 검색 기능을 추가하게 될 경우 수정해야 할 메소드
+	// → 검색 기능을 추가 후 변경하게 될 경우 수정해야 할 메소드
+	// 변경 이후 코드	
+	public int getDataCount(String searchKey, String searchValue)
+	{
+		// searchKey	→ subject	/ name	 	/  content
+		// searchValue  → "%취미%"	/ "%길동%" 	/  "%날씨%"
+		
+		
+		int result = 0;
+		
+		String sql = "SELECT COUNT(*) AS COUNT"
+			      + " FROM TBL_BOARD"
+			      + " WHERE "+ searchKey + " LIKE ?";
+		
+		try
+		{
+			searchValue = "%" + searchValue + "%";
+			
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, searchValue);
+			
+			ResultSet rs = pstmt.executeQuery();
+			
+			if(rs.next())
+				result = rs.getInt("COUNT");
+			
+			rs.close();
+			pstmt.close();
+			
+		} catch (Exception e)
+		{
+			System.out.println(e.toString());
+		}
+		
+		return result;
+	}
+	// 변경 이전 코드
+	/*
 	public int getDataCount()
 	{
 		int result = 0;
@@ -107,9 +144,67 @@ public class BoardDAO
 		
 		return result;
 	}
+	*/
 	
 	
 	// 특정 영역의(시작번호 ~ 끝번호) 게시물의 목록을 읽어오는 메소드 정의
+	// → 검색 기능을 추가 후 변경하게 될 경우 수정해야 할 메소드
+	// 이후 코드
+	public ArrayList<BoardDTO> getLists(int start, int end, String searchKey, String searchValue)
+	{
+		ArrayList<BoardDTO> result = new ArrayList<BoardDTO>();
+		
+		String sql = "SELECT NUM, NAME, SUBJECT, HITCOUNT, CREATED"
+				   + " FROM "
+				   + " ("
+				   + " 		SELECT ROWNUM RNUM, DATA.*"
+				   + " 		FROM"
+				   + " 		("
+				   + " 		SELECT NUM, NAME, SUBJECT, HITCOUNT,"
+				   + " 		TO_CHAR(CREATED, 'YYYY-MM-DD') AS CREATED"
+				   + " 		FROM TBL_BOARD"
+				   + "      WHERE " + searchKey + " LIKE ?"
+				   + "      ORDER BY NUM DESC"
+				   + " 		) DATA"
+				   + " )"
+				   + " WHERE RNUM >= ? AND RNUM <= ?";
+		
+		try
+		{
+			searchValue = "%" + searchValue + "%";
+			
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, searchValue);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+			
+			ResultSet rs = pstmt.executeQuery();
+			
+			while(rs.next())
+			{
+				BoardDTO board = new BoardDTO();
+				
+				board.setNum(rs.getInt("NUM"));
+				board.setName(rs.getString("NAME"));
+				board.setSubject(rs.getString("SUBJECT"));
+				board.setHitCount(rs.getInt("HITCOUNT"));
+				board.setCreated(rs.getString("CREATED"));
+				
+				result.add(board);
+			}
+			
+			rs.close();
+			pstmt.close();
+			
+		} catch(Exception e)
+		{
+			System.out.println(e.toString());
+		}
+		
+		return result;
+	}
+	// 이전 코드
+	/*
 	public ArrayList<BoardDTO> getLists(int start, int end)
 	{
 		ArrayList<BoardDTO> result = new ArrayList<BoardDTO>();
@@ -159,6 +254,7 @@ public class BoardDAO
 		
 		return result;
 	}
+	*/
 	
 	
 	// 특정 게시물 조회에 따른 조회 횟수 증가 메소드 정의

@@ -1,0 +1,20 @@
+■■■ JDBC 연동 게시판 작성 실습 ■■■
+
+○ 프로젝트 : WebApp21
+
+○ 물리적 구성 요소
+
+   00. WebApp21_scott.sql			 △	
+   	
+   01. com.util.DBConn.java          ○
+   02. com.test.BoardDTO.java		 ○
+   03. com.test.BoardDAO.java		 △
+   04. com.util.MyUtil.java			 ○
+   
+   05. List.jsp						 △
+   06. Create.jsp					 ○			 
+   07. Create_ok.jsp				 
+   08. Article.jsp
+   09. Update.jsp
+   10. Update_ok.jsp
+   11. Delete.jsp
