@@ -47,3 +47,7 @@
      이 경로에 복사&붙여넣기 한다.
 
    - 아파치 톰캣 다운로드 경로 -> http://tomcat.apache.org/
+
+   - 이클립스에서 Tomcat Server 추가
+   
+   - Servers에서 server.xml에 포트번호 8090으로 변경하고, URIEncoding="UTF-8" 추가

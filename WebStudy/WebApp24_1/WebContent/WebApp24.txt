@@ -1,0 +1,8 @@
+○ 다섯 명의 회원 이름과 전화번호와 주소를 입력받아
+   이 데이터를 활용하여 객체를 구성하고
+   구성된 객체의 속성을 반복적으로 출력하는 프로그램을 구성한다.
+   
+   - MemberInsertForm.jsp
+   - MemberDTO.java
+   - MemberInsert.jsp
+   - MemberList.jsp

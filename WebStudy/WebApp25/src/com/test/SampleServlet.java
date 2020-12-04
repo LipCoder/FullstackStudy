@@ -4,7 +4,6 @@ package com.test;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,25 +13,20 @@ public class SampleServlet extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
 
-	// »ç¿ëÀÚ ¿äÃ»ÀÌ GET ¹æ½ÄÀÎ °æ¿ì Servlet Container ¿¡ ÀÇÇØ ÀÚµ¿À¸·Î È£ÃâµÇ´Â ¸Ş¼Òµå
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		process(request, response);
 	}
 
-	// »ç¿ëÀÚ ¿äÃ»ÀÌ POST ¹æ½ÄÀÎ °æ¿ì Servlet Container ¿¡ ÀÇÇØ ÀÚµ¿À¸·Î È£ÃâµÇ´Â ¸Ş¼Òµå
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		process(request, response);
 	}
 	
-	// GET ¹æ½ÄÀÌµç POST ¹æ½ÄÀÌµç ¸ğµÎ Ã³¸®ÇÒ ¼ö ÀÖ´Â »ç¿ëÀÚ Á¤ÀÇ ¸Ş¼Òµå
+	// GET ë°©ì‹ì´ë“  POST ë°©ì‹ì´ë“  ëª¨ë‘ ì²˜ë¦¬í•  ìˆ˜ ìˆëŠ” ì‚¬ìš©ì ì •ì˜ ë©”ì†Œë“œ
 	protected void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		// ¼­ºí¸´ °ü·Ã ÄÚµù
-	
-		
 	}
 }
