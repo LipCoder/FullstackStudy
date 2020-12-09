@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
-  <display-name>WebApp26</display-name>
+  <display-name>WebApp23</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
@@ -11,7 +11,8 @@
   </welcome-file-list>
   
   
-  <!--  
+  <!-- 
+  
   <servlet>
      <servlet-name></servlet-name>
      <servlet-class></servlet-class>
@@ -20,39 +21,19 @@
   <servlet-mapping>
      <servlet-name></servlet-name>
      <url-pattern></url-pattern>
-  </servlet-mapping>  
+  </servlet-mapping> 
+
   -->
   
-  
+  <!-- HelloReceive02 -->
   <servlet>
-     <servlet-name>MVCBegin</servlet-name>
-     <servlet-class>com.test.svt.MVCBegin</servlet-class>
+     <servlet-name>HelloReceive02</servlet-name>
+     <servlet-class>com.test.svt.HelloReceive02</servlet-class>
   </servlet>
 
   <servlet-mapping>
-     <servlet-name>MVCBegin</servlet-name>
-     <url-pattern>/mvcbegin</url-pattern>
+     <servlet-name>HelloReceive02</servlet-name>
+     <url-pattern>/helloreceive02</url-pattern>
   </servlet-mapping> 
   
-  <servlet>
-  	<servlet-name>MVCTest01</servlet-name>
-  	<servlet-class>com.test.svt.MVCTest01</servlet-class>
-  </servlet>
-  
-  <servlet-mapping>
-  	<servlet-name>MVCTest01</servlet-name>
-  	<url-pattern>/mvctest01</url-pattern>
-  </servlet-mapping>
-  
- <servlet>
-  	<servlet-name>MVCTest02</servlet-name>
-  	<servlet-class>com.test.svt.MVCTest02</servlet-class>
-  </servlet>
-  
-  <servlet-mapping>
-  	<servlet-name>MVCTest02</servlet-name>
-  	<url-pattern>/mvctest02</url-pattern>
-  </servlet-mapping>
-  
 </web-app>
-

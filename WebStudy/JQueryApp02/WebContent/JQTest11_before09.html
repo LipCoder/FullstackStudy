@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JQTest11_before09.html</title>
+<style type="text/css">
+	table
+	{
+		background: #eeeeee;
+		border: 1px solid gray;
+	}
+</style>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript">
+
+	// ○ :odd
+	//     (홀수)
+	//     - returns : Array<Element>
+	//     - 짝수, 실행 후 원소 배열 반환
+	//     - 매칭된 원소들 중 인덱스가 홀수인 것을 모두 반환한다.
+	
+	$(document).ready(function()
+	{
+		$("tr:odd").css("background-color", "#bbbbff");
+	});
+
+</script>
+
+</head>
+<body>
+
+<table>
+	<tr><td>Row with Index #0</td></tr>
+	<tr><td>Row with Index #1</td></tr>
+	<tr><td>Row with Index #2</td></tr>
+	<tr><td>Row with Index #3</td></tr>
+	<tr><td>Row with Index #4</td></tr>
+	<tr><td>Row with Index #5</td></tr>
+</table>
+
+</body>
+</html>
