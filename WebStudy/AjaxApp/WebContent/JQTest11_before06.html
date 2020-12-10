@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JQTest11_before06.html</title>
+<style type="text/css">
+	td
+	{
+		color: blue;
+		font-weight: bold;
+	}
+</style>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript">
+
+	// ○ :last
+	//     (마지막)
+	//     - returns : Element
+	//     - 마지막, 실행 후 원소 반환
+	//     - 매칭되는 원소들 중 마지막 것만 반환한다.
+	
+	$(document).ready(function()
+	{
+		$("tr:last").css({backgroundColor:"yellow", fontWeight:"bolder"});
+	});
+
+</script>
+</head>
+<body>
+
+<table>
+	<tr>
+		<td>Row 1</td>
+	</tr>
+	<tr>
+		<td>Row 2</td>
+	</tr>
+	<tr>
+		<td>Row 3</td>
+	</tr>
+	<tr>
+		<td>Row 4</td>
+	</tr>
+	<tr>
+		<td>Row 5</td>
+	</tr>
+</table>
+
+</body>
+</html>

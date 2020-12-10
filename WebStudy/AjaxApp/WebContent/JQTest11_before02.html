@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JQTest11_before01.html</title>
+<style type="text/css">
+	body
+	{
+		font-size: 14px;
+	}
+	form
+	{
+		border: 2px green solid;
+		padding: 2px;
+		margin: 0px;
+		background: #efe;
+	}
+	div
+	{
+		color: red;
+	}
+</style>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript">
+
+	// ○ parent > child
+	//    (부모, 자식)
+	//    - returns : Array<Element>
+	//    - 조상 > 자손, 실행 후 원소 배열 반환
+	//    - 주어진 조상에 포함된 주어진 자손에 배치되는 1단계의 자손(자식)들만
+	//      모두 배열로 반환
+	
+	$(document).ready(function()
+	{
+		// 선택된 엘리먼트 확인
+		$("form > input").css("border", "2px dotted blue");
+	});
+
+</script>
+
+</head>
+<body>
+
+<form>
+	<div>Form is surrounded by the green outline</div>
+	
+	<label>Child:</label>
+	<input name="name" />
+	
+	<div>
+		<label>GrandChild:</label>
+		<input name="newsletter">
+	</div>
+	
+	sibling to from: <input name="name">
+	
+</form>
+
+</body>
+</html>

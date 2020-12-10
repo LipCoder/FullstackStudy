@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JQTest11_before10.html</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript">
+	
+	// ○ :eq(index)
+	//    eq(인덱스)
+	//    - returns : Element
+	//    - eq(인덱스), 실행 후 원소 반환
+	//    - 매칭된 원소들 중에서 주어진 인덱스에 매칭되는 원소 한 개를 반환한다.
+	
+	$(document).ready(function()
+	{
+		$("td:eq(2)").css("color", "red");
+		$("td:eq(5)").css("background-color", "green");
+		$("td:eq(8)").css({backgroundColor: "green", color: "white"});
+		
+		$("td:eq(7)").css({"background-color": "red", "color" : "yellow"});
+	});
+	
+</script>
+
+</head>
+<body>
+
+<table border="1">
+	<tr><td>TD #0</td><td>TD #1</td><td>TD #2</td></tr>
+	<tr><td>TD #3</td><td>TD #4</td><td>TD #5</td></tr>
+	<tr><td>TD #6</td><td>TD #7</td><td>TD #8</td></tr>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JQTest11_before07.html</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript">
+
+	// ○ :not
+	//     (아니다. 부정)
+	//     - returns : Array<Element>
+	//     - 아니다, 실행 후 원소 배열 반환
+	//     - 주어진 것에 해당하지 않는 모든 것을 반환한다.
+	
+	$(document).ready(function()
+	{
+		$("input:not(:checked) + span").css("background-color", "yellow");
+		$("input").attr("disabled", "disabled");
+	});
+	
+</script>
+</head>
+<body>
+
+<div>
+	<input type="checkbox" name="a">
+	<span>Mary</span>
+</div>
+
+<div>
+	<input type="checkbox" name="b">
+	<span>Paul</span>
+</div>
+
+<div>
+	<input type="checkbox" name="c" checked="checked">
+	<span>Peter</span>
+</div>
+
+
+</body>
+</html>
