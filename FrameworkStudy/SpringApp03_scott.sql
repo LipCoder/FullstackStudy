@@ -1,0 +1,68 @@
+SELECT USER
+FROM DUAL;
+--==>> SCOTT
+
+SELECT *
+FROM TBL_MEMBERLIST;
+
+
+--○ 실습 테이블 생성
+CREATE TABLE TBL_MEMBERLIST
+( ID        VARCHAR2(40)    NOT NULL
+, PW        VARCHAR2(100)   NOT NULL
+, NAME      VARCHAR2(100)   NOT NULL
+, TEL       VARCHAR2(100)
+, EMAIL     VARCHAR2(200)
+, CONSTRAINT MEMBERLIST_ID_PK PRIMARY KEY(ID)
+);
+--==>> Table TBL_MEMBERLIST이(가) 생성되었습니다.
+
+
+
+--○ 암호화 복호화 패키지의 암호화 함수를 활용한 데이터 입력
+INSERT INTO TBL_MEMBERLIST(ID, PW, NAME, TEL, EMAIL)
+VALUES('SUPERMAN', CRYPTPACK.ENCRYPT('java006$', 'SUPERMAN'), '김승범', '010-1111-1111', 'ksb@test.com');
+--==>> 1 행 이(가) 삽입되었습니다.
+
+
+--○ 확인
+SELECT *
+FROM TBL_MEMBERLIST;
+--==>> SUPERMAN	?E?,?	김승범	010-1111-1111	ksb@test.com
+
+
+
+--○ 리스트 전체 조회 쿼리문 구성
+SELECT ID, NAME, TEL, EMAIL
+FROM TBL_MEMBERLIST
+ORDER BY ID;
+--> 한 줄 구성
+SELECT ID, NAME, TEL, EMAIL FROM TBL_MEMBERLIST ORDER BY ID
+;
+--==>> SUPERMAN	김승범	010-1111-1111	ksb@test.com
+
+
+--○ 커밋
+COMMIT;
+--==>> 커밋 완료.
+
+
+--○ 자신의 멤버 데이터 추가
+INSERT INTO TBL_MEMBERLIST(ID, PW, NAME, TEL, EMAIL)
+VALUES('BATMAN', CRYPTPACK.ENCRYPT('1234', 'BATMAN'), '갓승범', '010-2222-2222', 'GSB@test.com');
+--==>> 1 행 이(가) 삽입되었습니다.
+
+
+--○ 커밋
+COMMIT;
+--==>> 커밋 완료.
+
+
+--○ 리스트 전체 조회 쿼리문 구성
+SELECT ID, CRYPTPACK.DECRYPT(PW, ID), NAME, TEL, EMAIL
+FROM TBL_MEMBERLIST
+ORDER BY ID;
+--> 한 줄 구성
+SELECT ID, CRYPTPACK.DECRYPT(PW, ID), NAME, TEL, EMAIL FROM TBL_MEMBERLIST ORDER BY ID
+;
+--==>> SUPERMAN	김승범	010-1111-1111	ksb@test.com

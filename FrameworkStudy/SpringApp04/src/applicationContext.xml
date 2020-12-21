@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- OracleDAO 객체에 대한 정보 전달 -->
+	<!-- → 스프링이 자체적으로 이 정보를 활용하여 -->
+	<!--    객체를 생성하고 생명주기를 관리할 수 있도록... -->
+	<bean id="oracle" class="com.test.spr.OracleDAO"></bean>
+	
+	<!-- MssqlDAO 객체에 대한 정보 전달 -->			
+	<!-- → 스프링이 자체적으로 이 정보를 활용하여 -->
+	<!--    객체를 생성하고 생명주기를 관리할 수 있도록... -->
+	<bean id="mssql" class="com.test.spr.MssqlDAO"></bean>			
+	
+	<!-- MemberList 객체에 대한 정보 전달 -->
+	<!-- → 스프링이 자체적으로 이 정보를 활용하여 -->
+	<!--    객체를 생성하고 생명주기를 관리할 수 있도록... -->
+	<!--    의존성(의존 객체) 주입을 수행할 수 있도록 처리 -->
+	<bean id="memberList" class="com.test.spr.MemberList">
+		
+		<!-- <property name="dao" ref="oracle"></property> -->
+		<property name="dao">	
+			<ref bean="oracle"/>		
+		</property>
+		
+	</bean>
+	
+</beans>
