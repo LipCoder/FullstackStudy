@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>BootEx03.html</title>
+
+<link rel="stylesheet" href="css/bootstrap.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+<style type="text/css">
+
+	/* 테이블 기본 서식 */
+	#table
+	{
+		width: 500px;
+		border: 1px solid black;
+		border-collapse: collapse;
+	}
+	
+	#table td
+	{
+		border: 1px solid black;
+	}
+
+	#table1
+	{
+		width: 720px;
+	}
+	
+	/* <th>번호</th><th>제목</th><th>이름</th><th>날짜</th><th>읽음</th> */
+	#table1 th{text-align: center;}
+	#table1 th:nth-child(1){width: 50px;}
+	#table1 th:nth-child(2){width: 460px;}
+	#table1 th:nth-child(3){width: 60px;}
+	#table1 th:nth-child(4){width: 100px;}
+	#table1 th:nth-child(5){width: 50px;}
+	
+	#table1 td{text-align: center;}
+	#table1 td:nth-child(2){text-align: left;}
+	#table1 td:nth-child(5){text-align: right;}
+
+	#btnSet
+	{
+		margin-top: -10px;
+	}
+
+	.main
+	{
+		width: 700px;
+		margin: 0px auto;
+	}
+	
+	#tblAdd {width: 600px;}
+	#tblAdd th {width: 150px; text-align: right; padding-right: 15px;}
+	#tblAdd td {width: 450px;}
+
+</style>
+
+</head>
+<body>
+
+
+<h1>회원 가입</h1>
+
+<form style="width: 500px; margin: 20px;">
+
+	<input type="text" class="form-control">
+	<br>
+	
+	<textarea cols="" rows="" class="form-contrl"></textarea>
+	<br>
+	
+	<select class="form-control">
+		<option >Text1</option>
+		<option >Text2</option>
+		<option >Text3</option>
+		<option >Text4</option>
+	</select>
+	<br>
+	
+	<input type="checkbox" class="form-control">
+	<br>
+	
+	<a href="#" class="form-control">네이버</a>
+	<a href="#" class="form-control">다음</a>
+
+	<br>
+	<hr>
+	<br>
+	
+	<input type="button" value="confirm">
+	<input type="button" value="confirm" class="btn">
+	<input type="button" value="confirm" class="btn btn-default">
+	<br><br>
+	
+	<input type="button" value="confirm" class="btn btn-default">
+	<input type="button" value="confirm" class="btn btn-success">
+	<input type="button" value="confirm" class="btn btn-primary">
+	<input type="button" value="confirm" class="btn btn-info">
+	<input type="button" value="confirm" class="btn btn-warning">
+	<input type="button" value="confirm" class="btn btn-danger">
+	<br><br>
+	
+	<!-- 『btn-block』 : 버튼이 포함되어 있는 부모 요소만큼 꽉 채워서 랜더링한다. -->
+	<input type="button" value="confirm" class="btn btn-primary btn-block">
+	<br><br>
+
+	<input type="button" value="confirm" class="btn btn-default">
+	<input type="button" value="confirm" class="btn btn-default active">
+	<br><br>
+
+	<input type="button" value="confirm" class="btn btn-primary">
+	<input type="button" value="confirm" class="btn btn-primary active">
+	<br><br>
+
+	<a href="#">네이버</a>
+	<a href="#" class="btn btn-primary" role="button">네이버</a>	
+	<!-- 꼭 어떻게 쓰이는지 role을 지정해준다! (웹 표준!) 
+	     장애인들이 웹 사이트를 쓸 경우 필요할 수 있기 때문 -->
+	
+	
+	
+</form>
+
+<br><br>
+
+<div class="main">
+
+	<h1>게시판</h1>
+	
+	<table id="table1" class="table table-striped">
+		<tr>
+			<th>번호</th>
+			<th>제목</th>
+			<th>이름</th>
+			<th>날짜</th>
+			<th>읽음</th>
+		</tr>
+		<tr>
+			<td>5</td>
+			<td>게시판 테스트입니다.</td>
+			<td>이진주</td>
+			<td>2020-10-12</td>
+			<td>22</td>
+		</tr>
+		<tr>
+			<td>4</td>
+			<td>게시판 테스트일껄요.</td>
+			<td>조영욱</td>
+			<td>2020-10-12</td>
+			<td>31</td>
+		</tr>
+		<tr>
+			<td>3</td>
+			<td>게시판 테스트이기를.</td>
+			<td>안혜리</td>
+			<td>2020-10-11</td>
+			<td>39</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>게시판 테스트인가요.</td>
+			<td>김보경</td>
+			<td>2020-10-10</td>
+			<td>23</td>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td>게시판 테스트인거죠.</td>
+			<td>김일웅</td>
+			<td>2020-10-10</td>
+			<td>32</td>
+		</tr>
+	</table>
+	
+	<div id="btnSet">
+		<input type="button" value="글쓰기" class="btn btn-default">
+		<input type="button" value="새로고침" class="btn btn-default">
+	</div>
+	
+</div>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<!-- 의미적으로 id는 고유하게끔 구성 -->
+<div class="main">
+	
+	<h1>게시판 글쓰기</h1>
+	
+	<form>
+		
+		<table class="table table-bordered" id="tblAdd">
+			<tr>
+				<th>이름</th>
+				<td>
+					<input type="text" class="form-control" placeholder="이름을 입력하세요.">
+				</td>
+			</tr>
+			<tr>
+				<th>제목</th>
+				<td>
+					<input type="text" class="form-control" placeholder="제목을 입력하세요.">
+				</td>
+			</tr>
+			<tr>
+				<th>내용</th>
+				<td>
+					<textarea cols="" rows="" class="form-control"
+					placeholder="내용을 입력하세요."></textarea>
+				</td>
+			</tr>
+			<tr>
+				<th>암호</th>
+				<td>
+					<input type="password" class="form-control" placeholder="암호를 입력하세요.">
+				</td>
+			</tr>
+			<tr>
+				<th>파일</th>
+				<td>
+					<input type="file" class="form-control" placeholder="파일을 선택하세요.">
+				</td>
+			</tr>
+			
+		</table>
+	
+	</form>
+	
+</div>
+
+</body>
+</html>

@@ -162,7 +162,7 @@
 
 
 
--------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------
 ■■■ Spring MVC 프로젝트 관련 실습(mvcApp03) ■■■
 
 ○ Perspective
@@ -236,5 +236,118 @@
 
 ○ 사용자 최초 요청 주소
    http://localhost:8090/mvcApp03/memberlist.action
+
+
+-----------------------------------------------------------------------------
+■■■ Spring MVC 프로젝트 관련 실습(mvcApp04) ■■■
+
+○ Perspective
+   : JavaEE
+
+○ 다이나믹 웹 프로젝트 생성
+   → STS 사용 시 Spring Project(또는 스프링 레거시 프로젝트)
+   : mvcApp02
+
+○ Spring MVC 환경 설정을 위한 라이브러리 등록
+   : 원도우 탐색기 상에서
+     SpringMVC > mvcApp00(샘플) 디렉터리 접근
+     『src』와 『WebContent』 항목을 복사하여 해당 프로젝트에 덮어쓰기 한다.
+
+○ 실습 성격
+   : 직원 관리 프로그램 실습(Spring MVC 버전)
+     JDBC 모듈 추가 실습
+     SimpleDriverDataSource 클래스 활용
+
+○ 구현 기능
+   - 직원 정보 입력, 출력, 수정, 삭제 기능 구현.
+   - 지역 정보 입력, 출력, 수정, 삭제 기능 구현.
+   - 부서 정보 입력, 출력, 수정, 삭제 기능 구현.
+   - 직원 정보 입력, 출력, 수정, 삭제 기능 구현.
+   - 로그인 / 로그아웃 기능 구현
+     → 관리자 및 일반 직원 로그인 구분
+   ==> Spring MVC, JSP/Servlet, HTML / CSS / Javascript
+       , AJAX, jQuery, EL, JSTL 표현 등 사용.
+
+○ 사전 작업
+   - 주요 테이블 생성 / 활용
+     ·EMPLOYEE	        직원
+     ·REGION	        지역
+     ·DEPARTMENT	부서
+     ·POSITION         직위
+   - 주요 시퀀스 생성 / 활용
+   - 샘플 데이터 입력
+
+   
+○ 물리적 파일 구성
+   - #00. mvcApp04_scott.sql		→ 데이터베이스 관련 객체 준비
+
+   - #01. Employee.java			→ DTO 개념. 직원 정보 자료형 클래스.
+   - #02. Department.java		→ DTO 개념. 부서 정보 자료형 클래스.
+   - #03. Region.java			→ DTO 개념. 지역 정보 자료형 클래스.
+   - #04. Position.java			→ DTO 개념. 직위 정보 자료형 클래스.
+
+   - #05. IEmployeeDAO.java		→ 인터페이스.
+   - #06. IDepartmentDAO.java		→ 인터페이스.
+   - #07. IRegionDAO.java		→ 인터페이스.
+   - #08. IPositionDAO.java		→ 인터페이스.
+
+   - #09. EmployeeDAO.java		→ 데이터베이스 액션 처리 클래스.
+					   직원 데이터 입출력 및 수정 삭제.
+					   Connection 객체에 대한 의존성 주입 준비
+                                           (인터페이스 자료형 / setter 구성)  
+   - #10. DepartmentDAO.java		→ 데이터베이스 액션 처리 클래스.
+					   부서 데이터 입출력 및 수정 삭제.
+					   Connection 객체에 대한 의존성 주입 준비
+                                           (인터페이스 자료형 / setter 구성)
+   - #11. RegionDAO.java		→ 데이터베이스 액션 처리 클래스.
+					   지역 데이터 입출력 및 수정 삭제.
+					   Connection 객체에 대한 의존성 주입 준비
+                                           (인터페이스 자료형 / setter 구성)
+   - #12. PositionDAO.java		→ 데이터베이스 액션 처리 클래스.
+					   직위 데이터 입출력 및 수정 삭제.
+					   Connection 객체에 대한 의존성 주입 준비
+                                           (인터페이스 자료형 / setter 구성)
+
+   - #13. EmployeeMenu.jsp		→ 메인 메뉴 뷰(View) 페이지.
+					   로그인 후 접근 페이지이기 때문에
+ 					   로그아웃에 대한 처리 가능한 컨트롤 구성.
+   - #14. EmployeeList.jsp		→ 직원 정보(리스트) 출력 페이지.
+   - #14-1. menuStyle.css		→ 메뉴 스타일 구성.
+   - #14-2. mainStyle.css		→ 메인 스타일 구성.
+
+   - #15. EmployeeListController.java
+   - #16. EmployeeInsertFormController.java
+
+   - #17. EmployeeInsertForm.jsp	→ 직원 데이터 입력 폼(Form) 페이지.
+					   AJAX, jQuery 기능 포함.
+
+   - #18. AjaxController.java
+   - #19. EmployeeInsertController.java
+   - #20. EmployeeUpdateFormController.java
+ 
+   - #21. EmployeeUpdateForm.jsp	→ 직원 데이터 수정 폼(Form) 페이지.
+                                           AJAX, jQuery 기능 포함.
+
+   - #22. EmployeeUpdateController.java
+   - #23. EmployeeDeleteController.java
+
+   - #24. LoginFormController.java
+
+   - #25. LoginForm.jsp		        → 로그인 폼(Form) 페이지.
+	
+   - #26. LoginController.java
+   - #27. LogoutController.java          
+
+   - dispatcher-servlet.xml	→ 사용자 정의 컨트롤러(Controller) 객체 등록
+   				   사용자 요청 URL 매핑 주소 등록.
+				   SimpleDriverDataSource 객체 등록.
+                                   의존 객체 주입 설정.
+				   DAO 객체 등록.
+
+   - web.xml			→ DispatcherServlet 객체 등록
+				   URL 매핑 주소 등록.
+
+○ 사용자 최초 요청 주소
+   http://localhost:8090/mvcApp04/memberlist.action
 
 
