@@ -17,3 +17,8 @@
 
     ※ 반드시 인자 없는 생성자와
        속성에 접근할 수 있는 get/set 메소드를 가져야 한다.
+
+
+<jsp:useBean id="별칭" class="사용할클래스이름" scope="beans의범위" />
+<jsp:setProperty name="bean" property="id" />  
+<jsp:getProperty name="bean" property="id" /> 

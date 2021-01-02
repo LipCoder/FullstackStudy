@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test014.html</title>
+</head>
+<body>
+
+<div>
+	<h1>테이블 병합 실습</h1>
+	<hr>
+</div>
+
+<div>
+	<table border="1" bgcolor="white" width="400" cellpadding="10" cellspacing="10">
+	 
+	 <!-- 0행 -->
+	 <tr>
+	 	<th>A</th>
+	 	<th>B</th>
+	 	<th rowspan="2">C</th>
+	 	<th rowspan="3">D</th>
+	 </tr>
+	 
+	 <!-- 1행 -->
+	 <tr>
+	 	<th colspan="2">E</th>
+	 	<!-- <th>2</th> -->
+	 	<!-- <th>3</th> -->
+	 	<!-- <th>4</th> -->
+	 </tr>
+
+	 <!-- 2행 -->
+	 <tr>
+	 	<th colspan="3">F</th>
+	 	<!-- <th>2</th> -->
+	 	<!-- <th>3</th> -->
+	 	<!-- <th>4</th> -->
+	 </tr>
+	 
+	 <!-- 3행 -->
+	 <tr>
+	 	<th colspan="4">G</th>
+	 	<!-- <th>2</th> -->
+	 	<!-- <th>3</th> -->
+	 	<!-- <th>4</th> -->
+	 </tr>
+	 
+	 <!-- 4행 -->
+	 <tr>
+	 	<th>H</th>
+	 	<th colspan="2">I</th>
+	 	<!-- <th>3</th> -->
+	 	<th>J</th>
+	 </tr> 
+	 
+	</table>
+</div>
+
+</body>
+</html>
