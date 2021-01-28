@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.mybatis.IStudentDAO">
+
+	<insert id="add">
+		INSERT INTO TBL_STUDENT(SID, NAME, TEL)
+		VALUES(SID_SEQ.NEXTVAL, #{name}, #{tel})
+	</insert>
+	
+	<update id="modify">
+		UPDATE TBL_STUDENT
+		SET NAME = #{name}
+  		  , TEL = #{tel}
+		WHERE SID = #{sid}
+	</update>
+	
+	<delete id="remove">
+		DELETE
+		FROM TBL_STUDENT 
+		WHERE SID = #{sid}
+		  AND (SELECT SUB
+               FROM STUDENTVIEW V
+               WHERE V.SID = #{sid}) = 0
+	</delete>
+	
+	<select id="count" resultType="java.lang.Integer">
+		SELECT COUNT(*) AS COUNT
+		FROM STUDENTVIEW
+	</select>
+	
+	<select id="list" resultType="com.test.mybatis.StudentDTO">
+		SELECT SID, NAME, TEL, SUB
+		FROM STUDENTVIEW
+	</select>
+
+	<select id="search" resultType="com.test.mybatis.StudentDTO">
+		SELECT SID, NAME, TEL
+		FROM TBL_STUDENT
+		WHERE SID = #{sid}
+	</select>
+
+</mapper>

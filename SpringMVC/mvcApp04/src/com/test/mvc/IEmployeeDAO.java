@@ -13,7 +13,7 @@ public interface IEmployeeDAO
 	public ArrayList<Employee> list() throws SQLException;
 	public ArrayList<Region> regionList() throws SQLException;
 	public ArrayList<Department> departmentList() throws SQLException;
-	public ArrayList<Position> posisionList() throws SQLException;
+	public ArrayList<Position> positionList() throws SQLException;
 	
 	public int getMinBasicPay(String positionId) throws SQLException;
 	public int employeeAdd(Employee employee) throws SQLException;
@@ -23,4 +23,7 @@ public interface IEmployeeDAO
 	
 	public String login(String id, String pw) throws SQLException;
 	public String loginAdmin(String id, String pw) throws SQLException;
+	
+	// 일반 직원이 조회하는 직원 전체 리스트 출력(추가)
+	public ArrayList<Employee> empList() throws SQLException;
 }

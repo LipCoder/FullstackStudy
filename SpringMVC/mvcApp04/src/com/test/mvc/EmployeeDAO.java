@@ -1,5 +1,5 @@
 /*===========================
-  #08. EmployeeDAO.java         
+  #09. EmployeeDAO.java         
   - 데이터베이스 액션 처리 클래스.
   - 직원 데이터 입출력 및 수정 삭제.
   - Connection 객체에 대한 의존성 주입 준비 
@@ -148,7 +148,7 @@ public class EmployeeDAO implements IEmployeeDAO
 
 	// 직위 리스트 출력
 	@Override
-	public ArrayList<Position> posisionList() throws SQLException
+	public ArrayList<Position> positionList() throws SQLException
 	{
 		ArrayList<Position> result = new ArrayList<Position>();
 		
@@ -389,7 +389,7 @@ public class EmployeeDAO implements IEmployeeDAO
 	@Override
 	public String loginAdmin(String id, String pw) throws SQLException
 	{
-		String result = "";
+		String result = null;
 		
 		Connection conn = dataSource.getConnection();
 		
@@ -412,6 +412,47 @@ public class EmployeeDAO implements IEmployeeDAO
 		rs.close();
 		pstmt.close();
 		conn.close();
+		
+		return result;
+	}
+
+	
+	// 일반 직원이 조회하는 직원 전체 리스트 출력(추가)
+	@Override
+	public ArrayList<Employee> empList() throws SQLException
+	{
+		ArrayList<Employee> result = new ArrayList<Employee>();
+		
+		Connection conn = dataSource.getConnection();
+		
+		String sql = "SELECT EMPLOYEEID, NAME, SSN, BIRTHDAY,"
+				+ " LUNARNAME, TELEPHONE,"
+				+ " DEPARTMENTNAME, POSITIONNAME, REGIONNAME"
+				+ " FROM EMPLOYEEVIEW"
+				+ " ORDER BY EMPLOYEEID";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		ResultSet rs = pstmt.executeQuery();
+		
+		while(rs.next()) 
+		{
+			Employee employee = new Employee();
+			
+			employee.setEmployeeId(rs.getString("EMPLOYEEID"));
+			employee.setName(rs.getString("NAME"));
+			employee.setSsn1(rs.getString("SSN"));
+			employee.setBirthDay(rs.getString("BIRTHDAY"));
+			employee.setLunarName(rs.getString("LUNARNAME"));
+			employee.setTelephone(rs.getString("TELEPHONE"));
+			employee.setDepartmentName(rs.getString("DEPARTMENTNAME"));
+			employee.setPositionName(rs.getString("POSITIONNAME"));
+			employee.setRegionName(rs.getString("REGIONNAME"));
+			
+			result.add(employee);
+		}
+		rs.close();
+		pstmt.close();
+		conn.close();
+		
 		
 		return result;
 	}

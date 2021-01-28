@@ -338,6 +338,68 @@
    - #26. LoginController.java
    - #27. LogoutController.java          
 
+   - #28. EmpList.jsp
+   - #29. EmpListController.java
+
+   - #30. RegionListController.java
+   - #31. RegionList.jsp
+
+   - #32. RegionInsertFormController.java
+   - #33. RegionInsertForm.jsp
+
+   - #34. RegionAjaxController.java
+   - #35. RegionAjax.jsp
+
+   - #36. RegionInsertController.java
+
+   - #37. RegionUpdateFormController.java
+   - #38. RegionUpdateForm.java
+
+   - #39. RegionUpdateController.java
+
+   - #40. RegionDeleteController.java
+
+		      :
+
+   * Department
+   - #41. DepartmentListController.java
+   - #42. DepartmentList.jsp
+   
+   - #43. DepartmentInsertFormController.java
+   - #44. DepartmentInsertForm.jsp
+    
+   - #45. DepartmentAjaxController.java
+   - #46. DepartmentAjax.jsp
+
+   - #47. DepartmentInsertController.java
+
+   - #48. DepartmentUpdateFormController.java
+   - #49. DepartmentUpdateForm.jsp
+  
+   - #50. DepartmentUpdateController.java
+
+   - #51. DepartmentDeleteController.java
+ 
+   * Position
+   - #52. PositionListController.java
+   - #53. PositionList.jsp
+   
+   - #54. PositionInsertFormController.java
+   - #55. PositionInsertForm.jsp
+    
+   - #56. PositionAjaxController.java
+   - #57. PositionAjax.jsp
+
+   - #58. PositionInsertController.java
+
+   - #59. PositionUpdateFormController.java
+   - #60. PositionUpdateForm.java
+  
+   - #61. PositionUpdateController.java
+
+   - #62. PositionDeleteController.java
+
+
    - dispatcher-servlet.xml	→ 사용자 정의 컨트롤러(Controller) 객체 등록
    				   사용자 요청 URL 매핑 주소 등록.
 				   SimpleDriverDataSource 객체 등록.
@@ -349,5 +411,145 @@
 
 ○ 사용자 최초 요청 주소
    http://localhost:8090/mvcApp04/memberlist.action
+
+
+-----------------------------------------------------------------------------
+■■■ Spring MVC 프로젝트 관련 실습(mvcApp05) ■■■
+
+○ Perspective
+   : JavaEE
+
+○ 다이나믹 웹 프로젝트 생성
+   → STS 사용 시 Spring Project(또는 스프링 레거시 프로젝트)
+   : mvcApp02
+
+○ Spring MVC 환경 설정을 위한 라이브러리 등록
+   : 원도우 탐색기 상에서
+     SpringMVC > mvcApp00(샘플) 디렉터리 접근
+     『src』와 『WebContent』 항목을 복사하여 해당 프로젝트에 덮어쓰기 한다.
+
+○ 실습 성격
+   : 성적 관리 프로그램 실습(Spring MVC 버전)
+     JDBC 모듈 추가 실습
+     SimpleDriverDataSource 클래스 활용
+
+○ 구현 기능
+   - 학생 정보 입력, 출력, 수정, 삭제 기능 구현.
+   - 성적 정보 입력, 출력, 수정, 삭제 기능 구현.
+   - 로그인 / 로그아웃 기능 구현
+   ==> Spring MVC, JSP/Servlet, HTML / CSS / Javascript
+       , AJAX, jQuery, EL, JSTL 표현 등 사용.
+
+○ 사전 작업
+   - 주요 테이블 생성 / 활용
+     ·MEMBERLIST	학생
+     ·MEMBERRECORD	성적
+   - 주요 시퀀스 생성 / 활용
+   - 샘플 데이터 입력
+
+   
+○ 물리적 파일 구성
+   - #00. mvcApp05_scott.sql		→ 데이터베이스 관련 객체 준비.
+
+
+-----------------------------------------------------------------------------
+■■■ Spring MVC 프로젝트 관련 실습(mvcApp06) Annotation 표기법을 활용하여 작성 ■■■
+
+○ Perspective
+   : JavaEE
+
+○ 다이나믹 웹 프로젝트 생성
+   → STS 사용 시 Spring Proejct(또는 스프링 레거시 프로젝트)
+   : mvcApp06
+
+○ Spring MVC 환경 설정을 위한 라이브러리 등록
+   : 원도우 탐색기 상에서
+     SpringMVC > mvcApp00(샘플) 디렉터리 접근
+     『src』와 『WebContent』 항목을 복사하여 해당 프로젝트에 덮어쓰기 한다.
+
+○ 실습 성격
+   : Annotation 표기법을 활용하여 샘플 기본 기능 구성.
+
+○ 기능 구현
+   - 페이지 요청 및 응답(mvc annotation)
+   
+○ 물리적 파일 구성
+   - #00. web.xml			 → DispatcherServlet 객체 등록.
+ 					    (Front Controller)
+ 					    URL 매핑 주소 등록.
+                                            필터 적용.
+   - #01. dispatcher-servlet.xml	 → 『<context:component-scan>』
+					    엘리먼트 등록
+   - #02. HelloController.java		 → 사용자 정의 컨트롤러.
+                                            『@Controller』, 『@RequestMapping』
+                                            어노테이션 등록.
+   - #03. Hello.jsp			 → 사용자 정의 뷰(View)
+   - #04. hello.action			 → 서블릿 주소 연결용 빈 페이지.
+
+○ 사용자 최초 요청 주소
+   http://localhost:8090/mvc06/hello.action
+
+
+-----------------------------------------------------------------------------
+■■■ Spring MVC 프로젝트 관련 실습(mvcApp07) Annotation 표기법을 활용하여 작성 ■■■
+
+○ Perspective
+   : JavaEE
+
+○ 다이나믹 웹 프로젝트 생성
+   → STS 사용 시 Spring Proejct(또는 스프링 레거시 프로젝트)
+   : mvcApp07
+
+○ Spring MVC 환경 설정을 위한 라이브러리 등록
+   : 원도우 탐색기 상에서
+     SpringMVC > mvcApp00(샘플) 디렉터리 접근
+     『src』와 『WebContent』 항목을 복사하여 해당 프로젝트에 덮어쓰기 한다.
+
+○ 실습 성격
+   : Annotation 표기법을 활용하여 샘플 기본 기능 구성.
+
+○ 기능 구현
+   - 폼 데이터 전송 및 수신(mvc annotation)
+   - 데이터베이스 연결 및 데이터 저장.
+
+○ 사전 작업
+   - TBL_MEMBERLIST 테이블 구성.
+   - 샘플 데이터 활용.
+   - 주요 쿼리문 구성.
+
+   
+○ 물리적 파일 구성
+   - #00. mvcApp07_scott.sql
+
+
+
+   - #01. web.xml			 → DispatcherServlet 객체 등록.
+ 					    (Front Controller)
+ 					    URL 매핑 주소 등록.
+                                            필터 적용.
+   - #02. dispatcher-servlet.xml	 → 『<context:component-scan>』
+					    엘리먼트 등록
+   - #03. DBConn.java
+   - #04. MemberDTO.java
+   - #05. MemberDAO.java
+
+   - #06. MemberInsertForm.jsp
+   - #07. MemberInsert.jsp
+   - #08. MemberList.jsp
+
+   - #09. MemberRecordController.java
+
+   - memberlist.action
+
+
+○ 사용자 최초 요청 주소
+   http://localhost:8090/mvc07/memberlist.action
+
+
+
+
+
+
+
 
 
